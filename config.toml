@@ -1,4 +1,3 @@
-baseURL                   = "https://example.com"
 builddrafts                = false
 languageCode               = "zn-Hans"
 canonifyurls               = true
