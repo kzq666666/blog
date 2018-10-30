@@ -3,13 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/helloworld/</loc>
+    <loc>/posts/blogs/helloworld/</loc>
     <lastmod>2018-10-29T21:59:40+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <priority>0</priority>
+    <loc>/posts/blogs/</loc>
+    <lastmod>2018-02-13T12:21:57-05:00</lastmod>
   </url>
   
   <url>
@@ -19,18 +19,30 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
+    <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/code/</loc>
     <lastmod>2018-10-29T21:59:40+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/series/</loc>
+    <loc>/tags/poem/</loc>
+    <lastmod>2018-10-29T21:59:40+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
+    <lastmod>2018-10-29T21:59:40+08:00</lastmod>
     <priority>0</priority>
   </url>
   

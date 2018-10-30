@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Orianna</title>
+    <title>Call me Sam</title>
     <link>/</link>
-    <description>Recent content on Orianna</description>
+    <description>Recent content on Call me Sam</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zn-Hans</language>
+    <language>en-us</language>
     <lastBuildDate>Mon, 29 Oct 2018 21:59:40 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
@@ -13,11 +13,11 @@
     
     <item>
       <title>HelloWorld</title>
-      <link>/posts/helloworld/</link>
+      <link>/posts/blogs/helloworld/</link>
       <pubDate>Mon, 29 Oct 2018 21:59:40 +0800</pubDate>
       
-      <guid>/posts/helloworld/</guid>
-      <description>Hello World. This is my first blog. </description>
+      <guid>/posts/blogs/helloworld/</guid>
+      <description> Hello World. This is my first blog. </description>
     </item>
     
   </channel>

@@ -1,87 +1,39 @@
-builddrafts                = false
-languageCode               = "zn-Hans"
-canonifyurls               = true
-contentdir                 = "content"
-layoutdir                  = "layouts"
-publishdir                 = "public"
-enableEmoji                = true
-hasCJKLanguage             = true
-summaryLength              = 200
-Paginate                   = 3
-
-theme                      = "AllinOne"
-title                      = "Orianna"
-
-pygmentsuseclasses         = true
-
-
-[permalinks]
-  blog                     = "blog/:year-:month/:slug/"
-
-
-[taxonomies]
-  tag                      = "tags"
-  series                   = "series"
-  category                 = "categories"
-
-
-[menu]
-  [[menu.main]]
-    name                   = "Blog"
-    weight                 = -120
-    identifier             = "blog"
-    url                    = "blog/"  
-
-  [[menu.main]]
-    name                   = "Moment"
-    weight                 = -110
-    identifier             = "moment"
-    url                    = "moment/" 
-
-  [[menu.main]]
-    name                   = "About"
-    weight                 = -100
-    identifier             = "about"
-    url                    = "about/"  
-
- 
+baseurl                 = "/"               # Your domain name. Must end with "/"
+languageCode            = "en-us"
+defaultContentLanguage  = "en"
+isMultilingual          = false
+title                   = "Call me Sam"
+theme                   = "sam"
+pygmentsStyle           = "monokai"                     # https://help.farbox.com/pygments.html
+pygmentsCodefences      = true
+googleAnalytics         = "UA-98623582-1"             # Tracking code, eg. "UA-111111111-1"
 
 [params]
-  faviconfile              = "img/zheng.png"               # from static/
-  avatar                   = "img/profile.jpg"             # path to image in static dir e.g img/avatar.png 
-  author                   = "Orianna"
-  description              = ["Be myself.", "Love the wonderful world.", "Do the right things and be a better man."]           # appears in the site header when set to a non-empty string
-  welcome_head             = "Hello, World!"
-  welcome_word             = "~ No Day But Today ~"
+    dateform            = "2006/01/02 Mon 15:04:05"
+    dateformfull        = "2006/01/02 Mon 15:04:05"
+    favicon             = "sam.ico"
+    homepage            = "main"                        # What to call the home page link
+    galleryFolder       = "images/"                     # Where you've put your images, after "/content/gallery/"
+    clickablePhotos     = false                          # Allow links to the full size images
+    smallPreviewImages   = true                         # Show small images from the subfolder instead of the big versions in the gallery
+                                                         # Note: This will only become active if clickablePhotos is also true.
+    smallImagesSubfolder = "small/"                      # The subfolder for the small versions of the images under the gallery (with trailing slash)
+                                                         # For each image the small version has to have the same filename as the big version.
+    footerText          = "Call me Sam, a theme for Hugo."
 
-  latestpostscount         = 5                             # how many posts to display on the home page
-  bloggroupby              = 'month'
-  dateform                 = "Jan 2, 2006"
-  dateformfull             = "2006-01-02  Monday  15:04:05"
-  noshowreadtime           = false                         # if true, don't show "<x> minutes read" in posts
+# Metadata
+    description         = "A new Hugo site."            # Max 160 characters show in search results
+    twitterCard         = "summary_large_image"         # Card value “summary”, “summary_large_image”, “app”, or “player”
+    primaryImage        = "tn.png"                     # Image that shows on Twitter cards and OpenGraph links
 
-  # slides
-  slidesDirPath            = "themes/AllinOne/static/img/header-slides"    # path to image in local dir (path for hugo)
-  slidesDirPathURL         = "img/header-slides"    # path to image in static dir (for static pages)
+[[params.mainMenu]]
+    link = "/posts/blogs"
+    text = "Blogs"
 
-  # highlighting 
-  highlightjs              = true
+[[params.mainMenu]]
+    link = "/gallery"
+    text = "gallery"
 
-  # latex
-  katex                    = true
-
-  # links
-  email                    = "you@email.com"
-  github                   = "//github.com/you"
-  linkedin                 = "//linkedin.com/in/you"
-  facebook                 = "//facebook.com/you"
-  googleplus               = "//google.com/you"
-  twitter                  = "//twitter.com/you" 
-  px500                    = "//px500"
-  instagram                = "//instagram.com/you"
-  include_rss              = true                          # include RSS <link> tag in <head> and show RSS icon
-  
-  # analytics
-  googleAnalytics          = "your-google-analytic-id"
-    
-    
+[[params.mainMenu]]
+    link = "/about"
+    text = "who is sam?"
