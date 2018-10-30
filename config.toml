@@ -2,11 +2,11 @@ baseurl                 = "/"               # Your domain name. Must end with "/
 languageCode            = "en-us"
 defaultContentLanguage  = "en"
 isMultilingual          = false
-title                   = "Call me Sam"
+title                   = "Blogs Of KZQ"
 theme                   = "sam"
 pygmentsStyle           = "monokai"                     # https://help.farbox.com/pygments.html
 pygmentsCodefences      = true
-googleAnalytics         = "UA-98623582-1"             # Tracking code, eg. "UA-111111111-1"
+googleAnalytics         = "UA-128390257-1"             # Tracking code, eg. "UA-111111111-1"
 
 [params]
     dateform            = "2006/01/02 Mon 15:04:05"
@@ -31,9 +31,9 @@ googleAnalytics         = "UA-98623582-1"             # Tracking code, eg. "UA-1
     text = "Blogs"
 
 [[params.mainMenu]]
-    link = "/gallery"
-    text = "gallery"
+    link = "/life"
+    text = "life"
 
 [[params.mainMenu]]
     link = "/about"
-    text = "who is sam?"
+    text = "who is kzq?"

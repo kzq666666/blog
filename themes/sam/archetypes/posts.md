@@ -2,7 +2,7 @@
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 showDate: true
-draft: true
+draft: false
 tags: ["blog","story"]
 ---
 
