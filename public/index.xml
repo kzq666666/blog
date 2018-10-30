@@ -6,10 +6,19 @@
     <description>Recent content on Call me Sam</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Oct 2018 21:59:40 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Oct 2018 09:11:33 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hugo</title>
+      <link>/posts/blogs/hugo/</link>
+      <pubDate>Tue, 30 Oct 2018 09:11:33 +0800</pubDate>
+      
+      <guid>/posts/blogs/hugo/</guid>
+      <description>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。我的博客网站就是通过Hugo来进行部署的,感谢Hugo,让我不需要重复造轮子. 官网:http://www.gohugo.org/ 1.安装 直接下载安装包 https://github.com/gohugoio/hugo/releases</description>
+    </item>
     
     <item>
       <title>HelloWorld</title>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Call me Sam</title>
-    <link>/posts/blogs/</link>
-    <description>Recent content in Posts on Call me Sam</description>
+    <title>Tool on Call me Sam</title>
+    <link>/tags/tool/</link>
+    <description>Recent content in Tool on Call me Sam</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Feb 2018 12:21:57 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 30 Oct 2018 09:11:33 +0800</lastBuildDate>
     
-	<atom:link href="/posts/blogs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/tool/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>/posts/blogs/hugo/</guid>
       <description>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。我的博客网站就是通过Hugo来进行部署的,感谢Hugo,让我不需要重复造轮子. 官网:http://www.gohugo.org/ 1.安装 直接下载安装包 https://github.com/gohugoio/hugo/releases</description>
-    </item>
-    
-    <item>
-      <title>HelloWorld</title>
-      <link>/posts/blogs/helloworld/</link>
-      <pubDate>Mon, 29 Oct 2018 21:59:40 +0800</pubDate>
-      
-      <guid>/posts/blogs/helloworld/</guid>
-      <description> Hello World. This is my first blog. </description>
     </item>
     
   </channel>
