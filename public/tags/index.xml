@@ -6,9 +6,46 @@
     <description>Recent content in Tags on Blogs Of KZQ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 30 Oct 2018 22:22:27 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blog</title>
+      <link>/tags/blog/</link>
+      <pubDate>Tue, 30 Oct 2018 22:22:27 +0800</pubDate>
+      
+      <guid>/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Css</title>
+      <link>/tags/css/</link>
+      <pubDate>Thu, 01 Nov 2018 21:22:22 +0800</pubDate>
+      
+      <guid>/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Property</title>
+      <link>/tags/property/</link>
+      <pubDate>Thu, 01 Nov 2018 21:22:22 +0800</pubDate>
+      
+      <guid>/tags/property/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Story</title>
+      <link>/tags/story/</link>
+      <pubDate>Tue, 30 Oct 2018 22:22:27 +0800</pubDate>
+      
+      <guid>/tags/story/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Tool</title>

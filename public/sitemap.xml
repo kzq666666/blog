@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/posts/blogs/css3property/</loc>
+    <lastmod>2018-11-01T21:22:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/blogs/typeof/</loc>
+    <lastmod>2018-11-01T17:52:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/blogs/css3canvas/</loc>
+    <lastmod>2018-10-31T18:52:17+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/blogs/sam/</loc>
+    <lastmod>2018-10-30T22:22:27+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/life/%E8%AF%BB%E5%90%8E%E6%84%9F/</loc>
     <lastmod>2018-10-30T21:42:28+08:00</lastmod>
   </url>
@@ -28,13 +48,25 @@
   </url>
   
   <url>
+    <loc>/tags/blog/</loc>
+    <lastmod>2018-10-30T22:22:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/</loc>
-    <lastmod>2018-10-30T21:42:28+08:00</lastmod>
+    <lastmod>2018-11-01T21:22:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/css/</loc>
+    <lastmod>2018-11-01T21:22:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -50,7 +82,20 @@
   </url>
   
   <url>
+    <loc>/tags/property/</loc>
+    <lastmod>2018-11-01T21:22:22+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/story/</loc>
+    <lastmod>2018-10-30T22:22:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
+    <lastmod>2018-10-30T22:22:27+08:00</lastmod>
     <priority>0</priority>
   </url>
   
