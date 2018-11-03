@@ -3,7 +3,7 @@ title: "CSS3 Canvas"
 date: 2018-10-31T18:52:17+08:00
 showDate: true
 draft: false
-tags: ["CSS"]
+tags: ["CSS","Canvas"]
 ---
 
 Canvas 是 HTML5 新增加的一个元素,它又称为"画布",主要有以下四种功能
@@ -69,31 +69,28 @@ cxt.clearRect(x1, y1, x2, y2);
 绘制一个正 n 多边形
 
 ```html
-
   <canvas width="100" height="50" style="border: 1px black dashed"></canvas>
     <script>
         var canvas = document.getElementsByTagName('canvas')[0]
-        var cxt = canvas.getContext('2d');
-        var cvs_width = parseFloat(getComputedStyle(canvas, null).width);
-        var cvs_height = parseFloat(getComputedStyle(canvas, null).height);
-        var distanceR = distanceD = 0
+        var cxt = canvas.getContext('2d');      //获取上下文环境对象
+        var cvs_width = parseFloat(getComputedStyle(canvas, null).width);   //获取画布的宽
+        var cvs_height = parseFloat(getComputedStyle(canvas, null).height); //获取画布的高
+        var distanceR = distanceD = 0 
         function createPolygon(n) {
-            var r = Math.min(cvs_width, cvs_height)/2;
+            var r = Math.min(cvs_width, cvs_height)/2;  //正多边形外接圆半径
             if(Math.min(cvs_width,cvs_height)==cvs_height){
                 distanceR = (cvs_width/2) - r
             }else{
                 distanceD = (cvs_height/2) - r
             }
-            var degree = (2 * Math.PI) / n;
-            cxt.moveTo(0+distanceR, r+distanceD);
+            var degree = (2 * Math.PI) / n;     //每个角的度数
+            cxt.moveTo(0+distanceR, r+distanceD);   //初始化起点
             for (let i = 1; i < n; i++) {
                 cxt.lineTo(r - r * Math.cos(i * degree)+distanceR, r + r * Math.sin(i * degree)+distanceD);
-                console.log(r - r * Math.cos(i * degree)+distanceR, r + r * Math.sin(i * degree)+distanceD)
             }
             cxt.closePath();
             cxt.fillStyle = "#f40";
             cxt.fill()
-            // cxt.stroke()
         }
     </script>
 ```
