@@ -27,15 +27,18 @@ div{ perspective:500px; }</description>
       <pubDate>Thu, 01 Nov 2018 17:52:19 +0800</pubDate>
       
       <guid>/posts/blogs/typeof/</guid>
-      <description></description>
+      <description> typeof返回一个字符串,表示为经计算的操作数的类型 typeof(操作数)/typeof 操作数 ()是可以省略的 返回有五种基本类型:string,number,boolean,null,undefined,function 还有ES6的Symbol
+1.string: typeof(&amp;#39;你好&amp;#39;) typeof(&amp;#39;123&amp;#39;) typeof(&amp;#39;&amp;#39;) 空字符串也是String类型 typeof(typeof(&amp;#39;a&amp;#39;)) 2.number: typeof(123); typeof(NaN); 3.boolean: typeof(true); typeof(false); typeof(NaN===NaN) 强制类型转换 4.undefined: typeof(a) 未经使用的变量的数据类型 5.object: typeof(null) js底层所有值的前三位表示数据类型,object是000,而null的32位全是0,因此也是object typeof([]) typeof({}) 6.function: typeof(function(){}) typeof(new Function()) typeof(class A{}) typeof(Symbol) 7.symbol: typeof(Symbol())  暂时性死区 在ES6中let和const出现之前,typeof都是一个完全安全的操作,即不会报错,但有了ES6中let和const的出现所带来的暂时性死区特性,使得typeof也有可能报错
+如果在一个块级作用域下存在let或const命令,则它所声明的变量就绑定在这个区域,不再受外部的影响.在声明之前使用这些变量就会报错.使用let命令声明变量之前是不可用的,这在语法上称为暂时性死区
+typeof(a); //ReferenceError let a; </description>
     </item>
     
     <item>
       <title>CSS3 Canvas</title>
-      <link>/posts/blogs/css3canvas/</link>
+      <link>/posts/blogs/canvas/</link>
       <pubDate>Wed, 31 Oct 2018 18:52:17 +0800</pubDate>
       
-      <guid>/posts/blogs/css3canvas/</guid>
+      <guid>/posts/blogs/canvas/</guid>
       <description>Canvas 是 HTML5 新增加的一个元素,它又称为&amp;rdquo;画布&amp;rdquo;,主要有以下四种功能
  绘制图形 绘制图表 动画效果 游戏开发  在 chrome 浏览器中,canvas 的默认宽高是 300px 和 150px,写宽高的样式的时候最好写在 HTML 页面的属性值里面
 &amp;lt;canvas width=&amp;#34;150&amp;#34; height=&amp;#34;100&amp;#34; style=&amp;#34;border: 1px black dashed&amp;#34;&amp;gt;&amp;lt;/canvas&amp;gt; 一般的操作 1.获取 canvas 对象 2.获取上下文环境对象 context

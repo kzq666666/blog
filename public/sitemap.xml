@@ -13,7 +13,7 @@
   </url>
   
   <url>
-    <loc>/posts/blogs/css3canvas/</loc>
+    <loc>/posts/blogs/canvas/</loc>
     <lastmod>2018-10-31T18:52:17+08:00</lastmod>
   </url>
   
@@ -60,6 +60,12 @@
   </url>
   
   <url>
+    <loc>/tags/canvas/</loc>
+    <lastmod>2018-10-31T18:52:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <priority>0</priority>
   </url>
@@ -67,6 +73,12 @@
   <url>
     <loc>/tags/css/</loc>
     <lastmod>2018-11-01T21:22:22+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/js/</loc>
+    <lastmod>2018-11-01T17:52:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   

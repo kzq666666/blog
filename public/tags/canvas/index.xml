@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Css on Blogs Of KZQ</title>
-    <link>/tags/css/</link>
-    <description>Recent content in Css on Blogs Of KZQ</description>
+    <title>Canvas on Blogs Of KZQ</title>
+    <link>/tags/canvas/</link>
+    <description>Recent content in Canvas on Blogs Of KZQ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Nov 2018 21:22:22 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 31 Oct 2018 18:52:17 +0800</lastBuildDate>
     
-	<atom:link href="/tags/css/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/canvas/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Css3Property</title>
-      <link>/posts/blogs/css3property/</link>
-      <pubDate>Thu, 01 Nov 2018 21:22:22 +0800</pubDate>
-      
-      <guid>/posts/blogs/css3property/</guid>
-      <description> perspective 设置元素被查看位置的视图
-div{ perspective:500px; }</description>
-    </item>
     
     <item>
       <title>CSS3 Canvas</title>
