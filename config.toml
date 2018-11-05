@@ -9,7 +9,7 @@ pygmentsCodefences      = true
 googleAnalytics         = "UA-128390257-1"             # Tracking code, eg. "UA-111111111-1"
 
 [params]
-    dateform            = "2006/01/02 Mon 15:04:05"
+    dateform            = "2006年1月2日"
     dateformfull        = "2006/01/02 Mon 15:04:05"
     favicon             = "sam.ico"
     homepage            = "main"                        # What to call the home page link

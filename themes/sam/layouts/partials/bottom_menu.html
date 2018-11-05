@@ -3,12 +3,6 @@
 <p>
 {{ end }}
 
-    {{ if .show_back_menu_item }}
-        <a href="{{ .Page.Section | relURL }}">back</a>
-        {{ if .Page.Site.Params.mainMenu }}
-            &#183;
-        {{ end }}
-    {{ end }}
 
     {{ if .Page.Site.Params.mainMenu }}
         {{ range first 1 .Page.Site.Params.mainMenu }}
