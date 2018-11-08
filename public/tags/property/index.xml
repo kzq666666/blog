@@ -17,8 +17,7 @@
       <pubDate>Thu, 01 Nov 2018 21:22:22 +0800</pubDate>
       
       <guid>/posts/blogs/css3property/</guid>
-      <description> perspective 设置元素被查看位置的视图
-div{ perspective:500px; }</description>
+      <description>perspective 设置元素被查看位置的视图 div{ perspective:500px; }</description>
     </item>
     
   </channel>

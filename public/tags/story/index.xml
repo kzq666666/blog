@@ -17,7 +17,7 @@
       <pubDate>Tue, 30 Oct 2018 22:22:27 +0800</pubDate>
       
       <guid>/posts/blogs/sam/</guid>
-      <description> sam ├─archetypes ├─exampleSite │ ├─content │ │ ├─gallery │ │ │ └─images │ │ │ └─small │ │ └─posts │ ├─resources │ └─static │ └─img ├─images ├─layouts │ ├─gallery │ ├─partials │ ├─posts │ └─_default ├─sass └─static └─css</description>
+      <description>sam ├─archetypes ├─exampleSite │ ├─content │ │ ├─gallery │ │ │ └─images │ │ │ └─small │ │</description>
     </item>
     
   </channel>

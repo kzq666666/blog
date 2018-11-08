@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="200" height="200"></canvas>
+    <script>
+        var canvas = document.getElementsByTagName('canvas')[0]
+        var cxt = canvas.getContext('2d')
+        cxt.beginPath()
+        cxt.arc(100,100,100,0,Math.PI*2,true)
+        cxt.closePath()
+        cxt.fillStyle = 'HotPink'
+        cxt.fill()
+    </script>
+</body>
+</html>

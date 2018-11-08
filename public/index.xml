@@ -17,8 +17,7 @@
       <pubDate>Thu, 01 Nov 2018 21:22:22 +0800</pubDate>
       
       <guid>/posts/blogs/css3property/</guid>
-      <description> perspective 设置元素被查看位置的视图
-div{ perspective:500px; }</description>
+      <description>perspective 设置元素被查看位置的视图 div{ perspective:500px; }</description>
     </item>
     
     <item>
@@ -27,10 +26,7 @@ div{ perspective:500px; }</description>
       <pubDate>Thu, 01 Nov 2018 17:52:19 +0800</pubDate>
       
       <guid>/posts/blogs/typeof/</guid>
-      <description> typeof返回一个字符串,表示为经计算的操作数的类型 typeof(操作数)/typeof 操作数 ()是可以省略的 返回有五种基本类型:string,number,boolean,null,undefined,function 还有ES6的Symbol
-1.string: typeof(&amp;#39;你好&amp;#39;) typeof(&amp;#39;123&amp;#39;) typeof(&amp;#39;&amp;#39;) 空字符串也是String类型 typeof(typeof(&amp;#39;a&amp;#39;)) 2.number: typeof(123); typeof(NaN); 3.boolean: typeof(true); typeof(false); typeof(NaN===NaN) 强制类型转换 4.undefined: typeof(a) 未经使用的变量的数据类型 5.object: typeof(null) js底层所有值的前三位表示数据类型,object是000,而null的32位全是0,因此也是object typeof([]) typeof({}) 6.function: typeof(function(){}) typeof(new Function()) typeof(class A{}) typeof(Symbol) 7.symbol: typeof(Symbol())  暂时性死区 在ES6中let和const出现之前,typeof都是一个完全安全的操作,即不会报错,但有了ES6中let和const的出现所带来的暂时性死区特性,使得typeof也有可能报错
-如果在一个块级作用域下存在let或const命令,则它所声明的变量就绑定在这个区域,不再受外部的影响.在声明之前使用这些变量就会报错.使用let命令声明变量之前是不可用的,这在语法上称为暂时性死区
-typeof(a); //ReferenceError let a; </description>
+      <description>typeof返回一个字符串,表示为经计算的操作数的类型 typeof(操作数)/typeof 操作数 ()是可以省略的 返回有五种基本类型:stri</description>
     </item>
     
     <item>
@@ -39,13 +35,7 @@ typeof(a); //ReferenceError let a; </description>
       <pubDate>Wed, 31 Oct 2018 18:52:17 +0800</pubDate>
       
       <guid>/posts/blogs/canvas/</guid>
-      <description>Canvas 是 HTML5 新增加的一个元素,它又称为&amp;rdquo;画布&amp;rdquo;,主要有以下四种功能
- 绘制图形 绘制图表 动画效果 游戏开发  在 chrome 浏览器中,canvas 的默认宽高是 300px 和 150px,写宽高的样式的时候最好写在 HTML 页面的属性值里面
-&amp;lt;canvas width=&amp;#34;150&amp;#34; height=&amp;#34;100&amp;#34; style=&amp;#34;border: 1px black dashed&amp;#34;&amp;gt;&amp;lt;/canvas&amp;gt; 一般的操作 1.获取 canvas 对象 2.获取上下文环境对象 context
-cxt = canvas.getContext(&amp;#34;2d&amp;#34;);  3.开始绘制图形
-1.直线 cxt.moveTo(x1,y1) 画笔移到(x1,y1)处 cxt.LineTo(x2,y2) 画笔从起点(x1,y1)开始画线,一直到终点(x2,y2)处 cxt.strokeStyle = &amp;#34;red&amp;#34; 设置线的颜色 cxt.stroke() 用笔划线 (tip:cxt.strokeStyle要在cxt.stroke()之前执行,否则是看不到效果的,和画画是一样的,在动笔之前把要画的东西,颜色,样式确定好  2.描边矩形 填充矩形 清空矩形 描边矩形
-cxt.strokeRect(x1,y1,x2,y2) (x1,y1)为矩形左上角坐标,(x2,y2)为矩形右下角坐标 等价于==&amp;gt; cxt.rect(x1,y1,x2,y2); cxt.stroke();  填充矩形
-cxt.fillStyle = &amp;#34;属性值&amp;#34; cxt.fillRect(x1,y1,width,height) (x1,y1)是矩形左上角坐标,width是矩形的宽度,height是矩形的高度 等价于==&amp;gt; cxt.rect(x1,y1,x2,y2); cxt.fill()  清空矩形</description>
+      <description>Canvas 是 HTML5 新增加的一个元素,它又称为&amp;rdquo;画布&amp;rdquo;,主要有以下四种功能 绘制图形 绘制图表 动画效果 游戏开发 在 chrome 浏览器中,canva</description>
     </item>
     
     <item>
@@ -54,7 +44,7 @@ cxt.fillStyle = &amp;#34;属性值&amp;#34; cxt.fillRect(x1,y1,width,height) (x1
       <pubDate>Tue, 30 Oct 2018 22:22:27 +0800</pubDate>
       
       <guid>/posts/blogs/sam/</guid>
-      <description> sam ├─archetypes ├─exampleSite │ ├─content │ │ ├─gallery │ │ │ └─images │ │ │ └─small │ │ └─posts │ ├─resources │ └─static │ └─img ├─images ├─layouts │ ├─gallery │ ├─partials │ ├─posts │ └─_default ├─sass └─static └─css</description>
+      <description>sam ├─archetypes ├─exampleSite │ ├─content │ │ ├─gallery │ │ │ └─images │ │ │ └─small │ │</description>
     </item>
     
     <item>
@@ -72,12 +62,7 @@ cxt.fillStyle = &amp;#34;属性值&amp;#34; cxt.fillRect(x1,y1,width,height) (x1
       <pubDate>Tue, 30 Oct 2018 09:11:33 +0800</pubDate>
       
       <guid>/posts/blogs/hugo/</guid>
-      <description>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。我的博客网站就是通过Hugo来进行部署的,感谢Hugo,让我不需要重复造轮子. 官网:http://www.gohugo.org/ 1.下载 直接下载安装包 https://github.com/gohugoio/hugo/releases
-2.安装 windows10:解压安装包,会生成一个exe文件,在windows系统变量中添加当前路径到path.这样就算是安装成功了,之后都是在终端直接运行
-3.创建一个站点 hugo new site path/siteName 在path路径下生成一个叫siteName的站点  站点目录结构:
-sitname ├── archetypes │ └── default.md ├── config.toml 配置文件 ├── content 存放主要内容的目录 ├── data ├── layouts ├── static └── themes 主题目录  4.创建一篇文章 hugo new posts/blog.md 在content目录下生成posts/blog.md  5.下载主题和配置 url : https://themes.gohugo.io/
-(1)下载
-这些主题都托管在GitHub上,可以直接用git的下载方式下载 cd themes/ 进入themes目录 . git clone + 对应主题的地址 在readme.md中,作者会有对应git命令操作 . 直接在release最新发布版本中下载包  (2)配置 可以直接将下载的主题目录里面的 exampleSite/config.toml复制到站点根目录下覆盖初始化的config.toml文件 ( tip:注意config.toml文件中启用的主题名字是否和主题目录名一样,sam主题就是不一样的,不然就会加载主题失败 ) sam主题 ( https://themes.</description>
+      <description>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。我的博客网站就是通过Hugo来进行部署的,感谢Hugo,让我不</description>
     </item>
     
     <item>
@@ -86,7 +71,7 @@ sitname ├── archetypes │ └── default.md ├── config.toml 配�
       <pubDate>Mon, 29 Oct 2018 21:59:40 +0800</pubDate>
       
       <guid>/posts/blogs/helloworld/</guid>
-      <description> Hello World. This is my first blog. </description>
+      <description>Hello World. This is my first blog.</description>
     </item>
     
     <item>
@@ -96,6 +81,15 @@ sitname ├── archetypes │ └── default.md ├── config.toml 配�
       
       <guid>/about/</guid>
       <description>Hello,I am kzq</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/posts/blogs/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/blogs/test/</guid>
+      <description>Documentvar canvas = document.getElementsByTagName(&#39;canvas&#39;)[0]var cxt = canvas.getContext(&#39;2d&#39;)cxt.beginPath()cxt.arc(100,100,100,0,Math.PI*2,true)cxt.closePath()cxt.fillStyle = &#39;HotPink&#39;cxt.fill()</description>
     </item>
     
   </channel>

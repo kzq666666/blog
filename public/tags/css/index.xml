@@ -17,8 +17,7 @@
       <pubDate>Thu, 01 Nov 2018 21:22:22 +0800</pubDate>
       
       <guid>/posts/blogs/css3property/</guid>
-      <description> perspective 设置元素被查看位置的视图
-div{ perspective:500px; }</description>
+      <description>perspective 设置元素被查看位置的视图 div{ perspective:500px; }</description>
     </item>
     
     <item>
@@ -27,13 +26,7 @@ div{ perspective:500px; }</description>
       <pubDate>Wed, 31 Oct 2018 18:52:17 +0800</pubDate>
       
       <guid>/posts/blogs/canvas/</guid>
-      <description>Canvas 是 HTML5 新增加的一个元素,它又称为&amp;rdquo;画布&amp;rdquo;,主要有以下四种功能
- 绘制图形 绘制图表 动画效果 游戏开发  在 chrome 浏览器中,canvas 的默认宽高是 300px 和 150px,写宽高的样式的时候最好写在 HTML 页面的属性值里面
-&amp;lt;canvas width=&amp;#34;150&amp;#34; height=&amp;#34;100&amp;#34; style=&amp;#34;border: 1px black dashed&amp;#34;&amp;gt;&amp;lt;/canvas&amp;gt; 一般的操作 1.获取 canvas 对象 2.获取上下文环境对象 context
-cxt = canvas.getContext(&amp;#34;2d&amp;#34;);  3.开始绘制图形
-1.直线 cxt.moveTo(x1,y1) 画笔移到(x1,y1)处 cxt.LineTo(x2,y2) 画笔从起点(x1,y1)开始画线,一直到终点(x2,y2)处 cxt.strokeStyle = &amp;#34;red&amp;#34; 设置线的颜色 cxt.stroke() 用笔划线 (tip:cxt.strokeStyle要在cxt.stroke()之前执行,否则是看不到效果的,和画画是一样的,在动笔之前把要画的东西,颜色,样式确定好  2.描边矩形 填充矩形 清空矩形 描边矩形
-cxt.strokeRect(x1,y1,x2,y2) (x1,y1)为矩形左上角坐标,(x2,y2)为矩形右下角坐标 等价于==&amp;gt; cxt.rect(x1,y1,x2,y2); cxt.stroke();  填充矩形
-cxt.fillStyle = &amp;#34;属性值&amp;#34; cxt.fillRect(x1,y1,width,height) (x1,y1)是矩形左上角坐标,width是矩形的宽度,height是矩形的高度 等价于==&amp;gt; cxt.rect(x1,y1,x2,y2); cxt.fill()  清空矩形</description>
+      <description>Canvas 是 HTML5 新增加的一个元素,它又称为&amp;rdquo;画布&amp;rdquo;,主要有以下四种功能 绘制图形 绘制图表 动画效果 游戏开发 在 chrome 浏览器中,canva</description>
     </item>
     
   </channel>

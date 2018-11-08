@@ -48,6 +48,10 @@
   </url>
   
   <url>
+    <loc>/posts/blogs/test/</loc>
+  </url>
+  
+  <url>
     <loc>/tags/blog/</loc>
     <lastmod>2018-10-30T22:22:27+08:00</lastmod>
     <priority>0</priority>
