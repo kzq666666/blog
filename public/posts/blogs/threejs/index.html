@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="A new Hugo site.">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="/">
+
+<meta name="twitter:image" content="/tn.png">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="Blogs Of KZQ">
+<meta name="twitter:description" property="og:description" itemprop="description" content="A new Hugo site.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="/tn.png">
+
+<link rel="shortcut icon" href="/sam.ico" id="favicon">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128390257-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-128390257-1');
+</script>
+
+    
+
+    
+    
+    
+    <title>
+        
+        Three.js
+        
+    </title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="section" id="title">Three.js</div>
+
+        
+<div class="section" id="content">
+    2018年11月16日 &#183; 231 words
+    
+    <div class="tag-container">
+        
+        <span class="tag">
+            <a href="/tags/three">
+                THREE
+            </a>
+        </span>
+        
+        <span class="tag">
+            <a href="/tags/three">
+                three
+            </a>
+        </span>
+        
+        <span class="tag">
+            <a href="/tags/three.js">
+                three.js
+            </a>
+        </span>
+        
+        <span class="tag">
+            <a href="/tags/3d">
+                3D
+            </a>
+        </span>
+        
+    </div>
+    
+    <hr/>
+    <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+    &lt;<span style="color:#f92672">head</span>&gt;
+        &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+        &lt;<span style="color:#f92672">title</span>&gt;使用three.js创建一个球&lt;/<span style="color:#f92672">title</span>&gt;
+    &lt;/<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">body</span>&gt;
+        &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;three.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+        &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
+            <span style="color:#75715e">// 创建一个场景
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">Scene</span>();
+            <span style="color:#75715e">// 创建一个透视视图相机
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">camera</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">PerspectiveCamera</span>(<span style="color:#ae81ff">45</span>,window.<span style="color:#a6e22e">innerWidth</span><span style="color:#960050;background-color:#1e0010">/innerHeight,1,1000);</span>
+            <span style="color:#75715e">// 设置相机的位置(x,y,z)
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">set</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">5</span>);
+            <span style="color:#75715e">// 创建一个渲染器
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">WebGLRenderer</span>();
+            <span style="color:#75715e">// 设置渲染器的大小
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">setSize</span>(window.<span style="color:#a6e22e">innerWidth</span>,window.<span style="color:#a6e22e">innerHeight</span>);
+            <span style="color:#75715e">// 插入到页面当中
+</span><span style="color:#75715e"></span>            document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">domElement</span>);
+
+            <span style="color:#75715e">// 开始渲染(表演开始....)
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 创建一个球使用SphereGeometry()
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">geomery</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">SphereGeometry</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">22</span>,<span style="color:#ae81ff">22</span>);
+            <span style="color:#75715e">// 选择材料
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">material</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">MeshNormalMaterial</span>({<span style="color:#a6e22e">wireframe</span><span style="color:#f92672">:</span><span style="color:#66d9ef">true</span>});
+            <span style="color:#75715e">// 创建网格对象
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sphere</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">Mesh</span>(<span style="color:#a6e22e">geomery</span>, <span style="color:#a6e22e">material</span>);
+            <span style="color:#75715e">// 加入到场景(舞台)当中
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">sphere</span>)
+            <span style="color:#75715e">// 渲染
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">animation</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+                <span style="color:#a6e22e">requestAnimationFrame</span>(<span style="color:#a6e22e">animation</span>);
+                <span style="color:#a6e22e">sphere</span>.<span style="color:#a6e22e">rotation</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.01</span>;
+                <span style="color:#a6e22e">sphere</span>.<span style="color:#a6e22e">rotation</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.01</span>;
+                <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">render</span>(<span style="color:#a6e22e">scene</span>,<span style="color:#a6e22e">camera</span>)
+            }
+            <span style="color:#a6e22e">animation</span>()
+        &lt;/<span style="color:#f92672">script</span>&gt;
+    &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;</code></pre></div>
+</div>
+
+
+        
+<div class="section bottom-menu">
+    
+<hr />
+<p>
+
+
+
+    
+        
+            <a href="/posts/blogs">
+                Blogs
+            </a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/life">
+                life
+            </a>
+        
+            &#183; 
+            <a href="/about">
+                who is kzq?
+            </a>
+        
+    
+    &#183; 
+    <a href="/">
+        main
+    </a>
+
+</p>
+</div>
+
+
+        <div class="section footer">Call me Sam, a theme for Hugo.</div>
+    </div>
+</body>
+
+</html>

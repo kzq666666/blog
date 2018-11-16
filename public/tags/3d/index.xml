@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3d on Blogs Of KZQ</title>
+    <link>/tags/3d/</link>
+    <description>Recent content in 3d on Blogs Of KZQ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Nov 2018 23:43:52 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/3d/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Three.js</title>
+      <link>/posts/blogs/threejs/</link>
+      <pubDate>Fri, 16 Nov 2018 23:43:52 +0800</pubDate>
+      
+      <guid>/posts/blogs/threejs/</guid>
+      <description>&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;使用three.js创建一个球&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34; src=&amp;#34;three.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; // 创建一个场景 var scene = new THREE.Scene(); // 创建</description>
+    </item>
+    
+  </channel>
+</rss>

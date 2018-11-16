@@ -7,7 +7,7 @@ tags: ["JS"]
 ---
 typeof返回一个字符串,表示为经计算的操作数的类型
 <br>typeof(操作数)/typeof 操作数  ()是可以省略的
-返回有五种基本类型:string,number,boolean,null,undefined,function
+返回有五种基本类型:string,number,boolean,undefined,function,object
 还有ES6的Symbol
 ```js
 1.string:

@@ -129,4 +129,12 @@ cxt.quadraticCurveTo(cx,cy,x2,y2)
 cxt.bezierCurveTo(cx1,cy1,cx2,cy2,x,y)
 //(cx1,cy1)控制点1的坐标,(cx2,cy2)控制点2的坐标,(x,y)表示结束点坐标,起点坐标由moveTo()或lineTo()提供
 ```
-
+## 3.线条操作
+```js
+lineWidth   
+//线条宽度(px)
+lineCap     
+//线帽样式 Butt默认值无键帽,Round圆形键帽,Square正方形键帽
+lineJoin    
+//线条交接处样式 miter默认值尖角,round圆角,bevel斜角
+```

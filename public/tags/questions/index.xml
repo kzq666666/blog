@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Questions on Blogs Of KZQ</title>
+    <link>/tags/questions/</link>
+    <description>Recent content in Questions on Blogs Of KZQ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Nov 2018 10:01:19 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/questions/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Questions</title>
+      <link>/posts/blogs/questions/</link>
+      <pubDate>Fri, 16 Nov 2018 10:01:19 +0800</pubDate>
+      
+      <guid>/posts/blogs/questions/</guid>
+      <description>Q:return !1 和 return false return 0! 和 return true写法有什么区别 tween.min.js的源码 update: function(c) { if (0 === a.length) return !1; for ( var b = 0, d = a.length, c = void 0 !== c ? c : Date.now(); b &amp;lt; d; ) a[b].update(c) ? b++</description>
+    </item>
+    
+  </channel>
+</rss>
