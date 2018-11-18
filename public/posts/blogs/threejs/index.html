@@ -58,7 +58,7 @@
 
         
 <div class="section" id="content">
-    2018年11月16日 &#183; 409 words
+    2018年11月16日 &#183; 717 words
     
     <div class="tag-container">
         
@@ -99,13 +99,80 @@
 </code></pre></div>
 <h2 id="2-camera-相机">2.camera 相机</h2>
 
-<p>camera决定看一个物体的方式和位置，和现实中的相机行为相似，有很多种类的相机。
-* PerspectiveCamera 透视相机</p>
+<p>camera决定看一个物体的方式和位置，和现实中的相机行为相似，有很多种类的相机。</p>
+
+<h3 id="perspectivecamera-透视相机">* PerspectiveCamera 透视相机</h3>
+
+<p>透视相机更加接近于现实中我们看物体的视角，远小近大</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 创建一个透视相机
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">camera</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">PerspectiveCamera</span>(<span style="color:#a6e22e">fov可视角度</span>,<span style="color:#a6e22e">aspect纵横比</span>,<span style="color:#a6e22e">near近端距离</span>,<span style="color:#a6e22e">far远端距离</span>)
+<span style="color:#75715e">// 设置camera的位置
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">set</span>(<span style="color:#a6e22e">x</span>,<span style="color:#a6e22e">y</span>,<span style="color:#a6e22e">z</span>)
 </code></pre></div>
-<p><img src="/static/PCamera.jpg"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+<p><img src="/PCamera.jpg"></p>
+
+<h2 id="3-渲染器">3.渲染器</h2>
+
+<ul>
+<li>WebGLRenderer</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">WebGLRenderer</span>()
+</code></pre></div>
+<h2 id="4-物体">4.物体</h2>
+
+<ul>
+<li>Mesh 构造器</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 基于以三角形为polygon mesh多边形网格的物体的类
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Mesh</span>(<span style="color:#a6e22e">geometry</span><span style="color:#f92672">:</span><span style="color:#a6e22e">Geometry</span>,<span style="color:#a6e22e">material</span><span style="color:#f92672">:</span><span style="color:#a6e22e">Material</span>)
+</code></pre></div>
+<h2 id="5-加载器">5，加载器</h2>
+
+<ul>
+<li>ImageLoader</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 初始化一个加载器
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">loader</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">ImageLoader</span>();
+<span style="color:#75715e">// 加载一个图片资源
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">loader</span>.<span style="color:#a6e22e">load</span>(
+    <span style="color:#75715e">// 资源URL
+</span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#39;./image/1.jpg&#39;</span>,
+    <span style="color:#75715e">// onLoad回调
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">image</span>){ 
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">canvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;canvas&#39;</span>);
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">context</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>);
+        <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">drawImage</span>(<span style="color:#a6e22e">image</span>,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">100</span>)
+    }
+)
+</code></pre></div>
+<h2 id="6-控制器">6.控制器</h2>
+
+<ul>
+<li>OrbitControls
+<br /></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 构造器(Constructor)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">controls</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">OrbitControls</span>(<span style="color:#a6e22e">object</span><span style="color:#f92672">:</span><span style="color:#a6e22e">camera</span>,<span style="color:#a6e22e">domElement</span><span style="color:#f92672">:</span><span style="color:#a6e22e">HTMLDOMElement</span>);
+
+<span style="color:#75715e">// 属性(Properties)
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">1</span> .<span style="color:#a6e22e">maxDistance</span>
+<span style="color:#a6e22e">滚轮能放大的最大距离</span>
+<span style="color:#ae81ff">2</span> .<span style="color:#a6e22e">minDistance</span>
+<span style="color:#a6e22e">滚轮能缩小的最小距离</span>
+
+<span style="color:#75715e">// 方法(methods)
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">1</span> .<span style="color:#a6e22e">update</span>()
+<span style="color:#a6e22e">更新控件</span>,<span style="color:#a6e22e">一般用在手动更新camera变换后调用</span>,<span style="color:#a6e22e">或者在更新循环中调用</span>
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">controls</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">OrbitControls</span>(<span style="color:#a6e22e">camera</span>,<span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">domElement</span>);
+<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">set</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">5000</span>);
+<span style="color:#a6e22e">controls</span>.<span style="color:#a6e22e">update</span>()
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">animate</span>(){
+    <span style="color:#a6e22e">requestAnimationFrame</span>(<span style="color:#a6e22e">animate</span>);
+    <span style="color:#a6e22e">controls</span>.<span style="color:#a6e22e">update</span>()
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
 &lt;<span style="color:#f92672">html</span>&gt;
     &lt;<span style="color:#f92672">head</span>&gt;
         &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
@@ -113,6 +180,7 @@
     &lt;/<span style="color:#f92672">head</span>&gt;
     &lt;<span style="color:#f92672">body</span>&gt;
         &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;three.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+        &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;OrbitControls.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
         &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
             <span style="color:#75715e">// 创建一个场景
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">scene</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">Scene</span>();
@@ -124,6 +192,8 @@
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">WebGLRenderer</span>();
             <span style="color:#75715e">// 设置渲染器的大小
 </span><span style="color:#75715e"></span>            <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">setSize</span>(window.<span style="color:#a6e22e">innerWidth</span>,window.<span style="color:#a6e22e">innerHeight</span>);
+            <span style="color:#75715e">// 设置背景颜色
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">setClearColor</span>(<span style="color:#ae81ff">0xfff6e6</span>)
             <span style="color:#75715e">// 插入到页面当中
 </span><span style="color:#75715e"></span>            document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">domElement</span>);
 
@@ -135,16 +205,22 @@
             <span style="color:#75715e">// 创建网格对象
 </span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sphere</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">Mesh</span>(<span style="color:#a6e22e">geomery</span>, <span style="color:#a6e22e">material</span>);
             <span style="color:#75715e">// 加入到场景(舞台)当中
-</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">sphere</span>)
-            <span style="color:#75715e">// 渲染
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">animation</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
-                <span style="color:#a6e22e">requestAnimationFrame</span>(<span style="color:#a6e22e">animation</span>);
-                <span style="color:#a6e22e">sphere</span>.<span style="color:#a6e22e">rotation</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.01</span>;
-                <span style="color:#a6e22e">sphere</span>.<span style="color:#a6e22e">rotation</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">0.01</span>;
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">sphere</span>);
+            <span style="color:#75715e">// 创建一个控制器
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">controls</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">OrbitControls</span>(<span style="color:#a6e22e">camera</span>,<span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">domElement</span>);
+            <span style="color:#a6e22e">controls</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>,<span style="color:#66d9ef">function</span>(){
                 <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">render</span>(<span style="color:#a6e22e">scene</span>,<span style="color:#a6e22e">camera</span>)
-            }
-            <span style="color:#a6e22e">animation</span>()
-        &lt;/<span style="color:#f92672">script</span>&gt;
+            })
+            <span style="color:#75715e">// 渲染
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">render</span>(<span style="color:#a6e22e">scene</span>,<span style="color:#a6e22e">camera</span>)
+            <span style="color:#75715e">// var animation = function(){
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//     requestAnimationFrame(animation);
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//     sphere.rotation.x += 0.01;
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//     sphere.rotation.y += 0.01;
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//     renderer.render(scene,camera)
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// }
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// animation()
+</span><span style="color:#75715e"></span>        &lt;/<span style="color:#f92672">script</span>&gt;
     &lt;/<span style="color:#f92672">body</span>&gt;
 &lt;/<span style="color:#f92672">html</span>&gt;</code></pre></div>
 </div>

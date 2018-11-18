@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/posts/blogs/tweenjs/</loc>
+    <lastmod>2018-11-18T11:22:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/blogs/command/</loc>
+    <lastmod>2018-11-17T13:49:47+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/blogs/threejs/</loc>
     <lastmod>2018-11-16T23:43:52+08:00</lastmod>
   </url>
@@ -71,7 +81,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-11-16T23:43:52+08:00</lastmod>
+    <lastmod>2018-11-18T11:22:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -87,14 +97,32 @@
   </url>
   
   <url>
+    <loc>/tags/command/</loc>
+    <lastmod>2018-11-17T13:49:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/css/</loc>
     <lastmod>2018-11-01T21:22:22+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>/tags/git/</loc>
+    <lastmod>2018-11-17T13:49:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/js/</loc>
     <lastmod>2018-11-01T17:52:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/linux/</loc>
+    <lastmod>2018-11-17T13:49:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -148,6 +176,24 @@
   <url>
     <loc>/tags/tool/</loc>
     <lastmod>2018-10-30T09:11:33+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tween/</loc>
+    <lastmod>2018-11-18T11:22:48+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tween.js/</loc>
+    <lastmod>2018-11-18T11:22:48+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E5%8A%A8%E7%94%BB/</loc>
+    <lastmod>2018-11-18T11:22:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
