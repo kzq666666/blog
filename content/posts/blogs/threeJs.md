@@ -14,9 +14,10 @@ var scene = new THREE.Scene();
 ## 2.camera 相机
 camera决定看一个物体的方式和位置，和现实中的相机行为相似，有很多种类的相机。
 
-### * PerspectiveCamera 透视相机
-透视相机更加接近于现实中我们看物体的视角，远小近大
+* PerspectiveCamera 透视相机
+
 ```js
+// 透视相机更加接近于现实中我们看物体的视角，远小近大
 // 创建一个透视相机
 var camera = new THREE.PerspectiveCamera(fov可视角度,aspect纵横比,near近端距离,far远端距离)
 // 设置camera的位置
@@ -31,6 +32,46 @@ var renderer = new THREE.WebGLRenderer()
 ```
 
 
+## 4.几何形状
+* 立方体(CubeGeometry)
+
+```js
+CubeGeometry(width, height, depth, widthSegments, heightSegments, depthSegments)
+// width,height,depth是分别在x,y,z方向上的长度,后面三个参数是对应的分段数,如果不需要分段可以不设置。几何中心在原点
+```
+* 平面(PlaneGeometry)
+
+长方形平面,并非是无限延伸的平面  
+
+```js
+PlaneGeometry(width, height, widthSegments, heightSegments)
+// width,height分别是x,y方向上的长度,后面两个参数是对应的分段数
+```
+* 球体(SphereGeometry)
+
+```js
+SphereGeometry(radius, segmentsWidth, segmentHeight, phiStart, phiLength, thetaStart, thetaLength)
+// radius:半径,segmentWidth:纬度上切片数,segmentHeight:经度上的切片数,phiStart:经度开始的弧度,phiLength:经度跨过的弧度,thetaStart:纬度开始的弧度,thetaLength:纬度跨过的弧度
+```
+* 文字形状
+  
+使用额外的文字形状需要下载和引用额外的字体库,下载对应的json文件放在目录下,用下面的方法引用
+传送门:https://github.com/mrdoob/three.js/tree/master/examples/fonts
+```js
+var loader = new THREE.FontLoader();
+loader.load('../gentilis_regular.typeface.json', function(font) {
+    var text = new THREE.Mesh(
+        new THREE.TextGeometry('KZQ',{
+            font:font,
+            size:1,
+            height:1
+        }),
+        new THREE.MeshNormalMaterial();
+        scene.add(text);
+        renderer.render(scene, camera);
+    )
+})
+```
 ## 4.物体
 
 * Mesh 构造器
