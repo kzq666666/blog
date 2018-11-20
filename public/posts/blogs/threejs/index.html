@@ -58,7 +58,7 @@
 
         
 <div class="section" id="content">
-    2018年11月16日 &#183; 717 words
+    2018年11月16日 &#183; 1185 words
     
     <div class="tag-container">
         
@@ -118,6 +118,49 @@
 <li>WebGLRenderer</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">renderer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">WebGLRenderer</span>()
+</code></pre></div>
+<h2 id="4-几何形状">4.几何形状</h2>
+
+<ul>
+<li>立方体(CubeGeometry)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">CubeGeometry</span>(<span style="color:#a6e22e">width</span>, <span style="color:#a6e22e">height</span>, <span style="color:#a6e22e">depth</span>, <span style="color:#a6e22e">widthSegments</span>, <span style="color:#a6e22e">heightSegments</span>, <span style="color:#a6e22e">depthSegments</span>)
+<span style="color:#75715e">// width,height,depth是分别在x,y,z方向上的长度,后面三个参数是对应的分段数,如果不需要分段可以不设置。几何中心在原点
+</span><span style="color:#75715e"></span></code></pre></div>
+<ul>
+<li>平面(PlaneGeometry)</li>
+</ul>
+
+<p>长方形平面,并非是无限延伸的平面</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">PlaneGeometry</span>(<span style="color:#a6e22e">width</span>, <span style="color:#a6e22e">height</span>, <span style="color:#a6e22e">widthSegments</span>, <span style="color:#a6e22e">heightSegments</span>)
+<span style="color:#75715e">// width,height分别是x,y方向上的长度,后面两个参数是对应的分段数
+</span><span style="color:#75715e"></span></code></pre></div>
+<ul>
+<li>球体(SphereGeometry)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">SphereGeometry</span>(<span style="color:#a6e22e">radius</span>, <span style="color:#a6e22e">segmentsWidth</span>, <span style="color:#a6e22e">segmentHeight</span>, <span style="color:#a6e22e">phiStart</span>, <span style="color:#a6e22e">phiLength</span>, <span style="color:#a6e22e">thetaStart</span>, <span style="color:#a6e22e">thetaLength</span>)
+<span style="color:#75715e">// radius:半径,segmentWidth:纬度上切片数,segmentHeight:经度上的切片数,phiStart:经度开始的弧度,phiLength:经度跨过的弧度,thetaStart:纬度开始的弧度,thetaLength:纬度跨过的弧度
+</span><span style="color:#75715e"></span></code></pre></div>
+<ul>
+<li>文字形状
+<br /></li>
+</ul>
+
+<p>使用额外的文字形状需要下载和引用额外的字体库,下载对应的json文件放在目录下,用下面的方法引用
+传送门:<a href="https://github.com/mrdoob/three.js/tree/master/examples/fonts">https://github.com/mrdoob/three.js/tree/master/examples/fonts</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">loader</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">FontLoader</span>();
+<span style="color:#a6e22e">loader</span>.<span style="color:#a6e22e">load</span>(<span style="color:#e6db74">&#39;../gentilis_regular.typeface.json&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">font</span>) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">Mesh</span>(
+        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">TextGeometry</span>(<span style="color:#e6db74">&#39;KZQ&#39;</span>,{
+            <span style="color:#a6e22e">font</span><span style="color:#f92672">:</span><span style="color:#a6e22e">font</span>,
+            <span style="color:#a6e22e">size</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>,
+            <span style="color:#a6e22e">height</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>
+        }),
+        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">THREE</span>.<span style="color:#a6e22e">MeshNormalMaterial</span>();
+        <span style="color:#a6e22e">scene</span>.<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">text</span>);
+        <span style="color:#a6e22e">renderer</span>.<span style="color:#a6e22e">render</span>(<span style="color:#a6e22e">scene</span>, <span style="color:#a6e22e">camera</span>);
+    )
+})
 </code></pre></div>
 <h2 id="4-物体">4.物体</h2>
 
