@@ -6,18 +6,27 @@
     <description>Recent content in Lives on Blogs Of KZQ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Oct 2018 21:42:28 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Nov 2018 08:20:03 +0800</lastBuildDate>
     
 	<atom:link href="/life/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>读后感</title>
-      <link>/life/%E8%AF%BB%E5%90%8E%E6%84%9F/</link>
-      <pubDate>Tue, 30 Oct 2018 21:42:28 +0800</pubDate>
+      <title>学习过程记录</title>
+      <link>/life/study/</link>
+      <pubDate>Wed, 21 Nov 2018 08:20:03 +0800</pubDate>
       
-      <guid>/life/%E8%AF%BB%E5%90%8E%E6%84%9F/</guid>
-      <description></description>
+      <guid>/life/study/</guid>
+      <description>2018年7月之前 暑假之前我就一直陆陆续续的接触后端的python语言，爬虫相关的知识 2018年7月 mysql数据库，scrapy爬虫 201</description>
+    </item>
+    
+    <item>
+      <title>方向与目标</title>
+      <link>/life/somethoughts/</link>
+      <pubDate>Wed, 21 Nov 2018 07:50:55 +0800</pubDate>
+      
+      <guid>/life/somethoughts/</guid>
+      <description>大二一年我都在思考的一个问题就是，我以后到底要去干什么，生物工程专业(本科主修生物工程专业)毕业直接去工作，考研深造，考本专业相关还是跨考，</description>
     </item>
     
   </channel>
