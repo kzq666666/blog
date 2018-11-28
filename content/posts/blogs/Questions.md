@@ -49,3 +49,6 @@ function x() {
 <br> Tip : 关于此问题更加详细请看[这里](https://segmentfault.com/a/1190000000474941)
 
 ##3. Q : null!=a 和 a!=null的区别
+##4. Q : getComputedStyle(el,null).width,el.clientWidth,el.style.width,el.offsetWidth有什么区别,什么时候用哪个,为什么有时候只有某个方法才能获取到相应的属性
+A:getComputedStyle(element,[preudoElt])返回的是一个实时的css属性对象preudoElt是伪元素(可选),对于普通元素就是设置为null即可,这个对象是只能读的而不能写
+style

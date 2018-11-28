@@ -6,10 +6,28 @@
     <description>Recent content on Blogs Of KZQ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Nov 2018 08:20:03 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 27 Nov 2018 18:39:26 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>VScode配置C环境</title>
+      <link>/posts/blogs/vscode_c/</link>
+      <pubDate>Tue, 27 Nov 2018 18:39:26 +0800</pubDate>
+      
+      <guid>/posts/blogs/vscode_c/</guid>
+      <description>需要写一些关于C的实验报告，老师给的VC++6.0感觉很难用(字体小而且难看)，于是乎就想用我经常用的vscode编辑器来写C，上网百度了一</description>
+    </item>
+    
+    <item>
+      <title>Node</title>
+      <link>/posts/blogs/node/</link>
+      <pubDate>Tue, 27 Nov 2018 17:04:59 +0800</pubDate>
+      
+      <guid>/posts/blogs/node/</guid>
+      <description>开此篇记录下学习node的过程和一些笔记 1.事件驱动、非堵塞、单线程 2.Node.js是一个非阻塞的系统，当调用一些需要阻塞的等待或者事件，</description>
+    </item>
     
     <item>
       <title>学习过程记录</title>

@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/posts/blogs/vscode_c/</loc>
+    <lastmod>2018-11-27T18:39:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/blogs/node/</loc>
+    <lastmod>2018-11-27T17:04:59+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/life/study/</loc>
     <lastmod>2018-11-21T08:20:03+08:00</lastmod>
   </url>
@@ -86,7 +96,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-11-21T08:20:03+08:00</lastmod>
+    <lastmod>2018-11-27T18:39:26+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -114,6 +124,12 @@
   </url>
   
   <url>
+    <loc>/tags/c%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2018-11-27T18:39:26+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/git/</loc>
     <lastmod>2018-11-17T13:49:47+08:00</lastmod>
     <priority>0</priority>
@@ -134,6 +150,12 @@
   <url>
     <loc>/life/</loc>
     <lastmod>2018-11-21T08:20:03+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/node/</loc>
+    <lastmod>2018-11-27T17:04:59+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -193,6 +215,12 @@
   <url>
     <loc>/tags/tween.js/</loc>
     <lastmod>2018-11-18T11:22:48+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/vscode/</loc>
+    <lastmod>2018-11-27T18:39:26+08:00</lastmod>
     <priority>0</priority>
   </url>
   

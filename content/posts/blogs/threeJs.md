@@ -81,6 +81,13 @@ loader.load('../gentilis_regular.typeface.json', function(font) {
 Mesh(geometry:Geometry,material:Material)
 ```
 
+* Object3D()
+
+Object3D是大部分物体的基类，大部分的物体都可以通过Object3D构建
+```js
+var object = new Object3D();
+```
+
 ## 5，加载器
 * ImageLoader
 
@@ -125,6 +132,21 @@ function animate(){
     requestAnimationFrame(animate);
     controls.update()
 }
+```
+* TrackballControls
+
+球形控制器，以物体为中心，鼠标左键控制旋转，右键平移
+```js
+// 构造器(Constructor)
+var controls = new THREE.TrackballControls(camera, renderer.domElement)
+```
+
+## 8.其他
+* Vector3 3D矢量
+
+```js
+var vector = new THREE.Vector3(x,y,z);
+// 如果没有参数，则是指向一个(0,0,0)的矢量;
 ```
 
 
