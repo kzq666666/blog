@@ -58,7 +58,7 @@
 
         
 <div class="section" id="content">
-    2018年11月27日 &#183; 303 words
+    2018年11月27日 &#183; 741 words
     
     <div class="tag-container">
         
@@ -77,12 +77,24 @@
     </div>
     
     <hr/>
-    <p>需要写一些关于C的实验报告，老师给的VC++6.0感觉很难用(字体小而且难看)，于是乎就想用我经常用的vscode编辑器来写C，上网百度了一些教程，搞了半天都没怎么搞懂里面的配置，于是自己就捣鼓了一哈。
-1.在vscode下载C/C++(Microsoft)扩展
-2.在vscode下载Code Runner扩展
-3.下载编译器tdm-gcc(windows),其他编译器具体请看官网，我觉得这个比较容易装就装了这个
-tdm-gcc官网：<a href="http://tdm-gcc.tdragon.net/download">http://tdm-gcc.tdragon.net/download</a>
-安装成功会自动到将tdm-gcc的bin路径加入到windows的path变量中，如果没有则自己手动添加一下</p>
+    <p>需要写一些关于C的实验报告，老师给的VC++6.0感觉很难用(字体小而且难看)，于是乎就想用我经常用的vscode编辑器来写C，上网百度了一些教程，搞了半天都没怎么搞懂里面的配置，于是自己就捣鼓了一哈。</p>
+
+<ul>
+<li>在vscode下载C/C++(Microsoft)扩展</li>
+<li>下载编译器<a href="http://tdm-gcc.tdragon.net/download">tdm-gcc</a>(windows),其他编译器具体请看对应的官网，我觉得这个比较容易装就装了这个。
+安装成功会自动到将tdm-gcc的bin路径加入到windows的path变量中，如果没有则自己手动添加一下</li>
+</ul>
+
+<p>基本上做完上面两步就可以了
+直接在终端输入gcc file.c -o file.exe就编译好了。
+<br>
+<br>还有一种简单的方法就是在VScode中安装一个扩展插件&ndash;Code Runner,这是一个可以运行C，C++，java，JS，PHP，Python的一个插件,安装好了重新加载一下就会看到在VScode右边出现一个运行的按钮,不过默认是在输出下运行，不过输出是一个只读编辑器,所以如果有scanf需要输入的话就不能做了。这时候改下Code Runner的配置，使它运行在Terminal。
+<br>
+<br>文件&ndash;&gt;首选项&ndash;&gt;设置&ndash;&gt;用户设置&ndash;&gt;扩展&ndash;&gt;Code Runner Configuation&ndash;&gt;勾选✔Run in Terminal
+<br>
+<br>还有一个问题就是运行C的时候中文在Terminal中使会乱码的，这是因为cmd自身编码的问题,
+解决办法是终端或者在CMD.exe中进入到当前文件目录下输入<code>chcp</code>(CHCP是一个计算机指令，能够显示或设置活动代码页编号),
+默认应该是936简体中文，所以需要改为utf-8，utf-8代码页编号是65001，输入<code>chcp 65001</code>就好了</p>
 
 </div>
 
