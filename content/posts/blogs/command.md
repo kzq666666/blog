@@ -17,7 +17,8 @@ cp:
 touch <file>  创建一个文件
 rm -f <file> 删除一个文件
 rm -rf <file package> 删除一个文件夹
-
+uname print system information
+tty 显示当前终端
 -----------------------------------------------------------------
 git基本操作
 git是分布式版本控制系统
