@@ -58,7 +58,7 @@
 
         
 <div class="section" id="content">
-    2018年11月29日 &#183; 338 words
+    2018年11月29日 &#183; 443 words
     
     <div class="tag-container">
         
@@ -120,6 +120,8 @@ $ docker rm `docker ps -a -q`
 
 <p>拉取镜像</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker pull imageName:version</code></pre></div>
+<p>删除镜像</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker rmi imageName:version/id</code></pre></div>
 <p>查看镜像详细信息</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker inspect repositoryName/imageId</code></pre></div>
 <h2 id="登录">登录</h2>
@@ -133,7 +135,24 @@ Password:~</code></pre></div>
 <p>Dockerfile创建镜像</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir buildEnv
 $ cd buildEnv
-$ touch Dockerfile</code></pre></div>
+$ touch Dockerfile
+$ vim Dockerfile
+<span style="color:#75715e"># Dockerfile
+</span><span style="color:#75715e"># 指定基础镜像(base image)
+</span><span style="color:#75715e"></span>FROM ubuntu:latest
+<span style="color:#75715e"># 申明作者以及邮箱
+</span><span style="color:#75715e"></span>MAINTAINER Name <span style="color:#e6db74">&#34;Email&#34;</span>
+<span style="color:#75715e"># 执行RUN指令
+</span><span style="color:#75715e"></span>RUN apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y nginx 
+RUN echo <span style="color:#e6db74">&#39;hello world&#39;</span> &gt;/usr/share/nginx/html/index.html
+<span style="color:#75715e"># 暴露端口
+</span><span style="color:#75715e"></span>EXPOSE <span style="color:#ae81ff">80</span>
+
+$ docker build -t<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;kzq/nginx&#34;</span> .
+
+启动镜像
+$ docker run -d -p <span style="color:#ae81ff">80</span> <span style="color:#e6db74">&#34;kzq/nginx&#34;</span> nginx -g <span style="color:#e6db74">&#34;daemon off;&#34;</span>
+// -d 在后台运行 -p公开端口给宿主机</code></pre></div>
 </div>
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Questions && Answers"
+title: "Q && A"
 date: 2018-11-16T10:01:19+08:00
 showDate: true
 draft: false
@@ -52,3 +52,6 @@ function x() {
 ##4. Q : getComputedStyle(el,null).width,el.clientWidth,el.style.width,el.offsetWidth有什么区别,什么时候用哪个,为什么有时候只有某个方法才能获取到相应的属性
 A:getComputedStyle(element,[preudoElt])返回的是一个实时的css属性对象preudoElt是伪元素(可选),对于普通元素就是设置为null即可,这个对象是只能读的而不能写
 style
+
+## 5.Q : window.onload和$(document).ready()方法的区别
+A：window.onload事件会在页面所有元素加载完成后立即发生。而$(document).ready()是在DOM树加载完毕之后对其进行操作
