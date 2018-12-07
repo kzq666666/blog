@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vue3.0 on Blogs Of KZQ</title>
+    <link>/tags/vue3.0/</link>
+    <description>Recent content in Vue3.0 on Blogs Of KZQ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Dec 2018 18:21:14 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/vue3.0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vue3</title>
+      <link>/posts/blogs/vue3/</link>
+      <pubDate>Tue, 04 Dec 2018 18:21:14 +0800</pubDate>
+      
+      <guid>/posts/blogs/vue3/</guid>
+      <description>组件传值 App.vue: &amp;lt;HelloWorld msg=&amp;quot;HelloWorld&amp;quot;/&amp;gt; HelloWorld.vue: &amp;lt;script&amp;gt; export default { name: &#39;HelloWorld&#39;, props: { msg: String } } &amp;lt;/script&amp;gt;</description>
+    </item>
+    
+  </channel>
+</rss>

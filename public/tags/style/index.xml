@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Style on Blogs Of KZQ</title>
+    <link>/tags/style/</link>
+    <description>Recent content in Style on Blogs Of KZQ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Dec 2018 17:08:26 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/style/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SomeStyle</title>
+      <link>/posts/blogs/somestyle/</link>
+      <pubDate>Tue, 04 Dec 2018 17:08:26 +0800</pubDate>
+      
+      <guid>/posts/blogs/somestyle/</guid>
+      <description>Header Header #fbfbfb Table 偶数行：#ddd; 单行: #fff; Font Border Border 很淡的那种 #f4f4f4 a #42b983</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/posts/blogs/element-ui/</loc>
+    <lastmod>2018-12-04T21:47:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/blogs/vue3/</loc>
+    <lastmod>2018-12-04T18:21:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/blogs/somestyle/</loc>
+    <lastmod>2018-12-04T17:08:26+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/blogs/docker/</loc>
     <lastmod>2018-11-29T16:25:34+08:00</lastmod>
   </url>
@@ -96,7 +111,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-11-29T16:25:34+08:00</lastmod>
+    <lastmod>2018-12-04T21:47:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -132,6 +147,12 @@
   <url>
     <loc>/tags/docker/</loc>
     <lastmod>2018-11-29T16:25:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/element-ui/</loc>
+    <lastmod>2018-12-04T21:47:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -189,6 +210,12 @@
   </url>
   
   <url>
+    <loc>/tags/style/</loc>
+    <lastmod>2018-12-04T17:08:26+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
     <lastmod>2018-11-16T23:43:52+08:00</lastmod>
     <priority>0</priority>
@@ -231,8 +258,26 @@
   </url>
   
   <url>
+    <loc>/tags/vue/</loc>
+    <lastmod>2018-12-04T18:21:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/vue3.0/</loc>
+    <lastmod>2018-12-04T18:21:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/%E5%8A%A8%E7%94%BB/</loc>
     <lastmod>2018-11-18T11:22:48+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E8%BD%AE%E5%AD%90%E5%BA%93/</loc>
+    <lastmod>2018-12-04T21:47:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
