@@ -13,19 +13,19 @@
     
     <item>
       <title>Css3Property</title>
-      <link>/posts/blogs/css3property/</link>
+      <link>/blog/css3property/</link>
       <pubDate>Thu, 01 Nov 2018 21:22:22 +0800</pubDate>
       
-      <guid>/posts/blogs/css3property/</guid>
+      <guid>/blog/css3property/</guid>
       <description>perspective 设置元素被查看位置的视图 div{ perspective:500px; }</description>
     </item>
     
     <item>
       <title>CSS3 Canvas</title>
-      <link>/posts/blogs/canvas/</link>
+      <link>/blog/canvas/</link>
       <pubDate>Wed, 31 Oct 2018 18:52:17 +0800</pubDate>
       
-      <guid>/posts/blogs/canvas/</guid>
+      <guid>/blog/canvas/</guid>
       <description>Canvas 是 HTML5 新增加的一个元素,它又称为&amp;rdquo;画布&amp;rdquo;,主要有以下四种功能 绘制图形 绘制图表 动画效果 游戏开发 在 chrome 浏览器中,canva</description>
     </item>
     

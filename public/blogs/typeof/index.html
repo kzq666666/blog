@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="A new Hugo site.">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="/">
+
+<meta name="twitter:image" content="/tn.png">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="Blogs Of KZQ">
+<meta name="twitter:description" property="og:description" itemprop="description" content="A new Hugo site.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="/tn.png">
+
+<link rel="shortcut icon" href="/sam.ico" id="favicon">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128390257-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-128390257-1');
+</script>
+
+    
+
+    
+    
+    
+    <title>
+        
+        Typeof
+        
+    </title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="section" id="title">Typeof</div>
+
+        
+<div class="section" id="content">
+    2018年11月1日 &#183; 450 words
+    
+    <div class="tag-container">
+        
+        <span class="tag">
+            <a href="/tags/js">
+                JS
+            </a>
+        </span>
+        
+    </div>
+    
+    <hr/>
+    
+
+<p>typeof返回一个字符串,表示为经计算的操作数的类型
+<br>typeof(操作数)/typeof 操作数  ()是可以省略的
+返回有五种基本类型:string,number,boolean,undefined,function,object
+还有ES6的Symbol</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ae81ff">1.</span><span style="color:#a6e22e">string</span><span style="color:#f92672">:</span>
+<span style="color:#66d9ef">typeof</span>(<span style="color:#e6db74">&#39;你好&#39;</span>)
+<span style="color:#66d9ef">typeof</span>(<span style="color:#e6db74">&#39;123&#39;</span>)
+<span style="color:#66d9ef">typeof</span>(<span style="color:#e6db74">&#39;&#39;</span>)  <span style="color:#a6e22e">空字符串也是String类型</span>
+<span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">typeof</span>(<span style="color:#e6db74">&#39;a&#39;</span>))
+
+<span style="color:#ae81ff">2.</span><span style="color:#a6e22e">number</span><span style="color:#f92672">:</span>
+<span style="color:#66d9ef">typeof</span>(<span style="color:#ae81ff">123</span>);
+<span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">NaN</span>);
+
+<span style="color:#ae81ff">3.</span><span style="color:#66d9ef">boolean</span><span style="color:#f92672">:</span>
+<span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">true</span>);
+<span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">false</span>);
+<span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">NaN</span><span style="color:#f92672">===</span><span style="color:#66d9ef">NaN</span>) <span style="color:#a6e22e">强制类型转换</span>
+
+<span style="color:#ae81ff">4.</span><span style="color:#66d9ef">undefined</span><span style="color:#f92672">:</span>
+<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">a</span>) <span style="color:#a6e22e">未经使用的变量的数据类型</span>
+
+<span style="color:#ae81ff">5.</span><span style="color:#a6e22e">object</span><span style="color:#f92672">:</span>
+<span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">null</span>) <span style="color:#a6e22e">js底层所有值的前三位表示数据类型</span>,<span style="color:#a6e22e">object是000</span>,<span style="color:#a6e22e">而null的32位全是0</span>,<span style="color:#a6e22e">因此也是object</span>
+<span style="color:#66d9ef">typeof</span>([])
+<span style="color:#66d9ef">typeof</span>({})
+
+<span style="color:#ae81ff">6.</span><span style="color:#66d9ef">function</span><span style="color:#f92672">:</span>
+<span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">function</span>(){})
+<span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">new</span> Function())
+<span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{})
+<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">Symbol</span>)
+
+<span style="color:#ae81ff">7.</span><span style="color:#a6e22e">symbol</span><span style="color:#f92672">:</span>
+<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">Symbol</span>())
+</code></pre></div>
+<h3 id="暂时性死区">暂时性死区</h3>
+
+<p>在ES6中let和const出现之前,typeof都是一个完全安全的操作,即不会报错,但有了ES6中let和const的出现所带来的暂时性死区特性,使得typeof也有可能报错</p>
+
+<p>如果在一个块级作用域下存在let或const命令,则它所声明的变量就绑定在这个区域,不再受外部的影响.在声明之前使用这些变量就会报错.使用let命令声明变量之前是不可用的,这在语法上称为<code>暂时性死区</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">a</span>);   <span style="color:#75715e">//ReferenceError
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span>;
+</code></pre></div>
+</div>
+
+
+        
+<div class="section bottom-menu">
+    
+<hr />
+<p>
+
+
+
+    
+        
+            <a href="/blogs">
+                Blogs
+            </a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/life">
+                life
+            </a>
+        
+            &#183; 
+            <a href="/about">
+                who is kzq?
+            </a>
+        
+    
+    &#183; 
+    <a href="/">
+        main
+    </a>
+
+</p>
+</div>
+
+
+        <div class="section footer">Call me Sam, a theme for Hugo.</div>
+    </div>
+</body>
+
+</html>

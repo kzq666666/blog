@@ -3,32 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/blogs/element-ui/</loc>
+    <loc>/blog/element-ui/</loc>
     <lastmod>2018-12-04T21:47:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/vue3/</loc>
+    <loc>/blog/vue3/</loc>
     <lastmod>2018-12-04T18:21:14+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/somestyle/</loc>
+    <loc>/blog/somestyle/</loc>
     <lastmod>2018-12-04T17:08:26+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/docker/</loc>
+    <loc>/blog/docker/</loc>
     <lastmod>2018-11-29T16:25:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/vscode_c/</loc>
+    <loc>/blog/vscode_c/</loc>
     <lastmod>2018-11-27T18:39:26+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/node/</loc>
+    <loc>/blog/node/</loc>
     <lastmod>2018-11-27T17:04:59+08:00</lastmod>
   </url>
   
@@ -38,52 +38,52 @@
   </url>
   
   <url>
-    <loc>/posts/blogs/tweenjs/</loc>
+    <loc>/blog/tweenjs/</loc>
     <lastmod>2018-11-18T11:22:48+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/command/</loc>
+    <loc>/blog/command/</loc>
     <lastmod>2018-11-17T13:49:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/threejs/</loc>
+    <loc>/blog/threejs/</loc>
     <lastmod>2018-11-16T23:43:52+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/questions/</loc>
+    <loc>/blog/questions/</loc>
     <lastmod>2018-11-16T10:01:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/css3property/</loc>
+    <loc>/blog/css3property/</loc>
     <lastmod>2018-11-01T21:22:22+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/typeof/</loc>
+    <loc>/blog/typeof/</loc>
     <lastmod>2018-11-01T17:52:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/canvas/</loc>
+    <loc>/blog/canvas/</loc>
     <lastmod>2018-10-31T18:52:17+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/sam/</loc>
+    <loc>/blog/sam/</loc>
     <lastmod>2018-10-30T22:22:27+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/hugo/</loc>
+    <loc>/blog/hugo/</loc>
     <lastmod>2018-10-30T09:11:33+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/blogs/helloworld/</loc>
+    <loc>/blog/helloworld/</loc>
     <lastmod>2018-10-29T21:59:40+08:00</lastmod>
   </url>
   
@@ -93,7 +93,7 @@
   </url>
   
   <url>
-    <loc>/posts/blogs/</loc>
+    <loc>/blog/</loc>
     <lastmod>2018-02-13T12:21:57-05:00</lastmod>
   </url>
   
@@ -183,11 +183,6 @@
   <url>
     <loc>/tags/node/</loc>
     <lastmod>2018-11-27T17:04:59+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
     <priority>0</priority>
   </url>
   

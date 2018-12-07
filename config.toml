@@ -2,7 +2,7 @@ baseurl                 = "/"               # Your domain name. Must end with "/
 languageCode            = "en-us"
 defaultContentLanguage  = "en"
 isMultilingual          = false
-title                   = "Blogs Of KZQ"
+title                   = "KZQ"
 theme                   = "sam"
 pygmentsStyle           = "monokai"                     # https://help.farbox.com/pygments.html
 pygmentsCodefences      = true
@@ -27,13 +27,13 @@ hasCJKLanguage          = true
     primaryImage        = "tn.png"                     # Image that shows on Twitter cards and OpenGraph links
 
 [[params.mainMenu]]
-    link = "/posts/blogs"
-    text = "Blogs"
+    link = "/blog"
+    text = "Blog"
 
 [[params.mainMenu]]
     link = "/life"
-    text = "life"
+    text = "Life"
 
 [[params.mainMenu]]
     link = "/about"
-    text = "who is kzq?"
+    text = "About"

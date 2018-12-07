@@ -13,10 +13,10 @@
     
     <item>
       <title>VScode配置C环境</title>
-      <link>/posts/blogs/vscode_c/</link>
+      <link>/blog/vscode_c/</link>
       <pubDate>Tue, 27 Nov 2018 18:39:26 +0800</pubDate>
       
-      <guid>/posts/blogs/vscode_c/</guid>
+      <guid>/blog/vscode_c/</guid>
       <description>需要写一些关于C的实验报告，老师给的VC++6.0感觉很难用(字体小而且难看)，于是乎就想用我经常用的vscode编辑器来写C，上网百度了一</description>
     </item>
     

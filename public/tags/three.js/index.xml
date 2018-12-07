@@ -13,10 +13,10 @@
     
     <item>
       <title>Three.js</title>
-      <link>/posts/blogs/threejs/</link>
+      <link>/blog/threejs/</link>
       <pubDate>Fri, 16 Nov 2018 23:43:52 +0800</pubDate>
       
-      <guid>/posts/blogs/threejs/</guid>
+      <guid>/blog/threejs/</guid>
       <description>1.scene 场景 scene就是一个可以放置物体、灯光的3D空间，和现实中的一个空间相似，可大可小 //创建一个场景 var scene = new THREE.Scene(); 2.camera 相机 camera决定看一个</description>
     </item>
     

@@ -13,10 +13,10 @@
     
     <item>
       <title>Docker</title>
-      <link>/posts/blogs/docker/</link>
+      <link>/blog/docker/</link>
       <pubDate>Thu, 29 Nov 2018 16:25:34 +0800</pubDate>
       
-      <guid>/posts/blogs/docker/</guid>
+      <guid>/blog/docker/</guid>
       <description>记录学习docker的过程 特性 标准化 加速开发和构建流程，方便测试。容器可以在开发环境构建，轻松的提交到测试环境，并最终进入生产环境 docke</description>
     </item>
     

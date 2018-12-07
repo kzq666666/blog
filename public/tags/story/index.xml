@@ -13,10 +13,10 @@
     
     <item>
       <title>Hugo主题sam</title>
-      <link>/posts/blogs/sam/</link>
+      <link>/blog/sam/</link>
       <pubDate>Tue, 30 Oct 2018 22:22:27 +0800</pubDate>
       
-      <guid>/posts/blogs/sam/</guid>
+      <guid>/blog/sam/</guid>
       <description>sam ├─archetypes ├─exampleSite │ ├─content │ │ ├─gallery │ │ │ └─images │ │ │ └─small │ │</description>
     </item>
     
