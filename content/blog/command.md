@@ -39,6 +39,9 @@ git remote add origin <github上创建的目录的ssh>  远程连接库和本地
 git push -u origin master 将本地的文件全部上传到远程仓库中
 之后可以直接用git push 上传文件
 
+在git push的时候寝室断电了怎么办?
+断电导致reference broken，commit操作和push操作都会出现问题。最好的办法就是把.git文件删除重新git init一下之后再进行操作
+
 
 查看GitHub上的html文件 加上前缀http://htmlpreview.github.io/?
 
