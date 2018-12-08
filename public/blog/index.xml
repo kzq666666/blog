@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Blogs Of KZQ</title>
+    <title>Blogs on KZQ</title>
     <link>/blog/</link>
-    <description>Recent content in Posts on Blogs Of KZQ</description>
+    <description>Recent content in Blogs on KZQ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 13 Feb 2018 12:21:57 -0500</lastBuildDate>
@@ -76,10 +76,10 @@
     
     <item>
       <title>Command</title>
-      <link>/blog/command/</link>
+      <link>/blog/com/</link>
       <pubDate>Sat, 17 Nov 2018 13:49:47 +0800</pubDate>
       
-      <guid>/blog/command/</guid>
+      <guid>/blog/com/</guid>
       <description>Linux基本操作 ls -ah 查看所有文件,包括隐藏文件 pwd print working directory 打印当前路径 mv oldname.js newname.js 重命名 cat 查看当前文件 cp: cp &amp;lt;file&amp;gt; &amp;lt;path&amp;gt; 复制file到path路径 cp &amp;lt;file&amp;gt; &amp;lt;copy_name&amp;gt; 复制f</description>
     </item>
     

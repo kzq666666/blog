@@ -43,7 +43,7 @@
   </url>
   
   <url>
-    <loc>/blog/command/</loc>
+    <loc>/blog/com/</loc>
     <lastmod>2018-11-17T13:49:47+08:00</lastmod>
   </url>
   
@@ -98,6 +98,11 @@
   </url>
   
   <url>
+    <loc>/life/</loc>
+    <lastmod>2018-02-13T12:21:57-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/3d/</loc>
     <lastmod>2018-11-16T23:43:52+08:00</lastmod>
     <priority>0</priority>
@@ -106,12 +111,6 @@
   <url>
     <loc>/tags/blog/</loc>
     <lastmod>2018-10-30T22:22:27+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2018-12-04T21:47:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -169,14 +168,14 @@
   </url>
   
   <url>
-    <loc>/tags/linux/</loc>
-    <lastmod>2018-11-17T13:49:47+08:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2018-12-04T21:47:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/life/</loc>
-    <lastmod>2018-11-21T08:20:03+08:00</lastmod>
+    <loc>/tags/linux/</loc>
+    <lastmod>2018-11-17T13:49:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
