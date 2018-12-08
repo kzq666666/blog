@@ -49,7 +49,7 @@ git push -u origin master 将本地的文件全部上传到远程仓库中
 nginx
 nginx.conf 配置文件
 nginx -s reload 重启nginx
-
+123
 ```
 -------------------------windows快捷键-----------------------------
 alt + 鼠标双击图片			显示图片属性
