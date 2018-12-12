@@ -87,21 +87,17 @@
 <h2 id="vue-cli-3-0使用element-ui">Vue-cli@3.0使用element-ui</h2>
 
 <p>作为一个插件添加到vue-cli中</p>
-
-<pre><code>vue create el
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vue create el
 cd el
-vue add element
-</code></pre>
-
+vue add element</code></pre></div>
 <p>安装element插件过程中会有交互，是全部导入，还是按需求导入，我是选择按需求导入，这样比较方便，也比较轻。
 <br>成功之后就可以看到你的vue-cli初始页面就会有一个element-button</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vue" data-lang="vue">element.js
-
 import Vue from &#39;vue&#39;
 import { Button } from &#39;element-ui&#39;
 import &#39;element-ui/lib/theme-chalk/index.css&#39;
 Vue.use(Button)</code></pre></div>
-<div style="color:red;font-size:12px">tip：一定要导入对应你需要的css样式，这样才有用,index.css是theme-chalk下所有的css入口文件，如果只想单独使用某个css，找到那个css导入就好了</div>
+<div style="color:red;font-size:16px">tip：一定要导入对应你需要的css样式，这样才有用,index.css是theme-chalk下所有的css入口文件，如果只想单独使用某个css，找到那个css导入就好了</div>
 
 <h2 id="选择你需要的轮子">选择你需要的轮子</h2>
 

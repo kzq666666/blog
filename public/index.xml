@@ -6,10 +6,19 @@
     <description>Recent content on KZQ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 04 Dec 2018 21:47:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 11 Dec 2018 16:06:49 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mongodb</title>
+      <link>/blog/mongodb/</link>
+      <pubDate>Tue, 11 Dec 2018 16:06:49 +0800</pubDate>
+      
+      <guid>/blog/mongodb/</guid>
+      <description>在学习node的时候，进行连接数据库相关操作，于是就学习了一下mongodb非关系型数据库。 mongodb操作的都是对象 基本命令汇总 show dbs 显示</description>
+    </item>
     
     <item>
       <title>Element Ui</title>
@@ -35,7 +44,7 @@
       <pubDate>Tue, 04 Dec 2018 17:08:26 +0800</pubDate>
       
       <guid>/blog/somestyle/</guid>
-      <description>Header Header #fbfbfb Table 偶数行：#ddd; 单行: #fff; Font Border Border 很淡的那种 #f4f4f4 a #42b983 box-shadow</description>
+      <description>Header Header #fbfbfb Table 偶数行：#ddd; 单行: #fff; Font Border Border 很淡的那种 #f4f4f4 a #42b983 box-shadow rgba(0, 0, 0, 0.12/0.24) Button rgb(233,104,107)</description>
     </item>
     
     <item>
@@ -62,7 +71,7 @@
       <pubDate>Tue, 27 Nov 2018 17:04:59 +0800</pubDate>
       
       <guid>/blog/node/</guid>
-      <description>开此篇记录下学习node的过程和一些笔记 1.事件驱动、非堵塞、单线程 2.Node.js是一个非阻塞的系统，当调用一些需要阻塞的等待或者事件，</description>
+      <description>开此篇记录下学习node的过程和一些笔记 事件驱动、非堵塞、单线程 Node.js是一个非阻塞的系统，当调用一些需要阻塞的等待或者事件，node</description>
     </item>
     
     <item>
@@ -144,6 +153,15 @@
       
       <guid>/blog/sam/</guid>
       <description>sam ├─archetypes ├─exampleSite │ ├─content │ │ ├─gallery │ │ │ └─images │ │ │ └─small │ │</description>
+    </item>
+    
+    <item>
+      <title>Mysql</title>
+      <link>/blog/mysql/</link>
+      <pubDate>Tue, 30 Oct 2018 17:06:30 +0800</pubDate>
+      
+      <guid>/blog/mysql/</guid>
+      <description>mysql数据库是我今年暑假在家学习，当时学习的时候写了一些笔记，现在把笔记整理到博客上。 事务(ACID规则) 原子性(Atomicity)：</description>
     </item>
     
     <item>

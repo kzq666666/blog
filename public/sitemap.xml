@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/mongodb/</loc>
+    <lastmod>2018-12-11T16:06:49+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/element-ui/</loc>
     <lastmod>2018-12-04T21:47:47+08:00</lastmod>
   </url>
@@ -75,6 +80,11 @@
   <url>
     <loc>/blog/sam/</loc>
     <lastmod>2018-10-30T22:22:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/mysql/</loc>
+    <lastmod>2018-10-30T17:06:30+08:00</lastmod>
   </url>
   
   <url>
@@ -169,13 +179,25 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-12-04T21:47:47+08:00</lastmod>
+    <lastmod>2018-12-11T16:06:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/linux/</loc>
     <lastmod>2018-11-17T13:49:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/mongodb/</loc>
+    <lastmod>2018-12-11T16:06:49+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/mysql/</loc>
+    <lastmod>2018-10-30T17:06:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -264,8 +286,20 @@
   </url>
   
   <url>
+    <loc>/tags/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2018-10-30T17:06:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/%E5%8A%A8%E7%94%BB/</loc>
     <lastmod>2018-11-18T11:22:48+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2018-12-11T16:06:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -278,6 +312,12 @@
   <url>
     <loc>/tags/%E9%9A%8F%E8%AE%B0/</loc>
     <lastmod>2018-10-29T21:59:40+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B/</loc>
+    <lastmod>2018-12-11T16:06:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   

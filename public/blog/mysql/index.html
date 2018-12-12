@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="A new Hugo site.">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="/">
+
+<meta name="twitter:image" content="/tn.png">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="KZQ">
+<meta name="twitter:description" property="og:description" itemprop="description" content="A new Hugo site.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="/tn.png">
+
+<link rel="shortcut icon" href="/sam.ico" id="favicon">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128390257-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-128390257-1');
+</script>
+
+    
+
+    
+    
+    
+    <title>
+        
+        Mysql
+        
+    </title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="section" id="title">Mysql</div>
+
+        
+<div class="section" id="content">
+    2018年10月30日 &#183; 8143 words
+    
+    <div class="tag-container">
+        
+        <span class="tag">
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93">
+                数据库
+            </a>
+        </span>
+        
+        <span class="tag">
+            <a href="/tags/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">
+                关系型数据库
+            </a>
+        </span>
+        
+        <span class="tag">
+            <a href="/tags/mysql">
+                Mysql
+            </a>
+        </span>
+        
+    </div>
+    
+    <hr/>
+    
+
+<p>mysql数据库是我今年暑假在家学习，当时学习的时候写了一些笔记，现在把笔记整理到博客上。</p>
+
+<h2 id="事务-acid规则">事务(ACID规则)</h2>
+
+<ul>
+<li>原子性(Atomicity)：多组操作为一个整体，不能分割，全部操作成功才算成功，有一步失败就失败了，一环扣一环。</li>
+<li>一致性(Consistency)：操作前后最终的总量一样，比如说转账，两个人相互转账，这两个人无论向对方怎么转，两个人的总钱数是不变，如果变了，就说明失败了。</li>
+
+<li><p>隔离性(Isolation)：并发(都在进行的)事务之间相互隔离互不干扰。</p>
+
+<p><br>（1）在mysql中事务有4种隔离级别：<code>read uncommitted(读取未提交)</code>、<code>read committed(读取提交)</code>、<code>repeatable read(可以重复读)</code>、<code>Serializable</code>
+<br>（2）查看mysql软件的事务隔离级别：<code>SELECT @@tx_isolation</code>;
+<br>（3）修改mysql软件默认的隔离级别：<code>set global transaction isolation level 隔离级别</code>
+<br>（4）不同的隔离级别会引发不同的问题：<br>当mysql事务的隔离级别为read uncommitted时，会引发脏读(一个事务可以读取另一个事务未提交的数据.),解决脏读问题可以将数据库事务的隔离级别改为:read committed
+<br>当mysql软件的事务隔离级别为:read committed的时候，会引发不可重复读：在同一事物中多次读取的结果不一致
+如何解决不可重复读：将事物的隔离级别改为repeatable read
+<br>当mysql软件的事务隔离级别为:repeatable read时，会引发虚读(幻读)</p></li>
+
+<li><p>持久性(Durability)：数据进入到数据库中后，数据会持久存在</p></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">DATABASE</span> kzq;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">在创建库时，希望制定编码</span> <span style="color:#960050;background-color:#1e0010">语法：</span><span style="color:#66d9ef">create</span> database库名 <span style="color:#66d9ef">set</span> <span style="color:#960050;background-color:#1e0010">编码名</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> kzq CHARACTER <span style="color:#66d9ef">SET</span> utf8;
+
+<span style="color:#f92672">#</span><span style="color:#75715e">-----------------------------创建表（table）---------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">创建表语法：</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span>(
+    <span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">数据类型</span> <span style="color:#66d9ef">COMMENT</span> .....,<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">注释</span> <span style="color:#66d9ef">comment</span> <span style="color:#960050;background-color:#1e0010">。。。</span>
+    <span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">2</span> <span style="color:#960050;background-color:#1e0010">数据类型</span> <span style="color:#66d9ef">COMMENT</span> .....,
+    .......
+)
+<span style="color:#f92672">#</span> <span style="color:#960050;background-color:#1e0010">选中某一个数据库：</span> use <span style="color:#960050;background-color:#1e0010">库名；</span>
+USE kzq;
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> java成绩表(
+    <span style="color:#960050;background-color:#1e0010">姓名</span> VARCHAR(<span style="color:#ae81ff">40</span>),
+    <span style="color:#960050;background-color:#1e0010">班级</span> VARCHAR(<span style="color:#ae81ff">20</span>),
+    Java成绩 FLOAT 
+);
+<span style="color:#f92672">#</span> <span style="color:#960050;background-color:#1e0010">删除制定表语法：</span><span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">table</span> <span style="color:#960050;background-color:#1e0010">表名</span>;
+<span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> java成绩表;
+
+<span style="color:#f92672">#</span> <span style="color:#75715e">------------------------往表中添加、删除、修改、查询数据(CRUD)-------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">往置顶的表中添加数据：</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">第一种方法</span> <span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#960050;background-color:#1e0010">表名</span>(<span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">2</span>....) <span style="color:#66d9ef">values</span>(<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">2</span>)
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> java成绩表 (<span style="color:#960050;background-color:#1e0010">姓名</span>,<span style="color:#960050;background-color:#1e0010">班级</span>,Java成绩) <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;隔壁老王&#39;</span>,<span style="color:#e6db74">&#39;g405班&#39;</span>,<span style="color:#ae81ff">90</span>.<span style="color:#ae81ff">5</span>)
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">在插入时，可以省略掉后面的字段名，但必须全</span>
+
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> java成绩表 <span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;隔壁老王&#39;</span>,<span style="color:#e6db74">&#39;g405班&#39;</span>,<span style="color:#ae81ff">90</span>.<span style="color:#ae81ff">5</span>)
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">第二种方法</span> <span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">set</span> <span style="color:#960050;background-color:#1e0010">字段名</span><span style="color:#ae81ff">1</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">字段值</span><span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> java成绩表 <span style="color:#66d9ef">SET</span> <span style="color:#960050;background-color:#1e0010">姓名</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;李思&#39;</span>;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">同时插入多条数据</span>
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> java成绩表 (<span style="color:#960050;background-color:#1e0010">姓名</span>,<span style="color:#960050;background-color:#1e0010">班级</span>,Java成绩) 
+<span style="color:#66d9ef">VALUES</span> (<span style="color:#e6db74">&#39;隔壁老王&#39;</span>,<span style="color:#e6db74">&#39;g405班&#39;</span>,<span style="color:#ae81ff">90</span>.<span style="color:#ae81ff">5</span>),(<span style="color:#e6db74">&#39;def&#39;</span>,<span style="color:#e6db74">&#39;g405&#39;</span>,<span style="color:#e6db74">&#39;90.6&#39;</span>)
+
+<span style="color:#f92672">#</span> <span style="color:#960050;background-color:#1e0010">删除数据语法：</span><span style="color:#66d9ef">delete</span> <span style="color:#66d9ef">from</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">where</span> <span style="color:#960050;background-color:#1e0010">条件</span>
+<span style="color:#f92672">#</span> <span style="color:#960050;background-color:#1e0010">如果“</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">“是放在</span>set关键字后面<span style="color:#960050;background-color:#1e0010">，则是”赋值运算符“</span>
+<span style="color:#f92672">#</span> <span style="color:#960050;background-color:#1e0010">如果“</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">”是放在</span><span style="color:#66d9ef">where</span> <span style="color:#960050;background-color:#1e0010">关键字后，则是“关系运算符”</span>
+<span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> java成绩表 <span style="color:#66d9ef">WHERE</span> <span style="color:#960050;background-color:#1e0010">姓名</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;李思&#39;</span>
+
+
+<span style="color:#f92672">#</span><span style="color:#75715e">-------------------关系运算符---------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">在</span>mysql中常用的关系运算符有<span style="color:#960050;background-color:#1e0010">：</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#f92672">&gt;=</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#f92672">&lt;=</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#f92672">!=</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">在</span>mysql中关系运算符需要放置在where关键字之后
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">查询语法规则：</span><span style="color:#66d9ef">select</span> <span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">，字段</span><span style="color:#ae81ff">2</span>....<span style="color:#66d9ef">from</span> <span style="color:#960050;background-color:#1e0010">表名</span> (<span style="color:#66d9ef">where</span> <span style="color:#960050;background-color:#1e0010">条件</span>)
+<span style="color:#f92672">#</span> <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">、查询某一张表中的所有数据记录</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">姓名</span>,<span style="color:#960050;background-color:#1e0010">班级</span>,java成绩 <span style="color:#66d9ef">FROM</span> Java成绩表;
+<span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">姓名</span> <span style="color:#66d9ef">FROM</span> Java成绩表;
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> java成绩表;<span style="color:#f92672">#*</span><span style="color:#960050;background-color:#1e0010">代表查询某一张表中的所有字段</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">姓名</span> (<span style="color:#66d9ef">AS</span> <span style="color:#960050;background-color:#1e0010">及格人员</span>) <span style="color:#66d9ef">FROM</span> java成绩表 <span style="color:#66d9ef">WHERE</span> java成绩<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">60</span>;
+
+<span style="color:#f92672">#</span><span style="color:#75715e">------------逻辑运算符------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span> <span style="color:#960050;background-color:#1e0010">与</span><span style="color:#66d9ef">and</span> <span style="color:#960050;background-color:#1e0010">或</span><span style="color:#66d9ef">or</span> <span style="color:#960050;background-color:#1e0010">非</span><span style="color:#66d9ef">not</span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">给表取别名</span>
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> java成绩表 s;
+
+<span style="color:#f92672">#</span><span style="color:#75715e">---------------------对表数据的增（create）删（delete）改（update）查（select）-------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">修改语法</span> <span style="color:#960050;background-color:#1e0010">：</span><span style="color:#66d9ef">update</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">set</span> <span style="color:#960050;background-color:#1e0010">字段名</span><span style="color:#ae81ff">1</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">值</span><span style="color:#ae81ff">1</span>.... <span style="color:#66d9ef">where</span> <span style="color:#960050;background-color:#1e0010">条件</span>
+<span style="color:#66d9ef">UPDATE</span> java成绩表 <span style="color:#66d9ef">SET</span> <span style="color:#960050;background-color:#1e0010">班级</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#66d9ef">WHERE</span> <span style="color:#960050;background-color:#1e0010">姓名</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;李思&#39;</span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">删除</span>
+<span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> java成绩表 <span style="color:#66d9ef">WHERE</span> 
+
+<span style="color:#f92672">#</span><span style="color:#75715e">------------------------对sql语句进行分类--------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">数据库查询语言</span>DQL<span style="color:#960050;background-color:#1e0010">（</span>datebase query <span style="color:#66d9ef">language</span><span style="color:#960050;background-color:#1e0010">）</span>:<span style="color:#960050;background-color:#1e0010">对表的查询语句：</span><span style="color:#66d9ef">select</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">数据库定义语言</span>DDL<span style="color:#960050;background-color:#1e0010">（</span>datebase <span style="color:#66d9ef">defined</span> <span style="color:#66d9ef">language</span><span style="color:#960050;background-color:#1e0010">）</span>:<span style="color:#66d9ef">create</span> <span style="color:#66d9ef">database</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">drop</span> datebase<span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">table</span><span style="color:#960050;background-color:#1e0010">、</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">数据库操作语言</span>DML<span style="color:#960050;background-color:#1e0010">（</span><span style="color:#66d9ef">database</span> manage <span style="color:#66d9ef">language</span><span style="color:#960050;background-color:#1e0010">）</span>:<span style="color:#66d9ef">update</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">insert</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">delete</span>
+
+
+<span style="color:#f92672">#</span>DDL之操作库
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">添加数据库：</span><span style="color:#66d9ef">create</span> datebase <span style="color:#960050;background-color:#1e0010">库名【</span>character <span style="color:#66d9ef">set</span> utf8<span style="color:#f92672">/</span>gbk<span style="color:#960050;background-color:#1e0010">】</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">删除指定的数据库：</span><span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">database</span> <span style="color:#960050;background-color:#1e0010">库名</span>;
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">查询指定库的详细信息：</span>
+    (<span style="color:#ae81ff">1</span>)<span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#960050;background-color:#1e0010">库名</span>;<span style="color:#960050;background-color:#1e0010">查看某一个数据库的详细信息</span>
+    <span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> kzq;
+    (<span style="color:#ae81ff">2</span>)<span style="color:#66d9ef">SHOW</span> DATABASES:<span style="color:#960050;background-color:#1e0010">查看</span>mysql服务器软件下所有的库 
+    (<span style="color:#ae81ff">3</span>)<span style="color:#960050;background-color:#1e0010">查看：当前用户连接的是哪个数据库：</span><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">DATABASE</span>();
+    (<span style="color:#ae81ff">4</span>)<span style="color:#960050;background-color:#1e0010">查看指定的数据库下有哪些表</span>:<span style="color:#66d9ef">SHOW</span> TABLES;
+    
+
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">修改指定库的编码：</span> <span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">database</span> <span style="color:#960050;background-color:#1e0010">库名</span> character <span style="color:#66d9ef">set</span> <span style="color:#960050;background-color:#1e0010">新编码名</span>;
+<span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">DATABASE</span> dt55_account CHARACTER <span style="color:#66d9ef">SET</span> utf8;
+<span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> dt55_account
+
+<span style="color:#f92672">#</span><span style="color:#75715e">--------------------------DDL之对表的增删改查-----------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">创建一张表：</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span>(<span style="color:#960050;background-color:#1e0010">字段名</span> <span style="color:#960050;background-color:#1e0010">数据类型</span>,<span style="color:#960050;background-color:#1e0010">字段名</span><span style="color:#ae81ff">2</span> <span style="color:#960050;background-color:#1e0010">数据类型</span>....);
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">删除表：</span> <span style="color:#66d9ef">drop</span> <span style="color:#66d9ef">table</span> <span style="color:#960050;background-color:#1e0010">表名：</span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">查询：</span>(<span style="color:#ae81ff">1</span>)<span style="color:#960050;background-color:#1e0010">、查询某一张表的结构：</span><span style="color:#66d9ef">desc</span><span style="color:#960050;background-color:#1e0010">（</span>description<span style="color:#960050;background-color:#1e0010">）</span> <span style="color:#960050;background-color:#1e0010">表名</span>
+        <span style="color:#66d9ef">DESC</span> bank;
+    (<span style="color:#ae81ff">2</span>)<span style="color:#960050;background-color:#1e0010">、打印某一张表</span>SQL创建信息<span style="color:#960050;background-color:#1e0010">：</span> <span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span>;
+        <span style="color:#66d9ef">SHOW</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> bank;
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">修改表：</span>
+    (<span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">RENAME</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">旧表名</span> <span style="color:#66d9ef">TO</span> <span style="color:#960050;background-color:#1e0010">新表名</span>;
+        <span style="color:#66d9ef">RENAME</span> <span style="color:#66d9ef">TABLE</span> aaa <span style="color:#66d9ef">TO</span> bank;
+    (<span style="color:#ae81ff">2</span>) <span style="color:#960050;background-color:#1e0010">添加字段：</span>   <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">ADD</span> <span style="color:#960050;background-color:#1e0010">字段名</span> <span style="color:#960050;background-color:#1e0010">数据类型</span>;
+        <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> bank <span style="color:#66d9ef">ADD</span> gender VARCHAR(<span style="color:#ae81ff">2</span>);
+    (<span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">删除字段：</span> <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">DROP</span> <span style="color:#960050;background-color:#1e0010">被删除字段名</span>;
+        <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> bank <span style="color:#66d9ef">DROP</span> gender;
+    (<span style="color:#ae81ff">4</span>) <span style="color:#960050;background-color:#1e0010">重命名字段</span> <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> CHANGE <span style="color:#960050;background-color:#1e0010">旧字段名</span> <span style="color:#960050;background-color:#1e0010">新字段名</span> <span style="color:#960050;background-color:#1e0010">新字段名数据类型</span>;
+        <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> bank CHANGE usenames aaa VARCHAR(<span style="color:#ae81ff">40</span>);
+    (<span style="color:#ae81ff">5</span>) <span style="color:#960050;background-color:#1e0010">修改数据类型</span>(<span style="color:#960050;background-color:#1e0010">长度</span>) 
+        <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> bank CHANGE bankNo bankN0 VARCHAR(<span style="color:#ae81ff">25</span>);
+
+
+<span style="color:#f92672">#</span> <span style="color:#75715e">--------------------数据库的备份和还原----------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">第一种通过命令：</span>mysqldump <span style="color:#f92672">-</span>u root <span style="color:#f92672">-</span>p (<span style="color:#960050;background-color:#1e0010">密码</span>) <span style="color:#960050;background-color:#1e0010">需要备份的数据库名</span><span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">备份后的</span>sql脚本名;
+        cmd<span style="color:#75715e">-----&gt;mysqldump -uu root -p (密码) dt55_account&gt;c:\dt55_account_back.sql
+</span><span style="color:#75715e"></span>    <span style="color:#960050;background-color:#1e0010">还原备份文件数据：进入</span>mysql环境<span style="color:#75715e">----&gt;创建一个库----&gt;在库下还原数据
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">source</span> <span style="color:#960050;background-color:#1e0010">备份数据库脚本</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">第二种通过</span>sqlyog工具:<span style="color:#960050;background-color:#1e0010">选中需要备份的数据库</span><span style="color:#75715e">-----&gt;右键------&gt;备份/导出----&gt;转储到sql
+</span><span style="color:#75715e"></span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">删除指定表字段</span>
+<span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#960050;background-color:#1e0010">表名</span> <span style="color:#66d9ef">DROP</span> <span style="color:#960050;background-color:#1e0010">字段名</span>
+
+
+<span style="color:#f92672">#</span><span style="color:#75715e">--------------------数据类型属性--------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span>mysql常见的数据类型<span style="color:#960050;background-color:#1e0010">：</span>varchar<span style="color:#960050;background-color:#1e0010">（</span>n<span style="color:#960050;background-color:#1e0010">）、</span>float<span style="color:#960050;background-color:#1e0010">、</span>int(n)<span style="color:#960050;background-color:#1e0010">、</span>bigint(n)<span style="color:#960050;background-color:#1e0010">、</span>date<span style="color:#960050;background-color:#1e0010">、</span>datetime<span style="color:#960050;background-color:#1e0010">、</span>text
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">默认值</span> <span style="color:#66d9ef">default</span> <span style="color:#e6db74">&#39;默认值&#39;</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">非空：</span><span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#960050;background-color:#1e0010">如果某一个字段别</span><span style="color:#66d9ef">NOT</span> NULL修饰后<span style="color:#960050;background-color:#1e0010">，添加数据时，此字段必需填写</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">自动整长：</span>auto_increment<span style="color:#960050;background-color:#1e0010">，尽量作用在</span>int类型的字段上
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">主键</span>(<span style="color:#960050;background-color:#1e0010">唯一的，不能重复，一张表中只能以一个作为主键</span>)<span style="color:#960050;background-color:#1e0010">：</span><span style="color:#66d9ef">primary</span> <span style="color:#66d9ef">key</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">唯一健（唯一，可以有很多）：</span><span style="color:#66d9ef">unique</span><span style="color:#960050;background-color:#1e0010">，被</span>unique修饰的数据不能够重复
+USE kzq;
+<span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> students;
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> students(
+    id BIGINT(<span style="color:#ae81ff">20</span>) AUTO_INCREMENT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;学生编号&#39;</span>,
+    stuName VARCHAR(<span style="color:#ae81ff">40</span>) <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;学生姓名&#39;</span>,
+    gender VARCHAR(<span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#e6db74">&#39;男&#39;</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;性别&#39;</span>,
+    className VARCHAR(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;班级&#39;</span>,
+    phone VARCHAR(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;手机号码&#39;</span>
+)
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">此处的</span>delete可以删除整张表<span style="color:#960050;background-color:#1e0010">，但是删除数据后，自增列不会从</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">开始</span>
+<span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> students <span style="color:#66d9ef">WHERE</span> id<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ()
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">如果要删除一整张表中的数据，使用</span><span style="color:#66d9ef">truncate</span><span style="color:#960050;background-color:#1e0010">，使用</span>truncate删除数据后<span style="color:#960050;background-color:#1e0010">，如果字段是自增的、则重新排列</span>
+<span style="color:#66d9ef">TRUNCATE</span> <span style="color:#66d9ef">TABLE</span> students;
+
+<span style="color:#f92672">#================================================================</span>
+USE dt55_account;
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> users(
+    id BIGINT(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> AUTO_INCREMENT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;用户编号&#39;</span>,
+    username VARCHAR(<span style="color:#ae81ff">40</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;用户名&#39;</span>,
+    gender VARCHAR(<span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">DEFAULT</span> <span style="color:#e6db74">&#39;女&#39;</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;性别&#39;</span>,
+    idcard VARCHAR(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">UNIQUE</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;身份证号&#39;</span>,
+    javaScore FLOAT <span style="color:#66d9ef">DEFAULT</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;java成绩&#39;</span>
+)
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> users <span style="color:#66d9ef">SET</span> username<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;关雨&#39;</span>,gender<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;男&#39;</span>,idcard<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;110&#39;</span>,javaScore<span style="color:#f92672">=</span><span style="color:#ae81ff">90</span>;
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> users <span style="color:#66d9ef">SET</span> username<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;钱文雯&#39;</span>,gender<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;男&#39;</span>,idcard<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;120&#39;</span>,javaScore<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>;
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> users <span style="color:#66d9ef">SET</span> username<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;文儿&#39;</span>,gender<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;男&#39;</span>,idcard<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;911&#39;</span>,javaScore<span style="color:#f92672">=</span><span style="color:#ae81ff">70</span>;
+
+
+<span style="color:#f92672">#</span><span style="color:#75715e">---------------------------排序(order by 字段 降序，升序)---------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">降序</span>(<span style="color:#66d9ef">DESC</span>)
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> users <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> javaScore <span style="color:#66d9ef">DESC</span>;
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">升序</span>(<span style="color:#66d9ef">ASC</span>)
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> users <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> javaScore <span style="color:#66d9ef">ASC</span>;
+USE dt55_account;
+<span style="color:#66d9ef">RENAME</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#e6db74">&#39;dt55_account&#39;</span> <span style="color:#66d9ef">TO</span> <span style="color:#e6db74">&#39;class&#39;</span>
+
+
+<span style="color:#f92672">#</span><span style="color:#75715e">--------------------聚合函数-----------------------------
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#960050;background-color:#1e0010">函数名（字段）</span> <span style="color:#66d9ef">FROM</span> <span style="color:#960050;background-color:#1e0010">表名</span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">找出最大值：</span><span style="color:#66d9ef">max</span>(<span style="color:#960050;background-color:#1e0010">字段</span>)
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">MAX</span>(javaScore) <span style="color:#66d9ef">AS</span> <span style="color:#960050;background-color:#1e0010">最高分</span> <span style="color:#66d9ef">FROM</span> users;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">找出最小值：</span><span style="color:#66d9ef">min</span>(<span style="color:#960050;background-color:#1e0010">字段</span>)
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">MIN</span>(javaScore) <span style="color:#66d9ef">AS</span> <span style="color:#960050;background-color:#1e0010">最低分</span> <span style="color:#66d9ef">FROM</span> users;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">求平均数：</span><span style="color:#66d9ef">avg</span>(<span style="color:#960050;background-color:#1e0010">字段名</span>)
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">AVG</span>(javaScore) <span style="color:#66d9ef">AS</span> <span style="color:#960050;background-color:#1e0010">平均分</span> <span style="color:#66d9ef">FROM</span> users;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">求和</span> <span style="color:#66d9ef">sum</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(javaScore) <span style="color:#66d9ef">AS</span> <span style="color:#960050;background-color:#1e0010">总分数</span> <span style="color:#66d9ef">FROM</span> users;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">统计记录</span> <span style="color:#66d9ef">count</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> users
+
+<span style="color:#f92672">#</span><span style="color:#75715e">------------------常用函数---------------------
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> NOW() <span style="color:#960050;background-color:#1e0010">年月日、时分秒</span>
+<span style="color:#66d9ef">SELECT</span> CURTIME() <span style="color:#960050;background-color:#1e0010">时分秒</span>
+<span style="color:#66d9ef">SELECT</span> CURDATE() <span style="color:#960050;background-color:#1e0010">年月日</span>
+
+<span style="color:#66d9ef">SELECT</span> CEIL(<span style="color:#ae81ff">2</span>.<span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">向上取舍</span>
+<span style="color:#66d9ef">SELECT</span> FLOOR(<span style="color:#ae81ff">2</span>.<span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">向下取舍</span>
+<span style="color:#66d9ef">SELECT</span> RAND() <span style="color:#960050;background-color:#1e0010">返回</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">到</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">的随机数</span>
+
+
+<span style="color:#f92672">#</span><span style="color:#75715e">-------------------同时查询多条记录------------------------
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> users <span style="color:#66d9ef">WHERE</span> id <span style="color:#66d9ef">IN</span> (<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>)
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> users <span style="color:#66d9ef">WHERE</span> id 
+
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">分组查询</span><span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> <span style="color:#960050;background-color:#1e0010">分类字段</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">查询是否有种类为衣服的类型</span>
+<span style="color:#66d9ef">SELECT</span> goodcategory <span style="color:#66d9ef">FROM</span> goods <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> goodcategory <span style="color:#66d9ef">HAVING</span> goodcategory<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;衣服&#39;</span>
+
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">分页</span> <span style="color:#66d9ef">limit</span> <span style="color:#960050;background-color:#1e0010">起始下标，每页显示的数据量</span>
+<span style="color:#f92672">#</span>goods表中有七条数据记录<span style="color:#960050;background-color:#1e0010">，每一页显示三条，总共可以分</span><span style="color:#ae81ff">3</span><span style="color:#960050;background-color:#1e0010">页</span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">获取第一页数据</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> goods <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">获取第二页数据</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> goods <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">获取第三页的数据</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> goods <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">3</span>;
+
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">复制某一张表</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> aaa(
+    <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>bank<span style="color:#f92672">`</span>
+);
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">插入数据</span>
+<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> aaa <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> kzq.<span style="color:#f92672">`</span>java成绩表<span style="color:#f92672">`</span> 
+
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">时间格式函数</span>
+<span style="color:#66d9ef">SELECT</span> DATE_FORMAT(DATE,<span style="color:#e6db74">&#39;%Y年%m月%d日 %H:%i:%s&#39;</span>) <span style="color:#66d9ef">AS</span> birthday <span style="color:#66d9ef">FROM</span> persons
+USE kzq
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">多表查询</span>
+<span style="color:#66d9ef">DROP</span> dept
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">部门表</span>dept
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> dept(
+    id BIGINT(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> AUTO_INCREMENT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;部门编号&#39;</span>,
+    deptName VARCHAR(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;部门名称&#39;</span>
+)
+ID  deptName(<span style="color:#960050;background-color:#1e0010">部门名称</span>)  
+<span style="color:#ae81ff">1</span>   <span style="color:#960050;background-color:#1e0010">开发部</span>
+<span style="color:#ae81ff">2</span>   <span style="color:#960050;background-color:#1e0010">测试部</span>
+<span style="color:#ae81ff">3</span>   UI<span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">前端部</span>
+<span style="color:#ae81ff">4</span>   <span style="color:#960050;background-color:#1e0010">销售部</span>  
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">员工表</span>emp
+ID  empName(<span style="color:#960050;background-color:#1e0010">员工名字</span>)   salary  deptID
+<span style="color:#ae81ff">1</span>   <span style="color:#960050;background-color:#1e0010">光谷</span>      <span style="color:#ae81ff">8000</span>       <span style="color:#ae81ff">1</span>    
+<span style="color:#ae81ff">2</span>   <span style="color:#960050;background-color:#1e0010">蔡光</span>      <span style="color:#ae81ff">8500</span>       <span style="color:#ae81ff">1</span>    
+<span style="color:#ae81ff">3</span>   <span style="color:#960050;background-color:#1e0010">杨成全</span>     <span style="color:#ae81ff">9000</span>       <span style="color:#ae81ff">2</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> emp(
+    id BIGINT(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> AUTO_INCREMENT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;员工编号&#39;</span>,
+    empName VARCHAR(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;员工名&#39;</span>,
+    salary FLOAT <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;薪水&#39;</span>,
+    deptId BIGINT(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">COMMENT</span> <span style="color:#e6db74">&#39;部门编号&#39;</span>
+)
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">查询部门</span>dept编号<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">的部门下的所有员工</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> emp <span style="color:#66d9ef">WHERE</span> deptId<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">查询所有员工</span>
+<span style="color:#66d9ef">SELECT</span> d.deptname,e.empName,e.salary <span style="color:#66d9ef">FROM</span> dept d,emp e <span style="color:#66d9ef">WHERE</span> d.deptname <span style="color:#66d9ef">IN</span> (<span style="color:#e6db74">&#39;开发部&#39;</span>,<span style="color:#e6db74">&#39;测试部&#39;</span>) <span style="color:#66d9ef">AND</span> d.id<span style="color:#f92672">=</span>e.deptid
+SSSSs
+
+<span style="color:#66d9ef">UNION</span> <span style="color:#960050;background-color:#1e0010">可以将两个查询语句的结果进行合并，合并的前提是两个查询语句的数据结构是一样的</span>(<span style="color:#960050;background-color:#1e0010">如果有两个相同的数据，则自动去重</span>)
+<span style="color:#66d9ef">UNION</span> <span style="color:#66d9ef">ALL</span> <span style="color:#960050;background-color:#1e0010">不能去重、</span>
+
+<span style="color:#f92672">#</span><span style="color:#75715e">---------------------------------多表查询------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">多表查询语法</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> <span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">2</span>....<span style="color:#960050;background-color:#1e0010">表</span>n <span style="color:#66d9ef">where</span> <span style="color:#960050;background-color:#1e0010">条件</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">多表查询方式：</span>
+    <span style="color:#960050;background-color:#1e0010">内连接</span>
+    <span style="color:#960050;background-color:#1e0010">外连接</span>
+        <span style="color:#960050;background-color:#1e0010">左右连接</span>
+        <span style="color:#960050;background-color:#1e0010">右外连接</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">内连接：表</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">inner</span> <span style="color:#66d9ef">join</span> <span style="color:#960050;background-color:#1e0010">表</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">on</span> <span style="color:#960050;background-color:#1e0010">条件</span>(<span style="color:#960050;background-color:#1e0010">多个表中有关联的条件</span>)
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">查询所有部门中的所有员工</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> dept d,emp e <span style="color:#66d9ef">WHERE</span> d.id <span style="color:#f92672">=</span> e.deptId
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> dept d <span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> emp e <span style="color:#66d9ef">ON</span> d.id <span style="color:#f92672">=</span> e.deptId
+
+<span style="color:#66d9ef">SELECT</span> d.deptName,e.empName,e.salary
+<span style="color:#66d9ef">FROM</span>
+dept d <span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> emp e
+<span style="color:#66d9ef">ON</span> d.id <span style="color:#f92672">=</span> e.deptId <span style="color:#66d9ef">WHERE</span> d.dept <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;开发部&#39;</span> <span style="color:#f92672">#</span>on后面接几个表中有关联的条件<span style="color:#960050;background-color:#1e0010">，没有关联的条件用</span><span style="color:#66d9ef">where</span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">模糊查询</span> <span style="color:#66d9ef">like</span>
+a<span style="color:#f92672">%</span> <span style="color:#960050;background-color:#1e0010">以</span>a开头
+<span style="color:#f92672">%</span>a <span style="color:#960050;background-color:#1e0010">以</span>a结尾
+<span style="color:#f92672">%</span>a<span style="color:#f92672">%</span> <span style="color:#960050;background-color:#1e0010">包含</span>a <span style="color:#f92672">#</span> <span style="color:#f92672">%</span><span style="color:#960050;background-color:#1e0010">占位符</span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">左外连接</span> <span style="color:#66d9ef">left</span> <span style="color:#66d9ef">join</span> <span style="color:#960050;background-color:#1e0010">以左边的表为主，左边的表数据要显示出来</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">右外连接</span> <span style="color:#66d9ef">right</span> <span style="color:#66d9ef">join</span> <span style="color:#960050;background-color:#1e0010">以右边的表为主，右边的表数据要显示出来</span>
+
+
+
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">视图：在真实表上面构建的一张虚表</span> <span style="color:#66d9ef">create</span> <span style="color:#66d9ef">view</span> <span style="color:#960050;background-color:#1e0010">视图名</span> <span style="color:#66d9ef">as</span> <span style="color:#960050;background-color:#1e0010">查询语句</span>;
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">VIEW</span> view_all
+<span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">SELECT</span> e.empName,e.salary,d.deptname <span style="color:#66d9ef">FROM</span> dept d <span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> emp e <span style="color:#66d9ef">ON</span> d.id <span style="color:#f92672">=</span> e.deptId;
+.
+<span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">VIEW</span> view_all;
+
+<span style="color:#960050;background-color:#1e0010">视图的应用场景：在金融行业，保险行业，财务行业等</span>
+
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">数据库建模</span>(powerDesinger)
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">事务：多组操作要么全部，要么全部失败</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">开启事务：</span>
+<span style="color:#66d9ef">START</span> TRANSACTION;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">回滚事务：</span>
+<span style="color:#66d9ef">ROLLBACK</span>;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">提交事务</span>
+<span style="color:#66d9ef">COMMIT</span>;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">事务的四大特性：</span>
+    <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">原子性：多组操作为一个整体，不能分割</span>
+    
+    <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">一致性：操作前后最终的总量一样</span>
+    
+    <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">隔离性：多个事务之间相互隔离互不干扰</span>
+     <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">在</span>mysql中事务有4种隔离级别<span style="color:#960050;background-color:#1e0010">：</span><span style="color:#66d9ef">read</span> <span style="color:#66d9ef">uncommitted</span>(<span style="color:#960050;background-color:#1e0010">读取未提交</span>)<span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">read</span> <span style="color:#66d9ef">committed</span>(<span style="color:#960050;background-color:#1e0010">读取提交</span>)<span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">repeatable</span> <span style="color:#66d9ef">read</span>(<span style="color:#960050;background-color:#1e0010">可以重复读</span>)<span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">Serializable</span>
+     <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">查看</span>mysql软件的事务隔离级别:<span style="color:#66d9ef">select</span> <span style="color:#f92672">@@</span>tx_isolation;
+     <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">@@</span>tx_isolation;
+      
+     
+     <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">修改</span>mysql软件默认的隔离级别<span style="color:#960050;background-color:#1e0010">：</span><span style="color:#66d9ef">set</span> <span style="color:#66d9ef">global</span> transaction <span style="color:#66d9ef">isolation</span> <span style="color:#66d9ef">level</span> <span style="color:#960050;background-color:#1e0010">隔离级别</span>
+     <span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">GLOBAL</span> TRANSACTION <span style="color:#66d9ef">ISOLATION</span> <span style="color:#66d9ef">LEVEL</span> <span style="color:#66d9ef">READ</span> <span style="color:#66d9ef">UNCOMMITTED</span>;
+     
+     <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">不同的隔离级别会引发不同的问题：</span>
+        <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">当</span>mysql事务的隔离级别为read uncommitted时<span style="color:#960050;background-color:#1e0010">，会引发脏读：一个事务可以读取另一个事务未提交的数据</span>
+        <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">如何解决脏读问题：可以将数据库事务的隔离级别改为</span>:<span style="color:#66d9ef">read</span> <span style="color:#66d9ef">committed</span>
+        <span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">GLOBAL</span> TRANSACTION <span style="color:#66d9ef">ISOLATION</span> <span style="color:#66d9ef">LEVEL</span> <span style="color:#66d9ef">READ</span> <span style="color:#66d9ef">COMMITTED</span>;
+        
+        <span style="color:#f92672">#</span><span style="color:#75715e">----------------------------------------------------------
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">当</span>mysql软件的事务隔离级别为:<span style="color:#66d9ef">read</span> committed的时候<span style="color:#960050;background-color:#1e0010">，会引发不可重复读：在同一事物中多次读取的结果不一致</span>
+        <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">如何解决不可重复读：将事物的隔离级别改为</span><span style="color:#66d9ef">repeatable</span> <span style="color:#66d9ef">read</span>
+        <span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">GLOBAL</span> TRANSACTION <span style="color:#66d9ef">ISOLATION</span> <span style="color:#66d9ef">LEVEL</span> <span style="color:#66d9ef">REPEATABLE</span> <span style="color:#66d9ef">READ</span>;
+        
+        <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">当</span>mysql软件的事务隔离级别为:<span style="color:#66d9ef">repeatable</span> read时<span style="color:#960050;background-color:#1e0010">，会引发虚读</span>(<span style="color:#960050;background-color:#1e0010">幻读</span>)
+        
+        
+    
+    <span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">持久性：数据进入到数据库中后，数据需要持久存在</span>
+    
+
+<span style="color:#f92672">#</span><span style="color:#75715e">-------------------------------------存储过程-----------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">给员工加薪：加薪的金额</span>(salary),<span style="color:#960050;background-color:#1e0010">员工编号</span>(id)
+<span style="color:#66d9ef">public</span> BOOLEAN addSalary(FLOAT money,INT id)<span style="color:#960050;background-color:#1e0010">{</span>
+    <span style="color:#960050;background-color:#1e0010">代码块</span>;
+    <span style="color:#66d9ef">RETURN</span> <span style="color:#66d9ef">TRUE</span>;
+<span style="color:#960050;background-color:#1e0010">}</span>
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">存储过程语法：</span>
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#960050;background-color:#1e0010">存储过程名</span>(<span style="color:#960050;background-color:#1e0010">参数名</span><span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">参数类型</span><span style="color:#ae81ff">1</span>,<span style="color:#960050;background-color:#1e0010">参数名</span><span style="color:#ae81ff">2</span> <span style="color:#960050;background-color:#1e0010">参数类型</span><span style="color:#ae81ff">2</span>)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#960050;background-color:#1e0010">代码块</span>;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">书写一个加薪的存储过程</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">存储过程：是一组</span>sql语句的集合
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> addSalary(money FLOAT,idd BIGINT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">UPDATE</span> <span style="color:#f92672">`</span>emp<span style="color:#f92672">`</span> <span style="color:#66d9ef">SET</span> salary<span style="color:#f92672">=</span>salary<span style="color:#f92672">+</span>money <span style="color:#66d9ef">WHERE</span> id<span style="color:#f92672">=</span>idd;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">调用存储过程</span>:<span style="color:#66d9ef">call</span> <span style="color:#960050;background-color:#1e0010">存储过程名</span>()
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>addSalary<span style="color:#f92672">`</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1000</span>,<span style="color:#ae81ff">9</span>);
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">删除存储过程</span>
+<span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#960050;background-color:#1e0010">存储过程名</span>;
+<span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#f92672">`</span>addSalary<span style="color:#f92672">`</span>;
+
+<span style="color:#f92672">#</span><span style="color:#75715e">----------------------带返回值的存储过程-----------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span>test1<span style="color:#960050;background-color:#1e0010">：传递两个</span>float类型的形参<span style="color:#960050;background-color:#1e0010">，返回两个数的和</span>
+<span style="color:#66d9ef">public</span> FLOAT test1(FLOAT i,FLOAT j)<span style="color:#960050;background-color:#1e0010">{</span>
+    FLOAT num <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span>j;
+    <span style="color:#66d9ef">RETURN</span> num;
+<span style="color:#960050;background-color:#1e0010">}</span>
+
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> test1(<span style="color:#66d9ef">IN</span> i FLOAT,<span style="color:#66d9ef">IN</span> j FLOAT,<span style="color:#66d9ef">OUT</span> num FLOAT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">SET</span> num<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span>j;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>test1<span style="color:#f92672">`</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">20</span>,<span style="color:#f92672">@</span><span style="color:#66d9ef">result</span>)
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">@</span><span style="color:#66d9ef">result</span>
+
+<span style="color:#f92672">#</span><span style="color:#75715e">--------------------------------------mysql数据库高级部分之存储过程-----------------------------------------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">创建存储过程的基本语法规则：</span>
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#960050;background-color:#1e0010">存储过程名</span>(<span style="color:#66d9ef">IN</span> <span style="color:#960050;background-color:#1e0010">输入参数名</span> <span style="color:#960050;background-color:#1e0010">参数类型</span>,<span style="color:#66d9ef">OUT</span> <span style="color:#960050;background-color:#1e0010">输出参数名</span> <span style="color:#960050;background-color:#1e0010">参数类型</span>)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#960050;background-color:#1e0010">代码块</span>;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">删除存储过程</span>: 
+<span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#960050;background-color:#1e0010">【</span><span style="color:#66d9ef">if</span> <span style="color:#66d9ef">exists</span><span style="color:#960050;background-color:#1e0010">】</span> <span style="color:#960050;background-color:#1e0010">存储过程名</span>;
+<span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">EXISTS</span> test1;
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">调用存储过程</span>
+<span style="color:#66d9ef">CALL</span> <span style="color:#960050;background-color:#1e0010">存储过程名</span>(<span style="color:#960050;background-color:#1e0010">参数</span><span style="color:#ae81ff">1</span>...<span style="color:#960050;background-color:#1e0010">参数</span>n);
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">带</span>if语句的存储过程
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">加薪的存储过程，传递两个参数：</span>id<span style="color:#960050;background-color:#1e0010">、</span>m(<span style="color:#960050;background-color:#1e0010">只能够传递整数，不能够传递负数</span>)
+<span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;亲，您输入的金额不能够为负数!!!&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;友情提示&#39;</span>;
+
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> pro_addSalary(idd BIGINT,m FLOAT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">IF</span> m<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> <span style="color:#66d9ef">THEN</span>
+        <span style="color:#66d9ef">UPDATE</span> users <span style="color:#66d9ef">SET</span> money<span style="color:#f92672">=</span>money<span style="color:#f92672">+</span>m <span style="color:#66d9ef">WHERE</span> id<span style="color:#f92672">=</span>idd;
+    <span style="color:#66d9ef">END</span> <span style="color:#66d9ef">IF</span>;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>pro_addSalary<span style="color:#f92672">`</span>(<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">500</span>);
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">带</span><span style="color:#66d9ef">if</span>..else的存储过程
+<span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">EXISTS</span> pro_salaryAdd;
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> pro_salaryAdd(idd BIGINT,m FLOAT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">IF</span> m<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> <span style="color:#66d9ef">THEN</span>
+        <span style="color:#66d9ef">UPDATE</span> users <span style="color:#66d9ef">SET</span> money<span style="color:#f92672">=</span>money<span style="color:#f92672">+</span>m <span style="color:#66d9ef">WHERE</span> id<span style="color:#f92672">=</span>idd;
+    <span style="color:#66d9ef">ELSE</span> 
+        <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;亲，您输入的金额不能够为负数!!!&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;友情提示&#39;</span>;
+    <span style="color:#66d9ef">END</span> <span style="color:#66d9ef">IF</span>;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>pro_salaryAdd<span style="color:#f92672">`</span>(<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">2000</span>);
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">带</span><span style="color:#66d9ef">if</span>...<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>...else语句的存储过程
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">存储过程名</span>:pro_buyCar(money float)<span style="color:#960050;background-color:#1e0010">，如果</span>money<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">500</span><span style="color:#960050;background-color:#1e0010">万则买保时捷；否则如果</span>money<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">300</span><span style="color:#960050;background-color:#1e0010">万，买宝马；否则如果</span>money<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">10</span><span style="color:#960050;background-color:#1e0010">万买奥拓；否则骑摩拜</span>
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> pro_buyCar(money FLOAT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">IF</span> money<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">500</span> <span style="color:#66d9ef">THEN</span>
+        <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;买保时捷&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;买啥&#39;</span>;
+    ELSEIF money<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">300</span> <span style="color:#66d9ef">THEN</span>
+        <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;宝马&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;买啥&#39;</span>;
+    ELSEIF money<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">10</span> <span style="color:#66d9ef">THEN</span>
+        <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;奥拓&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;买啥&#39;</span>;
+    <span style="color:#66d9ef">ELSE</span>
+        <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;骑摩拜&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;骑啥&#39;</span>;
+    <span style="color:#66d9ef">END</span> <span style="color:#66d9ef">IF</span>;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>pro_buyCar<span style="color:#f92672">`</span>(<span style="color:#ae81ff">5</span>);
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">练习题：存储过程</span>:pro_score(score float)<span style="color:#960050;background-color:#1e0010">，如果成绩</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">90</span><span style="color:#960050;background-color:#1e0010">分则是</span>A等<span style="color:#960050;background-color:#1e0010">；</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">否则</span>score<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">80</span>B等<span style="color:#960050;background-color:#1e0010">；否则如果</span>score<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">60</span><span style="color:#960050;background-color:#1e0010">，</span>C等<span style="color:#960050;background-color:#1e0010">；否则</span>score<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">60</span><span style="color:#960050;background-color:#1e0010">，不及格</span>
+
+
+<span style="color:#f92672">#</span>case选择分支结构
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">存储过程名</span>:pro_case(i int)<span style="color:#960050;background-color:#1e0010">，如果</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">则打印星期一，</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">则打印星期二</span>....
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> pro_case(i INT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">CASE</span> i
+        <span style="color:#66d9ef">WHEN</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">THEN</span>
+            <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;星期一&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;日期&#39;</span>;
+        <span style="color:#66d9ef">WHEN</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">THEN</span>
+            <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;星期二&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;日期&#39;</span>;
+        <span style="color:#66d9ef">ELSE</span>
+            <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;今天不是周一或者周二，到底周几你猜？&#39;</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;日期&#39;</span>;
+    <span style="color:#66d9ef">END</span> <span style="color:#66d9ef">CASE</span>;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>pro_case<span style="color:#f92672">`</span>(<span style="color:#ae81ff">3</span>);
+
+<span style="color:#f92672">#</span>case练习<span style="color:#960050;background-color:#1e0010">：存储过程名</span>:pro_case2(i int)<span style="color:#960050;background-color:#1e0010">，</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">如果</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">，则拨打</span><span style="color:#e6db74">&#34;爸爸&#34;</span><span style="color:#960050;background-color:#1e0010">的电话，如果</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">则拨打</span><span style="color:#e6db74">&#34;妈妈&#34;</span>,<span style="color:#960050;background-color:#1e0010">否则：您打错了</span>
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> pro_case2(i INT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">CASE</span> i
+        <span style="color:#66d9ef">WHEN</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">THEN</span>
+            <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;拨打father的号码&#39;</span>;
+        <span style="color:#66d9ef">WHEN</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">THEN</span>
+            <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;拨打mother的号码&#39;</span>;
+        <span style="color:#66d9ef">ELSE</span>
+            <span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;您打错了&#39;</span>;
+    <span style="color:#66d9ef">END</span> <span style="color:#66d9ef">CASE</span>;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>pro_case2<span style="color:#f92672">`</span>(<span style="color:#ae81ff">1</span>);
+
+
+
+<span style="color:#f92672">###</span>while循环
+<span style="color:#f92672">#</span>Java中while循环的语法:
+WHILE(<span style="color:#960050;background-color:#1e0010">条件</span>)<span style="color:#960050;background-color:#1e0010">{</span>
+    <span style="color:#960050;background-color:#1e0010">循环体</span>;
+    <span style="color:#960050;background-color:#1e0010">循环终止条件</span>;
+<span style="color:#960050;background-color:#1e0010">}</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">存储过程名：</span>pro_while2(i int)<span style="color:#960050;background-color:#1e0010">，如果</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span><span style="color:#960050;background-color:#1e0010">，则计算</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">到</span><span style="color:#ae81ff">100</span><span style="color:#960050;background-color:#1e0010">之间的所有数之和，返回最终结果</span>
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> pro_while2(<span style="color:#66d9ef">IN</span> i INT,<span style="color:#66d9ef">OUT</span> total INT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">DECLARE</span> a INT <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">SET</span> total<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    WHILE a<span style="color:#f92672">&lt;=</span>i <span style="color:#66d9ef">DO</span>
+        <span style="color:#66d9ef">SET</span> total<span style="color:#f92672">=</span>total<span style="color:#f92672">+</span>a;
+        <span style="color:#66d9ef">SET</span> a<span style="color:#f92672">=</span>a<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">END</span> WHILE;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>pro_while2<span style="color:#f92672">`</span>(<span style="color:#ae81ff">100</span>,<span style="color:#f92672">@</span>aaa);
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">@</span>aaa;
+
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">如果</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span><span style="color:#960050;background-color:#1e0010">则往</span>users表中插入100条数据
+<span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">EXISTS</span> pro_while1;
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> pro_while1(<span style="color:#66d9ef">IN</span> i INT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">DECLARE</span> a INT <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">1</span>;
+    WHILE a<span style="color:#f92672">&lt;=</span>i <span style="color:#66d9ef">DO</span>
+        <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span> <span style="color:#66d9ef">SET</span> username<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;test&#39;</span>,money<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>;
+        <span style="color:#66d9ef">SET</span> a<span style="color:#f92672">=</span>a<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">END</span> WHILE;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> pro_while1(<span style="color:#ae81ff">10</span>);
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> users;
+<span style="color:#66d9ef">TRUNCATE</span> <span style="color:#66d9ef">TABLE</span> users;
+
+<span style="color:#f92672">##</span>loop循环:
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#960050;background-color:#1e0010">存储过程名</span>()
+<span style="color:#66d9ef">BEGIN</span>
+    loop循环别名:LOOP
+        <span style="color:#960050;background-color:#1e0010">循环体</span>;
+        
+        LEAVE loop循环别名;
+    <span style="color:#66d9ef">END</span> LOOP;
+<span style="color:#66d9ef">END</span>;
+
+<span style="color:#f92672">#</span><span style="color:#75715e">-----------------------
+</span><span style="color:#75715e"></span><span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">通过</span>loop循环往users表中同时添加100条记录
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> pro_loop()
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">DECLARE</span> i INT <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>;
+    loop_test1:LOOP
+        <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span> <span style="color:#66d9ef">SET</span> username<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;admin&#39;</span>,money<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>;
+        
+        <span style="color:#66d9ef">SET</span> i <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+        <span style="color:#66d9ef">IF</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span> <span style="color:#66d9ef">THEN</span>
+            LEAVE loop_test1;
+        <span style="color:#66d9ef">END</span> <span style="color:#66d9ef">IF</span>;
+    <span style="color:#66d9ef">END</span> LOOP;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>pro_loop<span style="color:#f92672">`</span>();
+
+<span style="color:#f92672">#</span><span style="color:#75715e">------------------------找出1-100之间能够被3整除的所有数之和-----------------------------
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>pro_sum<span style="color:#f92672">`</span>;
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> <span style="color:#f92672">`</span>pro_sum<span style="color:#f92672">`</span>()
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">DECLARE</span> i INT <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">DECLARE</span> total INT <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>;
+    WHILE i<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">10</span> <span style="color:#66d9ef">DO</span>
+        <span style="color:#66d9ef">IF</span> i <span style="color:#66d9ef">MOD</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> <span style="color:#66d9ef">THEN</span>
+            <span style="color:#66d9ef">SET</span> total<span style="color:#f92672">=</span>total<span style="color:#f92672">+</span>i;
+        <span style="color:#66d9ef">END</span> <span style="color:#66d9ef">IF</span>;
+        <span style="color:#66d9ef">SET</span> i <span style="color:#f92672">=</span> i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">循环结束条件</span>
+    <span style="color:#66d9ef">END</span> WHILE;
+    <span style="color:#66d9ef">SELECT</span> total;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> <span style="color:#f92672">`</span>pro_sum<span style="color:#f92672">`</span>();
+
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">作业</span>
+<span style="color:#f92672">#</span><span style="color:#960050;background-color:#1e0010">书写一个存储过程，将</span><span style="color:#f92672">`</span>users<span style="color:#f92672">`</span><span style="color:#960050;background-color:#1e0010">表中的所有</span>money之和返回
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(money) <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>;
+<span style="color:#66d9ef">DELIMITER</span> <span style="color:#f92672">//</span>
+<span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> pro_qiuSum(<span style="color:#66d9ef">OUT</span> total FLOAT)
+<span style="color:#66d9ef">BEGIN</span>
+    <span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(money) <span style="color:#66d9ef">INTO</span> total <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>users<span style="color:#f92672">`</span>;
+<span style="color:#66d9ef">END</span><span style="color:#f92672">//</span>
+<span style="color:#66d9ef">DELIMITER</span> ;
+
+<span style="color:#66d9ef">CALL</span> pro_qiuSum(<span style="color:#f92672">@</span>a);
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">@</span>a;
+
+
+<span style="color:#f92672">#</span> <span style="color:#ae81ff">2018</span><span style="color:#960050;background-color:#1e0010">年</span><span style="color:#ae81ff">7</span><span style="color:#960050;background-color:#1e0010">月</span><span style="color:#ae81ff">30</span><span style="color:#960050;background-color:#1e0010">日</span><span style="color:#ae81ff">11</span>:<span style="color:#ae81ff">57</span>:<span style="color:#ae81ff">32</span><span style="color:#960050;background-color:#1e0010">用</span>scrapy爬取豆瓣top250电影并存入数据库的一些查询语句
+USE kzq;
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> movies;
+<span style="color:#66d9ef">SELECT</span> id,title <span style="color:#66d9ef">AS</span> <span style="color:#960050;background-color:#1e0010">爱情电影</span>,movie_type,score <span style="color:#66d9ef">FROM</span> movies <span style="color:#66d9ef">WHERE</span> movie_type <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%爱情%&#39;</span>;
+<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> movies <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> number <span style="color:#66d9ef">DESC</span>;
+<span style="color:#66d9ef">SELECT</span> id,title <span style="color:#66d9ef">FROM</span> movies <span style="color:#66d9ef">WHERE</span> country <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%中国%&#39;</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> (<span style="color:#66d9ef">SELECT</span> id,title <span style="color:#66d9ef">FROM</span> movies <span style="color:#66d9ef">WHERE</span> country <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%中国%&#39;</span>) <span style="color:#66d9ef">AS</span> a
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> movies
+<span style="color:#66d9ef">SELECT</span> title,<span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> movies <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> country 
+
+
+<span style="color:#960050;background-color:#1e0010">获取电影类型中出现爱情的次数</span>
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(<span style="color:#66d9ef">CHAR_LENGTH</span>(movie_type)<span style="color:#f92672">-</span><span style="color:#66d9ef">CHAR_LENGTH</span>(<span style="color:#66d9ef">REPLACE</span>(movie_type,<span style="color:#e6db74">&#39;爱情&#39;</span>,<span style="color:#e6db74">&#39;&#39;</span>)))<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">AS</span> <span style="color:#960050;background-color:#1e0010">剧情电影总数</span> 
+<span style="color:#66d9ef">FROM</span> movies;
+
+<span style="color:#960050;background-color:#1e0010">另一种写法</span>
+
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> 
+(<span style="color:#66d9ef">SELECT</span> id,title <span style="color:#66d9ef">FROM</span> movies <span style="color:#66d9ef">WHERE</span> movie_type <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%爱情%&#39;</span>)<span style="color:#66d9ef">AS</span> a</code></pre></div>
+</div>
+
+
+        
+<div class="section bottom-menu">
+    
+<hr />
+<p>
+
+
+
+    
+        
+            <a href="/blog">
+                Blog
+            </a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/life">
+                Life
+            </a>
+        
+            &#183; 
+            <a href="/about">
+                About
+            </a>
+        
+    
+    &#183; 
+    <a href="/">
+        main
+    </a>
+
+</p>
+</div>
+
+
+        <div class="section footer">Call me Sam, a theme for Hugo.</div>
+    </div>
+</body>
+
+</html>

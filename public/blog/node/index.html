@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2018年11月27日 &#183; 270 words
+    2018年11月27日 &#183; 950 words
     
     <div class="tag-container">
         
@@ -69,11 +69,108 @@
     </div>
     
     <hr/>
-    <p>开此篇记录下学习node的过程和一些笔记
-1.事件驱动、非堵塞、单线程
-2.Node.js是一个非阻塞的系统，当调用一些需要阻塞的等待或者事件，node会采用回调函数替代闲置等待，即事件驱动。就像我们在学校经常吃饭点餐的情况，点完餐之后店家会给个小票，上面有这此点餐的号码，到时候菜做好了就会叫号，这个号码相当于回调号码，这样就提高了效率，继续为下一个客人服务。
-3.串行IO和并行IO，类似于同步和异步，前者的运行顺序是固定的，后者任何一个IO操作返回时间都是不确定的，如果IO操作有关联的话就要使用串行IO。按顺序的串行请求，无序的并行的请求</p>
+    
 
+<p>开此篇记录下学习node的过程和一些笔记</p>
+
+<ul>
+<li>事件驱动、非堵塞、单线程</li>
+<li>Node.js是一个非阻塞的系统，当调用一些需要阻塞的等待或者事件，node会采用回调函数替代闲置等待，即事件驱动。就像我们在学校经常吃饭点餐的情况，点完餐之后店家会给个小票，上面有这此点餐的号码，到时候菜做好了就会叫号，这个号码相当于回调号码，这样就提高了效率，继续为下一个客人服务。</li>
+<li>串行IO和并行IO，类似于同步和异步，前者的运行顺序是固定的，后者任何一个IO操作返回时间都是不确定的，如果IO操作有关联的话就要使用串行IO。按顺序的串行请求，无序的并行的请求</li>
+</ul>
+
+<h2 id="files">files</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// ---------files---------
+</span><span style="color:#75715e">// 引入模块
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;fs&#39;</span>);
+
+<span style="color:#75715e">// 1.写文件，当前路径下没有就创建一个，如果存在就覆盖
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">writeFile</span>(<span style="color:#e6db74">&#39;./test.txt&#39;</span>, <span style="color:#e6db74">&#39;异步写入一些数据&#39;</span>, <span style="color:#e6db74">&#39;utf8&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">err</span>){
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">err</span>){
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;写入失败&#39;</span>)
+        <span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">err</span>
+    }<span style="color:#66d9ef">else</span>{
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;写入成功&#39;</span>)
+    }
+})
+
+<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">writeFileSync</span>(<span style="color:#e6db74">&#39;./test.txt&#39;</span>,<span style="color:#e6db74">&#39;同步写入一些数据&#39;</span>,<span style="color:#e6db74">&#39;utf8&#39;</span>)
+
+<span style="color:#75715e">// 2.读文件，如果不加编码类型，则data返回的就是一个buffer缓冲区，里面存有二进制数据
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFile</span>(<span style="color:#e6db74">&#39;./test.txt&#39;</span>,<span style="color:#e6db74">&#39;utf8&#39;</span>,<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">data</span>){
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>)
+})
+
+<span style="color:#75715e">// 3.追加文件，如果没有则创建一个
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">appendFileSync</span>(<span style="color:#e6db74">&#39;./log.txt&#39;</span>, <span style="color:#e6db74">&#39;同步追加，写入时间：&#39;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">toLocaleString</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;\n&#39;</span>)
+
+<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">appendFile</span>(<span style="color:#e6db74">&#39;./log.txt&#39;</span>,<span style="color:#e6db74">&#39;异步追加，写入时间：&#39;</span><span style="color:#f92672">+</span><span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">toLocaleString</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;\n&#39;</span>,<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">err</span>){
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">err</span>){
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;添加失败&#39;</span>)
+    }<span style="color:#66d9ef">else</span>{
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;添加成功&#39;</span>)
+    }
+})
+
+<span style="color:#75715e">// 4.监听文件，文件只要修改了就会执行回调函数
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">watchFile</span>(<span style="color:#e6db74">&#39;./log.txt&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">cuur</span>,<span style="color:#a6e22e">prev</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">prev</span>);
+})
+
+<span style="color:#75715e">// 5.判断文件是否存在，存在返回true，不存在返回false
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">existsSync</span>(<span style="color:#e6db74">&#39;/a&#39;</span>);
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">res</span>);
+
+<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">exists</span>(<span style="color:#e6db74">&#39;./a&#39;</span>,<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">res</span>){
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">res</span>){
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;文件存在&#39;</span>)
+    }<span style="color:#66d9ef">else</span>{
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;文件不存在&#39;</span>)
+    }
+})
+</code></pre></div>
+<h2 id="http">http</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// --------------http-----------------
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">http</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;http&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;fs&#39;</span>)
+
+<span style="color:#75715e">// 创建服务
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myServer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">createServer</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>){
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reqUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span><span style="color:#f92672">==</span><span style="color:#e6db74">&#39;/&#39;</span><span style="color:#f92672">?</span><span style="color:#e6db74">&#39;./html/index.html&#39;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;./html&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span>;
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">existsSync</span>(<span style="color:#a6e22e">reqUrl</span>)){
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">html</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFileSync</span>(<span style="color:#a6e22e">reqUrl</span>);
+        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">html</span>);
+    }<span style="color:#66d9ef">else</span>{
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">errPage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFileSync</span>(<span style="color:#e6db74">&#39;./html/404.html&#39;</span>);
+        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">errPage</span>);
+    }
+    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>();
+})
+
+<span style="color:#75715e">// 监听
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">myServer</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#e6db74">&#39;1313&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">err</span>){
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>){
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;监听失败&#39;</span>)
+        <span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">err</span>
+    }<span style="color:#66d9ef">else</span>{
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;服务器已经开启，端口号为：1313&#39;</span>)
+    }
+})
+</code></pre></div>
+<h2 id="path">path</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// --------path------------
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+
+<span style="color:#75715e">// 当前文件夹路径
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">__dirname</span>)
+
+<span style="color:#75715e">// 当前文件路径
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">__filename</span>)
+
+<span style="color:#75715e">// 路径的字符串拼接
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;html&#39;</span>, <span style="color:#e6db74">&#39;index.html&#39;</span>);
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">url</span>)
+</code></pre></div>
 </div>
 
 
