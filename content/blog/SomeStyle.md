@@ -22,3 +22,9 @@ tags: ["style"]
 
 ## a
 <a style="border:none;color:#42b983;cursor:pointer">#42b983</a>
+
+## box-shadow
+<div style="box-shadow:rgba(0, 0, 0, 0.12) 0px 2px 6px, rgba(0, 0, 0, 0.24) 0px 1px 2px;width:200px;padding:2px">rgba(0, 0, 0, 0.12/0.24)</div>
+
+## Button
+<button style="background:rgb(233,104,107)">rgb(233,104,107)</button>

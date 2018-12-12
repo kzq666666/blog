@@ -13,7 +13,7 @@ Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 �
 
 ## Vue-cli@3.0使用element-ui
 作为一个插件添加到vue-cli中
-```
+```bash
 vue create el
 cd el
 vue add element
@@ -24,13 +24,12 @@ vue add element
 
 ```vue
 element.js
-
 import Vue from 'vue'
 import { Button } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(Button)
 ```
-<div style="color:red;font-size:12px">tip：一定要导入对应你需要的css样式，这样才有用,index.css是theme-chalk下所有的css入口文件，如果只想单独使用某个css，找到那个css导入就好了</div>
+<div style="color:red;font-size:16px">tip：一定要导入对应你需要的css样式，这样才有用,index.css是theme-chalk下所有的css入口文件，如果只想单独使用某个css，找到那个css导入就好了</div>
 
 ## 选择你需要的轮子
 [官网](http://element.eleme.io/#/zh-CN/component/installation)有很详细的介绍和样式预览，选择需要的，然后使用就好了，对于很好的样式可以看一看具体css怎么实现的，增加一些自己写css的能力

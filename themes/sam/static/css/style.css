@@ -75,7 +75,7 @@ hr {
 .wrap {
   margin: 0 auto;
   margin-top: 6rem;
-  width: 45%;
+  width: 50%;
 }
 @media screen and (max-width: 736px) {
   .wrap {
@@ -167,6 +167,9 @@ hr {
 #content h3 {
   margin: 1em 0em;
   text-align: left;
+  /* color: black; */
+  /* color: black; */
+  font-weight: 600;
 }
 #content p {
   margin-bottom: 1em;
@@ -188,13 +191,18 @@ hr {
 }
 #content pre > code {
   border: none;
+  color: inherit;
+  font-size: 15px;
+  font-family: 'Source Code Pro','DejaVu Sans Mono','Ubuntu Mono','Anonymous Pro','Droid Sans Mono',Menlo,Monaco,Consolas,Inconsolata,Courier,monospace,"PingFang SC","Microsoft YaHei",sans-serif;
+  background: inherit;
 }
 #content code {
-  font-size: 0.9rem;
-  font-family: "Source Code Pro", monospace;
+  font-family: "Didact Gothic", "sans serif";
   padding: 0.1rem;
   border-radius: 3px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+  background: rgb(247, 247, 247);
+  color: #e83e8c;
 }
 #content img {
   width: 100%;

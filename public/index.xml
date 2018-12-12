@@ -35,7 +35,7 @@
       <pubDate>Tue, 04 Dec 2018 17:08:26 +0800</pubDate>
       
       <guid>/blog/somestyle/</guid>
-      <description>Header Header #fbfbfb Table 偶数行：#ddd; 单行: #fff; Font Border Border 很淡的那种 #f4f4f4 a #42b983</description>
+      <description>Header Header #fbfbfb Table 偶数行：#ddd; 单行: #fff; Font Border Border 很淡的那种 #f4f4f4 a #42b983 box-shadow</description>
     </item>
     
     <item>
@@ -85,10 +85,10 @@
     
     <item>
       <title>Command</title>
-      <link>/blog/com/</link>
+      <link>/blog/command/</link>
       <pubDate>Sat, 17 Nov 2018 13:49:47 +0800</pubDate>
       
-      <guid>/blog/com/</guid>
+      <guid>/blog/command/</guid>
       <description>Linux基本操作 ls -ah 查看所有文件,包括隐藏文件 pwd print working directory 打印当前路径 mv oldname.js newname.js 重命名 cat 查看当前文件 cp: cp &amp;lt;file&amp;gt; &amp;lt;path&amp;gt; 复制file到path路径 cp &amp;lt;file&amp;gt; &amp;lt;copy_name&amp;gt; 复制f</description>
     </item>
     
