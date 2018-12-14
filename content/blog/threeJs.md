@@ -56,7 +56,7 @@ SphereGeometry(radius, segmentsWidth, segmentHeight, phiStart, phiLength, thetaS
 * 文字形状
   
 使用额外的文字形状需要下载和引用额外的字体库,下载对应的json文件放在目录下,用下面的方法引用
-传送门:https://github.com/mrdoob/three.js/tree/master/examples/fonts
+<br>传送门:https://github.com/mrdoob/three.js/tree/master/examples/fonts
 ```js
 var loader = new THREE.FontLoader();
 loader.load('../gentilis_regular.typeface.json', function(font) {

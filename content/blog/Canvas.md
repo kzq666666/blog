@@ -138,3 +138,82 @@ lineCap
 lineJoin    
 //线条交接处样式 miter默认值尖角,round圆角,bevel斜角
 ```
+
+
+
+
+
+
+## canvas应用实例
+### （1）星光闪闪
+先上效果
+<img src="/starBG.png" style="box-shadow:1px 1px 15px grey">
+```html
+  <canvas id="myCanvas"></canvas>
+  <script>
+    // 获取画布
+    var myCanvas = document.getElementById('myCanvas');
+    // 画笔
+    var ctx = myCanvas.getContext('2d');
+    // 创建一个列表存放位置信息
+    var list = [];
+    // 初始化画布
+    function init(){
+      myCanvas.width = window.innerWidth;
+      myCanvas.height = window.innerHeight;
+    }
+    init();
+    // 每当窗口大小变化的时候重新初始化
+    window.onresize = init;
+    // 初始化位置
+    for(let i=0; i<777; i++){
+      // 圆点的位置
+      var x = Math.random() * myCanvas.width;
+      var y = Math.random() * myCanvas.height;
+      // 圆的半径
+      var r = Math.random() * 5;
+      // 圆的偏移量,发散的移动，以中间为界限，左上的向左上角移动，右上的向右上角移动，左下向左下角移动，右下向右下角移动
+      var disX = x - myCanvas.width / 2;
+      var disY = y - myCanvas.height / 2;
+      list.push({
+        x:x,
+        y:y,
+        r:r,
+        disX:disX,
+        disY:disY
+      });
+    }
+    // 绘制函数
+   function render(){
+     // 每次都把画布更新
+     ctx.clearRect(0,0,myCanvas.width,myCanvas.height);
+     for(var i=0;i<list.length;i++){
+       var item = list[i];
+       // 圆点移动
+       item.x += item.disX / 50;
+       item.y += item.disY / 50
+       // 判断小圆点消失
+       if(item.x < 0 || item.y<0 ||item.x>myCanvas.width || item.y > myCanvas.height){
+         // 每次消失重新生成圆点
+         item.x = Math.random() * myCanvas.width;
+         item.y = Math.random() * myCanvas.height;
+         item.disX = item.x - myCanvas.width/2;
+         item.disY = item.y - myCanvas.height/2;
+       }
+       // 开始绘制
+       ctx.beginPath();
+       // 填充颜色
+       ctx.fillStyle = "rgb("+random(0,255)+','+random(0,255)+','+random(0,255)+')';
+       // 绘制圆
+       ctx.arc(item.x,item.y,item.r,0,Math.PI*2,false);
+       ctx.fill();
+     }
+     // 每40毫秒重新绘制
+     setTimeout(render,40);
+   }
+   render();
+   function random(left,right){
+     return Math.random() * (right-left+1) + left
+   }
+  </script>
+```
