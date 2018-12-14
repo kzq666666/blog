@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2018年10月31日 &#183; 1087 words
+    2018年10月31日 &#183; 1432 words
     
     <div class="tag-container">
         
@@ -197,6 +197,79 @@
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">lineJoin</span>    
 <span style="color:#75715e">//线条交接处样式 miter默认值尖角,round圆角,bevel斜角
 </span><span style="color:#75715e"></span></code></pre></div>
+<h2 id="canvas应用实例">canvas应用实例</h2>
+
+<h3 id="1-星光闪闪">（1）星光闪闪</h3>
+
+<p>先上效果
+<img src="/starBG.png" style="box-shadow:1px 1px 15px grey"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">  &lt;<span style="color:#f92672">canvas</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myCanvas&#34;</span>&gt;&lt;/<span style="color:#f92672">canvas</span>&gt;
+  &lt;<span style="color:#f92672">script</span>&gt;
+    <span style="color:#75715e">// 获取画布
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myCanvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;myCanvas&#39;</span>);
+    <span style="color:#75715e">// 画笔
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ctx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>);
+    <span style="color:#75715e">// 创建一个列表存放位置信息
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">list</span> <span style="color:#f92672">=</span> [];
+    <span style="color:#75715e">// 初始化画布
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">init</span>(){
+      <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">innerWidth</span>;
+      <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">innerHeight</span>;
+    }
+    <span style="color:#a6e22e">init</span>();
+    <span style="color:#75715e">// 每当窗口大小变化的时候重新初始化
+</span><span style="color:#75715e"></span>    window.<span style="color:#a6e22e">onresize</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">init</span>;
+    <span style="color:#75715e">// 初始化位置
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">777</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
+      <span style="color:#75715e">// 圆点的位置
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">width</span>;
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">height</span>;
+      <span style="color:#75715e">// 圆的半径
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">5</span>;
+      <span style="color:#75715e">// 圆的偏移量,发散的移动，以中间为界限，左上的向左上角移动，右上的向右上角移动，左下向左下角移动，右下向右下角移动
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">disX</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">width</span> <span style="color:#960050;background-color:#1e0010">/ 2;</span>
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">disY</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">height</span> <span style="color:#960050;background-color:#1e0010">/ 2;</span>
+      <span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">push</span>({
+        <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span><span style="color:#a6e22e">x</span>,
+        <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span><span style="color:#a6e22e">y</span>,
+        <span style="color:#a6e22e">r</span><span style="color:#f92672">:</span><span style="color:#a6e22e">r</span>,
+        <span style="color:#a6e22e">disX</span><span style="color:#f92672">:</span><span style="color:#a6e22e">disX</span>,
+        <span style="color:#a6e22e">disY</span><span style="color:#f92672">:</span><span style="color:#a6e22e">disY</span>
+      });
+    }
+    <span style="color:#75715e">// 绘制函数
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">render</span>(){
+     <span style="color:#75715e">// 每次都把画布更新
+</span><span style="color:#75715e"></span>     <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">clearRect</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">width</span>,<span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">height</span>);
+     <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">length</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
+       <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>[<span style="color:#a6e22e">i</span>];
+       <span style="color:#75715e">// 圆点移动
+</span><span style="color:#75715e"></span>       <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">disX</span> <span style="color:#960050;background-color:#1e0010">/ 50;</span>
+       <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">disY</span> <span style="color:#960050;background-color:#1e0010">/ 50</span>
+       <span style="color:#75715e">// 判断小圆点消失
+</span><span style="color:#75715e"></span>       <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">y</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span><span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">x</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">height</span>){
+         <span style="color:#75715e">// 每次消失重新生成圆点
+</span><span style="color:#75715e"></span>         <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">width</span>;
+         <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">height</span>;
+         <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">disX</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">width</span><span style="color:#960050;background-color:#1e0010">/2;</span>
+         <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">disY</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">myCanvas</span>.<span style="color:#a6e22e">height</span><span style="color:#960050;background-color:#1e0010">/2;</span>
+       }
+       <span style="color:#75715e">// 开始绘制
+</span><span style="color:#75715e"></span>       <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">beginPath</span>();
+       <span style="color:#75715e">// 填充颜色
+</span><span style="color:#75715e"></span>       <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">fillStyle</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rgb(&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">random</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">255</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;,&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">random</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">255</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;,&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">random</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">255</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;)&#39;</span>;
+       <span style="color:#75715e">// 绘制圆
+</span><span style="color:#75715e"></span>       <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">arc</span>(<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">x</span>,<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">y</span>,<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">r</span>,<span style="color:#ae81ff">0</span>,Math.<span style="color:#a6e22e">PI</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>,<span style="color:#66d9ef">false</span>);
+       <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">fill</span>();
+     }
+     <span style="color:#75715e">// 每40毫秒重新绘制
+</span><span style="color:#75715e"></span>     <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">render</span>,<span style="color:#ae81ff">40</span>);
+   }
+   <span style="color:#a6e22e">render</span>();
+   <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">random</span>(<span style="color:#a6e22e">left</span>,<span style="color:#a6e22e">right</span>){
+     <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> (<span style="color:#a6e22e">right</span><span style="color:#f92672">-</span><span style="color:#a6e22e">left</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">left</span>
+   }
+  &lt;/<span style="color:#f92672">script</span>&gt;</code></pre></div>
 </div>
 
 
