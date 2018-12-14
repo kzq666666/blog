@@ -40,7 +40,6 @@
         <title>KZQ</title>
     </head>
     <body>
-        <canvas id="myCanvas" style="position:absolute;z-index: -5;background:black"></canvas>
         <div class="section" id="splash" >
             
                 
@@ -66,73 +65,5 @@
             
             
         </div>
-        <script>
-                
-                var myCanvas = document.getElementById('myCanvas');
-                
-                var ctx = myCanvas.getContext('2d');
-                
-                var list = [];
-                
-                function init(){
-                  myCanvas.width = window.innerWidth;
-                  myCanvas.height = window.innerHeight;
-                }
-                init();
-                
-                window.onresize = init;
-                
-                for(let i=0; i<777; i++){
-                  
-                  var x = Math.random() * myCanvas.width;
-                  var y = Math.random() * myCanvas.height;
-                  
-                  var r = Math.random() * 2;
-                  
-                  var disX = x - myCanvas.width / 2;
-                  var disY = y - myCanvas.height / 2;
-                  var fillColor = "rgb("+random(0,255)+','+random(0,255)+','+random(0,255)+')'
-                  list.push({
-                    x:x,
-                    y:y,
-                    r:r,
-                    disX:disX,
-                    disY:disY,
-                    fillColor:fillColor
-                  });
-                }
-                
-               function render(){
-                 
-                 ctx.clearRect(0,0,myCanvas.width,myCanvas.height);
-                 for(var i=0;i<list.length;i++){
-                   var item = list[i];
-                   
-                   item.x += item.disX / 50;
-                   item.y += item.disY / 50
-                   
-                   if(item.x < 0 || item.y<0 ||item.x>myCanvas.width || item.y > myCanvas.height){
-                     
-                     item.x = Math.random() * myCanvas.width;
-                     item.y = Math.random() * myCanvas.height;
-                     item.disX = item.x - myCanvas.width / 2;
-                     item.disY = item.y - myCanvas.height / 2;
-                   }
-                   
-                   ctx.beginPath();
-                   
-                   ctx.fillStyle = item.fillColor;
-                   
-                   ctx.arc(item.x,item.y,item.r,0,Math.PI*2,false);
-                   ctx.fill();
-                 }
-                 
-                 setTimeout(render,50);
-               }
-               render();
-               function random(left,right){
-                 return Math.random() * (right-left+1) + left
-               }
-        </script>
     </body>
 </html>
