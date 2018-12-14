@@ -64,3 +64,13 @@ function x() {
 <br>以上，个人觉得offsetWidth比较方便一些
 ## 5.window.onload和$(document).ready()方法的区别
 A：window.onload事件会在页面所有元素加载完成后立即发生。而$(document).ready()是在DOM树加载完毕之后对其进行操作
+
+## 6.v-if和v-else使用应该注意什么？
+* 他们必须是兄弟节点！！！
+* v-else上一个节点必须是v-if！！！
+  
+## 7. 常见的水平居中的方法？
+## 8. 常见的垂直居中的方法？
+## 9. 常见的水平垂直居中的方法？
+## 10. calc使用注意事项
+运算符前后必须要有空格，如calc(100% - 20px);

@@ -108,3 +108,55 @@ console.log(__filename)
 var url = path.join('html', 'index.html');
 console.log(url)
 ```
+
+## Express框架
+```js
+// --------express框架----------
+var express = require('express');
+var path = require('path');
+
+// 实例化对象
+var app = express();
+
+
+
+// 路由传参
+app.get('/student/:id', function(req,res){
+    var id = req.params.id;
+    console.log(id);
+})
+
+// 客户端所有请求
+app.all('/all', function(req, res){
+    res.send('所有的请求都接受了');
+})
+// 客户端get请求
+app.get('/account', function(req, res){
+    res.status(200).json({
+        code:0,
+        data:{
+            name:'kzq',
+            age:20 
+        },
+        message:'ok'
+        
+    })
+})
+// 设置访问页面(默认index.html)
+app.use(express.static(path.join(__dirname,'html')))
+app.use('/hello', function(req, res){
+    res.status(200).sendFile(path.join(__dirname, 'html', 'hello.html'))
+})
+app.use('*', function(req, res){
+    res.status(404).sendFile(path.join(__dirname, 'html', '404.html'))
+})
+// 监听端口
+app.listen(3000, function(err){
+    if(err){
+        console.log('监听失败');
+        throw err;
+    }else{
+        console.log('express搭建的服务器已开启，端口号是3000')
+    }
+})
+```
