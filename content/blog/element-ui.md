@@ -34,3 +34,8 @@ Vue.use(Button)
 ## 选择你需要的轮子
 [官网](http://element.eleme.io/#/zh-CN/component/installation)有很详细的介绍和样式预览，选择需要的，然后使用就好了，对于很好的样式可以看一看具体css怎么实现的，增加一些自己写css的能力
 
+## FAQ
+* vue使用element-ui的el-input监听不了回车事件解决
+<br>在后面加个native
+<br>@keydown.enter.native
+

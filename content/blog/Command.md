@@ -19,10 +19,10 @@ rm -f <file> 删除一个文件
 rm -rf <file package> 删除一个文件夹
 uname print system information
 tty 显示当前终端
-<br>tar
-<br>tar -x 解压
-<br>tar -v 显示解压过程
-<br>tar -f 要操作的文件名
+tar
+tar -x 解压
+tar -v 显示解压过程
+tar -f 要操作的文件名
 -----------------------------------------------------------------
 git基本操作
 git是分布式版本控制系统

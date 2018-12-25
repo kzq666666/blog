@@ -70,7 +70,56 @@ A：window.onload事件会在页面所有元素加载完成后立即发生。而
 * v-else上一个节点必须是v-if！！！
   
 ## 7. 常见的水平居中的方法？
+* text-align:center;  (子元素水平居中)
+* margin:0 auto (块级元素，且自身要有宽度)
+* position:left;left:50%;margin-left:-元素高度/2;     (元素高度已知)
+* position:left;left:50%;transform:translateX(-50%); (元素高度未知)
+* display:flex;justify-content:center;         
+
 ## 8. 常见的垂直居中的方法？
 ## 9. 常见的水平垂直居中的方法？
 ## 10. calc使用注意事项
 运算符前后必须要有空格，如calc(100% - 20px);
+## 11. background-size中cover和contain有什么区别
+两者都是等比例缩放。
+<br>cover：如果容器的宽高比和照片的宽高比不同，那么图片就会等比例缩放到塞满整个容器，图片多余的部分就会被裁剪
+<br>contain：图片等比列缩放至全部都展示出来，所以可能会有留白
+### 一些题目
+1 关于this指向
+```js
+function a(xx){
+  this.x = xx;
+  return this;
+};
+var x = a(5);  // window.x = 5 , return this,  x = window
+var y = a(6);  // window.x = 6 , return this,  y = window
+console.log(x.x); // x = 6 , x.x => undefined
+console.log(y.x); // y = window , widow.x = 6
+
+
+var name = '222';
+var a = {
+  name:'111',
+  say:function(){
+    console.log(this.name);  //谁调用this就指向谁
+  }
+}
+var fun = a.say;   
+fun();   // this指向window, this.name = '222'
+a.say(); // this指向a, this.name = '111'
+var b = {
+  name:'333',
+  say:function(fun){
+    fun();
+  }
+}
+b.say(a.say);  
+// say:function(fun){
+//    this;这里的this指向b
+//    fun();  fun里面的this是在预编译过程中指向window的
+//}
+// 所以这里的this.name = '222'
+fun()   // this指向window, this.name = '222'
+b.say = a.say;  
+b.say();   // this.name = '333'
+```
