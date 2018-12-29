@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/datastructure/</loc>
+    <lastmod>2018-12-26T09:20:11+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/life/dongpo/</loc>
     <lastmod>2018-12-14T09:46:57+08:00</lastmod>
   </url>
@@ -18,7 +23,7 @@
   </url>
   
   <url>
-    <loc>/blog/vue3/</loc>
+    <loc>/blog/vue/</loc>
     <lastmod>2018-12-04T18:21:14+08:00</lastmod>
   </url>
   
@@ -159,6 +164,12 @@
   </url>
   
   <url>
+    <loc>/tags/datastructure/</loc>
+    <lastmod>2018-12-26T09:20:11+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/docker/</loc>
     <lastmod>2018-11-29T16:25:34+08:00</lastmod>
     <priority>0</priority>
@@ -184,7 +195,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-12-14T09:46:57+08:00</lastmod>
+    <lastmod>2018-12-26T09:20:11+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -227,6 +238,12 @@
   <url>
     <loc>/tags/story/</loc>
     <lastmod>2018-10-30T22:22:27+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/structure/</loc>
+    <lastmod>2018-12-26T09:20:11+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -280,12 +297,6 @@
   
   <url>
     <loc>/tags/vue/</loc>
-    <lastmod>2018-12-04T18:21:14+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/vue3.0/</loc>
     <lastmod>2018-12-04T18:21:14+08:00</lastmod>
     <priority>0</priority>
   </url>

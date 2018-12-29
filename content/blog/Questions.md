@@ -70,7 +70,7 @@ A：window.onload事件会在页面所有元素加载完成后立即发生。而
 * v-else上一个节点必须是v-if！！！
   
 ## 7. 常见的水平居中的方法？
-* text-align:center;  (子元素水平居中)
+* text-align:center;  (具有文本特性的元素水平居中,display为inline或者为inline-block)
 * margin:0 auto (块级元素，且自身要有宽度)
 * position:left;left:50%;margin-left:-元素高度/2;     (元素高度已知)
 * position:left;left:50%;transform:translateX(-50%); (元素高度未知)
@@ -84,6 +84,7 @@ A：window.onload事件会在页面所有元素加载完成后立即发生。而
 两者都是等比例缩放。
 <br>cover：如果容器的宽高比和照片的宽高比不同，那么图片就会等比例缩放到塞满整个容器，图片多余的部分就会被裁剪
 <br>contain：图片等比列缩放至全部都展示出来，所以可能会有留白
+## 12.
 ### 一些题目
 1 关于this指向
 ```js
@@ -122,4 +123,38 @@ b.say(a.say);
 fun()   // this指向window, this.name = '222'
 b.say = a.say;  
 b.say();   // this.name = '333'
+
+// 分割线
+function Point(x, y){
+  this.x = x;
+  this.y = y;
+  this.moveTo = function(x, y){
+    this.x = x;
+    this.y = y;
+    console.log(this.x + "," + this.y);
+  }
+}
+var p1 = new Point(0,0);
+var p2 = {x:0,y:0};
+p1.moveTo(1,1); // 1,1
+p1.moveTo.apply(p2,[10,10]); // 10,10
+
+// 分割线
+var num = 10;
+var obj = {
+  num:0,
+  inner:{
+    num:6,
+    print:function(){
+      console.log(this.num);
+    }
+  }
+}
+num = 88; // 全局num变为88
+obj.inner.print() // 6
+var fn = obj.inner.print;
+fn(); // 88
+(obj.inner.print)(); // 6
+(obj.inner.print = obj.inner.print)();
+// 刚开始做的时候我是认为obj.inner.print赋值给obj.inner.print了，我以为是obj内部调用的，我的答案是0，其实这里执行无人调用，this指向window
 ```

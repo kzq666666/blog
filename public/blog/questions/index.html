@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2018年11月16日 &#183; 1147 words
+    2018年11月16日 &#183; 1595 words
     
     <div class="tag-container">
         
@@ -143,6 +143,14 @@
 
 <h2 id="7-常见的水平居中的方法">7. 常见的水平居中的方法？</h2>
 
+<ul>
+<li>text-align:center;  (子元素水平居中)</li>
+<li>margin:0 auto (块级元素，且自身要有宽度)</li>
+<li>position:left;left:50%;margin-left:-元素高度/2;     (元素高度已知)</li>
+<li>position:left;left:50%;transform:translateX(-50%); (元素高度未知)</li>
+<li>display:flex;justify-content:center;<br /></li>
+</ul>
+
 <h2 id="8-常见的垂直居中的方法">8. 常见的垂直居中的方法？</h2>
 
 <h2 id="9-常见的水平垂直居中的方法">9. 常见的水平垂直居中的方法？</h2>
@@ -151,6 +159,51 @@
 
 <p>运算符前后必须要有空格，如calc(100% - 20px);</p>
 
+<h2 id="11-background-size中cover和contain有什么区别">11. background-size中cover和contain有什么区别</h2>
+
+<p>两者都是等比例缩放。
+<br>cover：如果容器的宽高比和照片的宽高比不同，那么图片就会等比例缩放到塞满整个容器，图片多余的部分就会被裁剪
+<br>contain：图片等比列缩放至全部都展示出来，所以可能会有留白</p>
+
+<h3 id="一些题目">一些题目</h3>
+
+<p>1 关于this指向</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">a</span>(<span style="color:#a6e22e">xx</span>){
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">xx</span>;
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;
+};
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>(<span style="color:#ae81ff">5</span>);  <span style="color:#75715e">// window.x = 5 , return this,  x = window
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>(<span style="color:#ae81ff">6</span>);  <span style="color:#75715e">// window.x = 6 , return this,  y = window
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>.<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// x = 6 , x.x =&gt; undefined
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">y</span>.<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// y = window , widow.x = 6
+</span><span style="color:#75715e"></span>
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;222&#39;</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;111&#39;</span>,
+  <span style="color:#a6e22e">say</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>);  <span style="color:#75715e">//谁调用this就指向谁
+</span><span style="color:#75715e"></span>  }
+}
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fun</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">say</span>;   
+<span style="color:#a6e22e">fun</span>();   <span style="color:#75715e">// this指向window, this.name = &#39;222&#39;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">say</span>(); <span style="color:#75715e">// this指向a, this.name = &#39;111&#39;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;333&#39;</span>,
+  <span style="color:#a6e22e">say</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">fun</span>){
+    <span style="color:#a6e22e">fun</span>();
+  }
+}
+<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">say</span>(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">say</span>);  
+<span style="color:#75715e">// say:function(fun){
+</span><span style="color:#75715e">//    this;这里的this指向b
+</span><span style="color:#75715e">//    fun();  fun里面的this是在预编译过程中指向window的
+</span><span style="color:#75715e">//}
+</span><span style="color:#75715e">// 所以这里的this.name = &#39;222&#39;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fun</span>()   <span style="color:#75715e">// this指向window, this.name = &#39;222&#39;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">say</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">say</span>;  
+<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">say</span>();   <span style="color:#75715e">// this.name = &#39;333&#39;
+</span><span style="color:#75715e"></span></code></pre></div>
 </div>
 
 
