@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2018年12月26日 &#183; 1550 words
+    2018年12月26日 &#183; 2357 words
     
     <div class="tag-container">
         
@@ -172,12 +172,13 @@
 <li>一个结点包含两个域，一个是数据域，一个是指针域，此链表的每个结点中只包含一个指针域，故又称为线性链表或单链表</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 单链表
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkListNode</span>(<span style="color:#a6e22e">data</span>) {
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkListNode</span>(<span style="color:#a6e22e">data</span>) {
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>;
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
 }
-<span style="color:#a6e22e">headNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">linkListNode</span>(<span style="color:#66d9ef">null</span>);
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">headNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">linkListNode</span>(<span style="color:#66d9ef">null</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 <span style="color:#75715e">// 获取第i个元素
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getElem</span>(<span style="color:#a6e22e">i</span>) {
   <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">headNode</span>.<span style="color:#a6e22e">next</span>;
@@ -188,6 +189,7 @@
   }
   <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
 }
+
 <span style="color:#75715e">// 插入，在第i个位置之前插入元素e
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkListInsert</span>(<span style="color:#a6e22e">linkListNode</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">e</span>) {
   <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">linkListNode</span>(<span style="color:#a6e22e">e</span>);
@@ -205,24 +207,199 @@
   <span style="color:#a6e22e">len</span><span style="color:#f92672">++</span>;
 }
 <span style="color:#75715e">// 删除，删除第i个位置的结点
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkListDelete</span>(<span style="color:#a6e22e">i</span>){
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkListDelete</span>(<span style="color:#a6e22e">i</span>) {
   <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
   <span style="color:#a6e22e">pre</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">headNode</span>;
   <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pre</span>.<span style="color:#a6e22e">next</span>;
-  <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">j</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">i</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>){
+  <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>) {
     <span style="color:#a6e22e">pre</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>;
     <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pre</span>.<span style="color:#a6e22e">next</span>;
     <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>;
   }
-  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">j</span><span style="color:#f92672">==</span><span style="color:#a6e22e">i</span>){
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;超出链表范围&#39;</span>)
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">j</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">i</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;超出链表范围&#34;</span>);
   }
   <span style="color:#a6e22e">pre</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
+  <span style="color:#a6e22e">len</span><span style="color:#f92672">--</span>;
 }
 </code></pre></div>
 <ul>
-<li>循环链表：表中最后一个结点的指针域指向头结点，整个链表形成一个环，从表中任一结点出发均可找到表中其他结点</li>
+<li>双向链表：结点有两个指针域，其一指向直接后继，另一指向直接前驱</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 双链表
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">duListNode</span>(<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">prior</span>, <span style="color:#a6e22e">next</span>) {
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">null</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prior</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prior</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">null</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">next</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">null</span>;
+}
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">headNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">duListNode</span>();
+
+<span style="color:#75715e">// 获取第i个位置的结点（i从1开始）
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getDuList</span>(<span style="color:#a6e22e">i</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">headNode</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>) {
+    <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
+    <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>;
+  }
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
+}
+
+<span style="color:#75715e">// 获取表长
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getDuListLen</span>() {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">headNode</span>;
+  <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>) {
+    <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
+    <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>;
+  }
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">j</span>;
+}
+
+<span style="color:#75715e">// 在带头结点的双链表的第i个位置之前插入元素e
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">insertDuList</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">e</span>) {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getDuListLen</span>() <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(
+      <span style="color:#e6db74">&#34;i的范围应该不小于1且不大于表长加1,即len&gt;=1 &amp;&amp; len&lt;=&#34;</span> <span style="color:#f92672">+</span>
+        (<span style="color:#a6e22e">getDuListLen</span>() <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+    );
+  }
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">headNode</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">duListNode</span>(<span style="color:#a6e22e">e</span>);
+  <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">i</span>) {
+    <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
+    <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>;
+  }
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>) {
+    <span style="color:#a6e22e">newNode</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
+    <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>.<span style="color:#a6e22e">prior</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newNode</span>;
+    <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newNode</span>;
+    <span style="color:#a6e22e">newNode</span>.<span style="color:#a6e22e">prior</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>;
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newNode</span>;
+    <span style="color:#a6e22e">newNode</span>.<span style="color:#a6e22e">prior</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>;
+  }
+}
+
+<span style="color:#75715e">// 删除第i个位置的结点
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">delDuListNode</span>(<span style="color:#a6e22e">i</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">headNode</span>;
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">getDuList</span>(<span style="color:#a6e22e">i</span>) <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>) {
+    <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">i</span>) {
+      <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
+      <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>;
+    }
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;不存在第&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;个结点&#34;</span>);
+  }
+  <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">prior</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
+}
+
+<span style="color:#75715e">// 打印每个结点(包含头结点)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">printDuList</span>() {
+  <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">headNode</span>;
+  <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">||</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">prior</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>)) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">p</span>);
+    <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
+  }
+}
+</code></pre></div>
+<ul>
+<li>循环链表：表中最后一个结点的指针域指向头结点，整个链表形成一个环，从表中任一结点出发均可找到表中其他结点
+<br>其操作和单链表和双链表的操作差不多，只不过算法的循环条件变成了 p.next 是否为头指针或者 p 是否为头指针</li>
+</ul>
+
+<h2 id="栈和队列">栈和队列</h2>
+
+<h3 id="栈">栈</h3>
+
+<p>1.&nbsp;逻辑结构：运算受限的线性表（限定仅在表尾进行插入或删除操作的线性表）</p>
+
+<ul>
+<li>FILO（First In Last Out）先进后出</li>
+<li>LIFO（Last In First Out）后进先出</li>
+<li>栈顶：表尾端</li>
+<li>栈底：表头端</li>
+</ul>
+
+<p>2.&nbsp;存储和运算:</p>
+
+<ul>
+<li>顺序栈</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 栈
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Stack</span>() {
+  <span style="color:#75715e">// 数据
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> [];
+
+  <span style="color:#75715e">// 栈顶
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+  <span style="color:#75715e">// 栈底
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">base</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+  <span style="color:#75715e">// 入栈
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">entryStack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">entryStack</span>;
+
+  <span style="color:#75715e">// 出栈
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exitStack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">exitStack</span>;
+
+  <span style="color:#75715e">// 返回栈顶元素
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getTop</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getTop</span>;
+
+  <span style="color:#75715e">// 长度
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getLength</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">entryStack</span>(<span style="color:#a6e22e">e</span>) {
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">top</span><span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">exitStack</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#f92672">--</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">top</span>];
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getTop</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">top</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getLength</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">base</span>;
+}
+
+<span style="color:#75715e">// 利用栈进行数制转换
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Stack</span>();
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prompt</span>(<span style="color:#e6db74">&#34;请输入数字&#34;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prompt</span>(<span style="color:#e6db74">&#34;请输入要转换的进制&#34;</span>);
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">d</span>);
+<span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">n</span>) {
+  <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">entryStack</span>(<span style="color:#a6e22e">n</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">d</span>);
+  <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#a6e22e">n</span> <span style="color:#960050;background-color:#1e0010">/ d);</span>
+}
+<span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">length</span>()) {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">exitStack</span>());
+}
+
+<span style="color:#75715e">// 利用栈计算一个数的阶乘
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Stack</span>();
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prompt</span>(<span style="color:#e6db74">&#34;请输入你要计算的数：&#34;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">n</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>){
+  <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">entryStack</span>(<span style="color:#a6e22e">n</span><span style="color:#f92672">--</span>);
+}
+<span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">length</span>()){
+  <span style="color:#a6e22e">result</span> <span style="color:#f92672">*=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">exitStack</span>();
+}
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>);
+</code></pre></div>
+<ul>
+<li>链栈</li>
+</ul>
+
+<p><br>栈的链式表示
+<img src="/linkStack.png" style="height:60%"></p>
 
 </div>
 

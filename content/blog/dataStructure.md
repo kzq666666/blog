@@ -96,12 +96,13 @@ function listDelete(list, i) {
 
 ```js
 // 单链表
-var len = 0;
 function linkListNode(data) {
   this.data = data;
   this.next = null;
 }
-headNode = new linkListNode(null);
+
+var headNode = new linkListNode(null);
+var len = 0;
 // 获取第i个元素
 function getElem(i) {
   var p = headNode.next;
@@ -112,6 +113,7 @@ function getElem(i) {
   }
   return p ? p.data : null;
 }
+
 // 插入，在第i个位置之前插入元素e
 function linkListInsert(linkListNode, i, e) {
   let newNode = new linkListNode(e);
@@ -129,19 +131,199 @@ function linkListInsert(linkListNode, i, e) {
   len++;
 }
 // 删除，删除第i个位置的结点
-function linkListDelete(i){
+function linkListDelete(i) {
   var j = 1;
   pre = headNode;
   p = pre.next;
-  while(j<i && p.next){
+  while (j < i && p.next) {
     pre = p;
     p = pre.next;
     j++;
   }
-  if(j==i){
-    return new Error('超出链表范围')
+  if (j == i) {
+    return new Error("超出链表范围");
   }
   pre.next = p.next;
+  len--;
 }
 ```
+
+- 双向链表：结点有两个指针域，其一指向直接后继，另一指向直接前驱
+
+```js
+// 双链表
+function duListNode(data, prior, next) {
+  this.data = data || null;
+  this.prior = prior || null;
+  this.next = next || null;
+}
+var headNode = new duListNode();
+
+// 获取第i个位置的结点（i从1开始）
+function getDuList(i) {
+  var p = headNode;
+  var j = 1;
+  while (j <= i && p.next) {
+    p = p.next;
+    j++;
+  }
+  return p.data ? p.data : null;
+}
+
+// 获取表长
+function getDuListLen() {
+  var j = 0;
+  var p = headNode;
+  while (p.next) {
+    p = p.next;
+    j++;
+  }
+  return j;
+}
+
+// 在带头结点的双链表的第i个位置之前插入元素e
+function insertDuList(i, e) {
+  if (i < 1 || i > getDuListLen() + 1) {
+    return new Error(
+      "i的范围应该不小于1且不大于表长加1,即len>=1 && len<=" +
+        (getDuListLen() + 1)
+    );
+  }
+  var j = 1;
+  var p = headNode;
+  var newNode = new duListNode(e);
+  while (p.next && j < i) {
+    p = p.next;
+    j++;
+  }
+  if (p.next) {
+    newNode.next = p.next;
+    p.next.prior = newNode;
+    p.next = newNode;
+    newNode.prior = p;
+  } else {
+    p.next = newNode;
+    newNode.prior = p;
+  }
+}
+
+// 删除第i个位置的结点
+function delDuListNode(i) {
+  var j = 1;
+  var p = headNode;
+  if (getDuList(i) !== null) {
+    while (j <= i) {
+      p = p.next;
+      j++;
+    }
+  } else {
+    return new Error("不存在第" + i + "个结点");
+  }
+  p.prior.next = p.next;
+}
+
+// 打印每个结点(包含头结点)
+function printDuList() {
+  p = headNode;
+  while (p || (p && !p.prior && !p.next)) {
+    console.log(p);
+    p = p.next;
+  }
+}
+```
+
 - 循环链表：表中最后一个结点的指针域指向头结点，整个链表形成一个环，从表中任一结点出发均可找到表中其他结点
+  <br>其操作和单链表和双链表的操作差不多，只不过算法的循环条件变成了 p.next 是否为头指针或者 p 是否为头指针
+
+## 栈和队列
+
+### 栈
+
+1.&nbsp;逻辑结构：运算受限的线性表（限定仅在表尾进行插入或删除操作的线性表）
+
+- FILO（First In Last Out）先进后出
+- LIFO（Last In First Out）后进先出
+- 栈顶：表尾端
+- 栈底：表头端
+
+  2.&nbsp;存储和运算:
+
+* 顺序栈
+
+```js
+// 栈
+function Stack() {
+  // 数据
+  this.data = [];
+
+  // 栈顶
+  this.top = 0;
+
+  // 栈底
+  this.base = 0;
+
+  // 入栈
+  this.entryStack = entryStack;
+
+  // 出栈
+  this.exitStack = exitStack;
+
+  // 返回栈顶元素
+  this.getTop = getTop;
+
+  // 长度
+  this.length = getLength;
+}
+
+function entryStack(e) {
+  this.data[this.top++] = e;
+}
+
+function exitStack() {
+  return this.data[--this.top];
+}
+
+function getTop() {
+  return this.data[top - 1];
+}
+
+function getLength() {
+  return this.top - this.base;
+}
+
+// 利用栈进行数制转换
+var s = new Stack();
+var n = prompt("请输入数字");
+var d = prompt("请输入要转换的进制");
+console.log(n, d);
+while (n) {
+  s.entryStack(n % d);
+  n = parseInt(n / d);
+}
+while (s.length()) {
+  console.log(s.exitStack());
+}
+
+// 利用栈计算一个数的阶乘
+var s = new Stack();
+var n = prompt("请输入你要计算的数：");
+var result = 1;
+while(n>1){
+  s.entryStack(n--);
+}
+while(s.length()){
+  result *= s.exitStack();
+}
+console.log(result);
+```
+* 链栈
+
+<br>栈的链式表示
+<img src="/linkStack.png" style="height:60%">
+
+### 队列
+1.逻辑结构
+* FIFO（first in first out）
+* 一端进行插入，另一端删除元素
+* 允许插入的一端叫做队尾
+* 允许删除的一端叫做队头 

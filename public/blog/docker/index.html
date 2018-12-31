@@ -135,16 +135,16 @@ $ docker tag imageId Username/~:tag </code></pre></div>
 $ cd buildEnv
 $ touch Dockerfile
 $ vim Dockerfile
-<span style="color:#75715e"># Dockerfile
-</span><span style="color:#75715e"># 指定基础镜像(base image)
-</span><span style="color:#75715e"></span>FROM ubuntu:latest
-<span style="color:#75715e"># 申明作者以及邮箱
-</span><span style="color:#75715e"></span>MAINTAINER Name <span style="color:#e6db74">&#34;Email&#34;</span>
-<span style="color:#75715e"># 执行RUN指令
-</span><span style="color:#75715e"></span>RUN apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y nginx 
+<span style="color:#75715e"># Dockerfile</span>
+<span style="color:#75715e"># 指定基础镜像(base image)</span>
+FROM ubuntu:latest
+<span style="color:#75715e"># 申明作者以及邮箱</span>
+MAINTAINER Name <span style="color:#e6db74">&#34;Email&#34;</span>
+<span style="color:#75715e"># 执行RUN指令</span>
+RUN apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y nginx 
 RUN echo <span style="color:#e6db74">&#39;hello world&#39;</span> &gt;/usr/share/nginx/html/index.html
-<span style="color:#75715e"># 暴露端口
-</span><span style="color:#75715e"></span>EXPOSE <span style="color:#ae81ff">80</span>
+<span style="color:#75715e"># 暴露端口</span>
+EXPOSE <span style="color:#ae81ff">80</span>
 
 $ docker build -t<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;kzq/nginx&#34;</span> .
 
@@ -180,50 +180,50 @@ $ docker run -d -p <span style="color:#ae81ff">80</span> <span style="color:#e6d
             image: redis
     </code></pre></div>
 <h2 id="nginx配置">nginx配置</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 用户名
-</span><span style="color:#75715e"></span>user nginx;
-<span style="color:#75715e"># 工作进程数
-</span><span style="color:#75715e"></span>worker_processes auto;
-<span style="color:#75715e"># 错误日志
-</span><span style="color:#75715e"></span>error_log /var/log/nginx/error.log;
-<span style="color:#75715e"># 进程管理
-</span><span style="color:#75715e"></span>pid /run/nginx.pid;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 用户名</span>
+user nginx;
+<span style="color:#75715e"># 工作进程数</span>
+worker_processes auto;
+<span style="color:#75715e"># 错误日志</span>
+error_log /var/log/nginx/error.log;
+<span style="color:#75715e"># 进程管理</span>
+pid /run/nginx.pid;
 
-<span style="color:#75715e"># Load dynamic modules. 加载动态模块
-</span><span style="color:#75715e"></span>include /usr/share/nginx/modules/*.conf;
+<span style="color:#75715e"># Load dynamic modules. 加载动态模块</span>
+include /usr/share/nginx/modules/*.conf;
 
-<span style="color:#75715e"># events模块，处理连接的设置
-</span><span style="color:#75715e"></span>events <span style="color:#f92672">{</span>
-    <span style="color:#75715e"># 每个进程的最大连接数
-</span><span style="color:#75715e"></span>    worker_connections <span style="color:#ae81ff">1024</span>;
+<span style="color:#75715e"># events模块，处理连接的设置</span>
+events <span style="color:#f92672">{</span>
+    <span style="color:#75715e"># 每个进程的最大连接数</span>
+    worker_connections <span style="color:#ae81ff">1024</span>;
 <span style="color:#f92672">}</span>
 
-<span style="color:#75715e"># http服务
-</span><span style="color:#75715e"></span>http <span style="color:#f92672">{</span>
-    <span style="color:#75715e"># 日志格式
-</span><span style="color:#75715e"></span>    log_format  main  <span style="color:#e6db74">&#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;</span>
+<span style="color:#75715e"># http服务</span>
+http <span style="color:#f92672">{</span>
+    <span style="color:#75715e"># 日志格式</span>
+    log_format  main  <span style="color:#e6db74">&#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;</span>
                       <span style="color:#e6db74">&#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;</span>
                       <span style="color:#e6db74">&#39;&#34;$http_user_agent&#34; &#34;$http_x_forwarded_for&#34;&#39;</span>;
-    <span style="color:#75715e"># 访问日志
-</span><span style="color:#75715e"></span>    access_log  /var/log/nginx/access.log  main;
-    <span style="color:#75715e"># sendfile传输文件系统
-</span><span style="color:#75715e"></span>    <span style="color:#75715e"># 传统方法：硬盘-&gt;内核缓冲区-&gt;用户缓冲区-&gt;内核socket缓冲区-&gt;协议引擎
-</span><span style="color:#75715e"></span>    <span style="color:#75715e"># sendfile方法:硬盘-&gt;内核缓冲区-&gt;内核socket缓存区-&gt;协议引擎 
-</span><span style="color:#75715e"></span>    <span style="color:#75715e"># sendfile系统调用DMA引擎直接将文件数据从内核缓存区拷贝到内核socket缓冲区，提高了性能
-</span><span style="color:#75715e"></span>    sendfile            on;
+    <span style="color:#75715e"># 访问日志</span>
+    access_log  /var/log/nginx/access.log  main;
+    <span style="color:#75715e"># sendfile传输文件系统</span>
+    <span style="color:#75715e"># 传统方法：硬盘-&gt;内核缓冲区-&gt;用户缓冲区-&gt;内核socket缓冲区-&gt;协议引擎</span>
+    <span style="color:#75715e"># sendfile方法:硬盘-&gt;内核缓冲区-&gt;内核socket缓存区-&gt;协议引擎</span> 
+    <span style="color:#75715e"># sendfile系统调用DMA引擎直接将文件数据从内核缓存区拷贝到内核socket缓冲区，提高了性能</span>
+    sendfile            on;
     tcp_nopush          on;
     tcp_nodelay         on;
-    <span style="color:#75715e"># 连接超时时间
-</span><span style="color:#75715e"></span>    keepalive_timeout   <span style="color:#ae81ff">65</span>;
+    <span style="color:#75715e"># 连接超时时间</span>
+    keepalive_timeout   <span style="color:#ae81ff">65</span>;
     types_hash_max_size <span style="color:#ae81ff">2048</span>;
 
     include             /etc/nginx/mime.types;
     default_type        application/octet-stream;
 
-    <span style="color:#75715e"># Load modular configuration files from the /etc/nginx/conf.d directory.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e"># See http://nginx.org/en/docs/ngx_core_module.html#include
-</span><span style="color:#75715e"></span>    <span style="color:#75715e"># for more information.
-</span><span style="color:#75715e"></span>    include /etc/nginx/conf.d/*.conf;
+    <span style="color:#75715e"># Load modular configuration files from the /etc/nginx/conf.d directory.</span>
+    <span style="color:#75715e"># See http://nginx.org/en/docs/ngx_core_module.html#include</span>
+    <span style="color:#75715e"># for more information.</span>
+    include /etc/nginx/conf.d/*.conf;
 
     server <span style="color:#f92672">{</span>
         listen       <span style="color:#ae81ff">80</span> default_server;
@@ -231,8 +231,8 @@ $ docker run -d -p <span style="color:#ae81ff">80</span> <span style="color:#e6d
         server_name  _;
         root         /usr/share/nginx/html;
 
-        <span style="color:#75715e"># Load configuration files for the default server block.
-</span><span style="color:#75715e"></span>        include /etc/nginx/default.d/*.conf;
+        <span style="color:#75715e"># Load configuration files for the default server block.</span>
+        include /etc/nginx/default.d/*.conf;
 
         location / <span style="color:#f92672">{</span>
         <span style="color:#f92672">}</span>
