@@ -18,6 +18,11 @@
   </url>
   
   <url>
+    <loc>/life/dongpo/</loc>
+    <lastmod>2018-12-14T09:46:57+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/mongodb/</loc>
     <lastmod>2018-12-11T16:06:49+08:00</lastmod>
   </url>
@@ -50,11 +55,6 @@
   <url>
     <loc>/blog/node/</loc>
     <lastmod>2018-11-27T17:04:59+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/life/study/</loc>
-    <lastmod>2018-11-21T08:20:03+08:00</lastmod>
   </url>
   
   <url>

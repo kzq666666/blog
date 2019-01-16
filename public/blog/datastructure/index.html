@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2018年12月26日 &#183; 3337 words
+    2018年12月26日 &#183; 4022 words
     
     <div class="tag-container">
         
@@ -172,12 +172,12 @@
 <li>一个结点包含两个域，一个是数据域，一个是指针域，此链表的每个结点中只包含一个指针域，故又称为线性链表或单链表</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 单链表
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkListNode</span>(<span style="color:#a6e22e">data</span>) {
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">LinkListNode</span>(<span style="color:#a6e22e">data</span>) {
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>;
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
 }
 
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">headNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">linkListNode</span>(<span style="color:#66d9ef">null</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">headNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">LinkListNode</span>(<span style="color:#66d9ef">null</span>);
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 <span style="color:#75715e">// 获取第i个元素
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getElem</span>(<span style="color:#a6e22e">i</span>) {
@@ -191,8 +191,8 @@
 }
 
 <span style="color:#75715e">// 插入，在第i个位置之前插入元素e
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkListInsert</span>(<span style="color:#a6e22e">linkListNode</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">e</span>) {
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">linkListNode</span>(<span style="color:#a6e22e">e</span>);
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkListInsert</span>(<span style="color:#a6e22e">LinkListNode</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">e</span>) {
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">LinkListNode</span>(<span style="color:#a6e22e">e</span>);
   <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
   <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">headNode</span>;
   <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">len</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
@@ -227,12 +227,12 @@
 <li>双向链表：结点有两个指针域，其一指向直接后继，另一指向直接前驱</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 双链表
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">duListNode</span>(<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">prior</span>, <span style="color:#a6e22e">next</span>) {
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">DuListNode</span>(<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">prior</span>, <span style="color:#a6e22e">next</span>) {
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">null</span>;
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">prior</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prior</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">null</span>;
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">next</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">null</span>;
 }
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">headNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">duListNode</span>();
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">headNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DuListNode</span>();
 
 <span style="color:#75715e">// 获取第i个位置的结点（i从1开始）
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getDuList</span>(<span style="color:#a6e22e">i</span>) {
@@ -266,7 +266,7 @@
   }
   <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
   <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">headNode</span>;
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">duListNode</span>(<span style="color:#a6e22e">e</span>);
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">DuListNode</span>(<span style="color:#a6e22e">e</span>);
   <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">i</span>) {
     <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
     <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>;
@@ -515,12 +515,12 @@
 };
 </code></pre></div>
 <p>（3）循环存储
-设顺序存储队列用一维数组q[m]表示，其中m为队列中元素个数，队列中元素在向量中的下标从0到m-1。
+设顺序存储队列用一维数组 q[m]表示，其中 m 为队列中元素个数，队列中元素在向量中的下标从 0 到 m-1。
 <br>
-在出队的时候，front头指针向右移动，如果队尾指针指向m-1，队列中仍有空闲单元，所以队列不是真的满了，
-这时候入队操作，就会出现假溢现象。为了避免多余的空闲单元浪费（假溢出现），则引入循环队列，仅仅用front==rear无法判断队列空间是空还是满，有两种处理方法，一种是另外设置一个标志位来区别队空和队满的区别，另一种是少用一个元素空间，约定以“头指针在队尾指针的下一位置上”作为队列呈“满”状态的标志，这里是第二种</p>
+在出队的时候，front 头指针向右移动，如果队尾指针指向 m-1，队列中仍有空闲单元，所以队列不是真的满了，
+这时候入队操作，就会出现假溢现象。为了避免多余的空闲单元浪费（假溢出现），则引入循环队列，仅仅用 front==rear 无法判断队列空间是空还是满，有两种处理方法，一种是另外设置一个标志位来区别队空和队满的区别，另一种是少用一个元素空间，约定以“头指针在队尾指针的下一位置上”作为队列呈“满”状态的标志，这里是第二种</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 循环队列
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">cQueue</span>(<span style="color:#a6e22e">maxLength</span>){
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">CQueue</span>(<span style="color:#a6e22e">maxLength</span>) {
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">maxLength</span>;
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Array(<span style="color:#a6e22e">maxLength</span>);
   <span style="color:#75715e">// 初始化的时候头指针和尾指针都为0，每入队，rear指针加一，指向下一个位置
@@ -529,43 +529,162 @@
   <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 
   <span style="color:#75715e">// 获取队列长度
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getLength</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getLength</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
     <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>;
-  }
+  };
 
   <span style="color:#75715e">// 入队
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">entryQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>){
-    <span style="color:#66d9ef">if</span>((<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>){
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">entryQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+    <span style="color:#66d9ef">if</span> ((<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>) {
       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;队列已满&#34;</span>);
     }
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>;
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>;
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">++</span> ;
-  }
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span><span style="color:#f92672">++</span>;
+  };
 
   <span style="color:#75715e">// 出队
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exitQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
-    <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span>){
-      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;队列为空&#34;</span>)
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exitQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span>) {
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;队列为空&#34;</span>);
     }
     <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>];
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>; 
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>;
     <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span>;
-  }
+  };
 
   <span style="color:#75715e">// 打印当前队列元素
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">printQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">printQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
     <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
     <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>;
-    <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">p</span> <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span>){
-      <span style="color:#a6e22e">str</span> <span style="color:#f92672">+=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">p</span>]<span style="color:#f92672">+</span><span style="color:#e6db74">&#39; &#39;</span>;
+    <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span>) {
+      <span style="color:#a6e22e">str</span> <span style="color:#f92672">+=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">p</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>;
       <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>;
     }
     <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">str</span>);
-  }
+  };
 }
 </code></pre></div>
 <h2 id="树和二叉树">树和二叉树</h2>
+
+<p>1.逻辑结构：</p>
+
+<ul>
+<li>树：n（n &gt; 0）个节点的有限集</li>
+<li>二叉数：每个结点的度最多为二（最多有两个子树）</li>
+</ul>
+
+<p>2.存储和运算（二叉树）</p>
+
+<ul>
+<li>顺序存储：用一组地址连续的存储单元依次自上而下，自左向右存储完全二叉数的结点元素，以‘0’表示不存在此结点。</li>
+<li>链式存储</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 创建二叉树（这里实现二叉排序树）
+</span><span style="color:#75715e">// 二叉排序树（Binary Sort Tree）BST：左子树上结点的值小于ta的根结点的值，而右子树上结点的值大于ta的根结点的值，没有键值相等的节点
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">BinaryTree</span>() {
+  <span style="color:#75715e">// 根节点
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+  <span style="color:#75715e">// 节点
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">Node</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>;
+    <span style="color:#75715e">// 左指针
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+    <span style="color:#75715e">// 右指针
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+  };
+  <span style="color:#75715e">// 插入
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">insert</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>) {
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">Node</span>(<span style="color:#a6e22e">data</span>);
+    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">null</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newNode</span>;
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">insertNode</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>, <span style="color:#a6e22e">newNode</span>);
+    }
+  };
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">insertNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">root</span>, <span style="color:#a6e22e">newNode</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">newNode</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">data</span>) {
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">null</span>) {
+        <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newNode</span>;
+      } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">insertNode</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">newNode</span>);
+      }
+    } <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">right</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">null</span>) {
+        <span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newNode</span>;
+      } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">insertNode</span>(<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">right</span>, <span style="color:#a6e22e">newNode</span>);
+      }
+    }
+  };
+  <span style="color:#75715e">// 先序遍历
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">preOrderTraversal</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">callback</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">preOrderTraversalNode</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>, <span style="color:#a6e22e">callback</span>);
+  };
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">preOrderTraversalNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">callback</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">node</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>) {
+      <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">data</span>);
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">preOrderTraversalNode</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">callback</span>);
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">preOrderTraversalNode</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">right</span>, <span style="color:#a6e22e">callback</span>);
+    }
+  };
+
+  <span style="color:#75715e">// 中序遍历（中序遍历二叉排序树得到的就是按从小到大的顺序访问所有节点）
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">inOrderTraversal</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">callback</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">inOrderTraversalNode</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>, <span style="color:#a6e22e">callback</span>);
+  };
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">inOrderTraversalNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">callback</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">node</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">inOrderTraversalNode</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">callback</span>);
+      <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">data</span>);
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">inOrderTraversalNode</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">right</span>, <span style="color:#a6e22e">callback</span>);
+    }
+  };
+
+  <span style="color:#75715e">// 后序遍历
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">postOrderTraversal</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">callback</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">postOrderTraversalNode</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>, <span style="color:#a6e22e">callback</span>);
+  };
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">postOrderTraversalNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">callback</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">node</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">postOrderTraversalNode</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">left</span>, <span style="color:#a6e22e">callback</span>);
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">postOrderTraversalNode</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">right</span>, <span style="color:#a6e22e">callback</span>);
+      <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">data</span>);
+    }
+  };
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">printNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">value</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">value</span>);
+  };
+
+  <span style="color:#75715e">// 获取BST中的最小值
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">minData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>;
+    <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">p</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">left</span>){
+      <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">left</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">data</span>;
+  }
+  
+  <span style="color:#75715e">// 获取BST中的最大值
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>;
+    <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">p</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">right</span>){
+      <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">right</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">data</span>;
+  }
+}
+</code></pre></div>
+<p>3.二叉树的性质</p>
+
+<ul>
+<li>在二叉数的第 i 层上至多有 2^(i-1)个结点（i&gt;=1）</li>
+<li>深度（树中结点 最大的层次）为 k 的二叉树至多有 2^k-1 个结点
+<br>2^0+2^1+&hellip;+2^k-1 = 2^0(1-2^k)/1-2 = 2^k - 1</li>
+<li>对任何一颗二叉数 T，如果度为 0 的结点树为 n0，度为 2 的结点数为 n2，则 n2 = n0 + 1</li>
+<li>满二叉树：一颗深度为 k 且有 2^k-1 个结点的二叉数称为满二叉树</li>
+<li>完全二叉树：深度为 k，有 n 个结点的二叉树，当且仅当其每一个结点都与深度为 k 的满二叉树中编号从 1 至 n 的结点一一对应</li>
+</ul>
 
 </div>
 
