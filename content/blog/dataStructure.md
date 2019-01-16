@@ -96,12 +96,12 @@ function listDelete(list, i) {
 
 ```js
 // 单链表
-function linkListNode(data) {
+function LinkListNode(data) {
   this.data = data;
   this.next = null;
 }
 
-var headNode = new linkListNode(null);
+var headNode = new LinkListNode(null);
 var len = 0;
 // 获取第i个元素
 function getElem(i) {
@@ -115,8 +115,8 @@ function getElem(i) {
 }
 
 // 插入，在第i个位置之前插入元素e
-function linkListInsert(linkListNode, i, e) {
-  let newNode = new linkListNode(e);
+function linkListInsert(LinkListNode, i, e) {
+  let newNode = new LinkListNode(e);
   var j = 1;
   p = headNode;
   if (i < 1 || i > len + 1) {
@@ -152,12 +152,12 @@ function linkListDelete(i) {
 
 ```js
 // 双链表
-function duListNode(data, prior, next) {
+function DuListNode(data, prior, next) {
   this.data = data || null;
   this.prior = prior || null;
   this.next = next || null;
 }
-var headNode = new duListNode();
+var headNode = new DuListNode();
 
 // 获取第i个位置的结点（i从1开始）
 function getDuList(i) {
@@ -191,7 +191,7 @@ function insertDuList(i, e) {
   }
   var j = 1;
   var p = headNode;
-  var newNode = new duListNode(e);
+  var newNode = new DuListNode(e);
   while (p.next && j < i) {
     p = p.next;
     j++;
@@ -255,22 +255,16 @@ function printDuList() {
 function Stack() {
   // 数据
   this.data = [];
-
   // 栈顶
   this.top = 0;
-
   // 栈底
   this.base = 0;
-
   // 入栈
   this.entryStack = entryStack;
-
   // 出栈
   this.exitStack = exitStack;
-
   // 返回栈顶元素
   this.getTop = getTop;
-
   // 长度
   this.length = getLength;
 }
@@ -308,22 +302,311 @@ while (s.length()) {
 var s = new Stack();
 var n = prompt("请输入你要计算的数：");
 var result = 1;
-while(n>1){
+while (n > 1) {
   s.entryStack(n--);
 }
-while(s.length()){
+while (s.length()) {
   result *= s.exitStack();
 }
 console.log(result);
 ```
-* 链栈
+
+- 链栈
 
 <br>栈的链式表示
 <img src="/linkStack.png" style="height:60%">
 
 ### 队列
+
 1.逻辑结构
-* FIFO（first in first out）
-* 一端进行插入，另一端删除元素
-* 允许插入的一端叫做队尾
-* 允许删除的一端叫做队头 
+
+- FIFO（first in first out）
+- LILO（last in last out）
+- 一端进行插入，另一端删除元素
+- 允许插入的一端叫做队尾（rear）
+- 允许删除的一端叫做队头 （front）
+
+  2.存储和运算
+
+（1） 顺序存储
+
+```js
+// 队列
+function Queue() {
+  // 数据
+  this.data = [];
+  // 队头
+  this.front = 0;
+  // 队尾
+  this.rear = 0;
+  // 获取队头
+  this.getFront = getFront;
+  // 获取队尾元素
+  this.getRear = getRear;
+  // 入队
+  this.entryQueue = entryQueue;
+  // 出队
+  this.exitQueue = exitQueue;
+  // 获取队列长度
+  this.length = getLength;
+  // 队列是否为空
+  this.isQueueEmpty = isQueueEmpty;
+}
+
+function getFront() {
+  return this.data[this.front];
+}
+
+function getRear() {
+  return this.data[this.rear - 1];
+}
+
+function entryQueue(e) {
+  this.data[this.rear++] = e;
+}
+
+function exitQueue() {
+  return this.data[this.front++];
+}
+
+function getLength() {
+  return this.rear - this.front;
+}
+
+function isQueueEmpty() {
+  return this.front == this.rear ? true : false;
+}
+```
+
+（2） 链式存储
+
+```js
+// 单链队列（不引入头结点）
+function linkQueue() {
+  this.front = null;
+  this.rear = null;
+  this.length = 0;
+}
+
+linkQueue.prototype.qNode = function(e) {
+  this.data = e;
+  this.next = null;
+};
+
+// 判断队是否为空
+linkQueue.prototype.isQueueEmpty = function() {
+  return this.front == this.rear && this.front == null ? true : false;
+};
+
+// 入队
+linkQueue.prototype.entryQueue = function(e) {
+  var newNode = new this.qNode(e);
+  if (this.length == 0) {
+    this.front = this.rear = newNode;
+  } else {
+    this.rear.next = newNode;
+    this.rear = newNode;
+  }
+  this.length++;
+  return true;
+};
+
+// 出队
+linkQueue.prototype.exitQueue = function() {
+  if (!this.isQueueEmpty()) {
+    var p = this.front;
+    this.front = this.front.next;
+    // 当队列最后一个元素出队后，队列的尾指针也丢失，则需要从新复制
+    if (this.rear == p) {
+      this.rear = this.front;
+    }
+    this.length--;
+    return p;
+  } else {
+    return new Error("当前队列为空");
+  }
+};
+
+// 打印当前队列
+linkQueue.prototype.printQueue = function() {
+  var str = "";
+  var p = this.front;
+  while (p) {
+    str += p.data + " ";
+    p = p.next;
+  }
+  console.log("当前队列为：" + str);
+};
+```
+
+（3）循环存储
+设顺序存储队列用一维数组 q[m]表示，其中 m 为队列中元素个数，队列中元素在向量中的下标从 0 到 m-1。
+<br>
+在出队的时候，front 头指针向右移动，如果队尾指针指向 m-1，队列中仍有空闲单元，所以队列不是真的满了，
+这时候入队操作，就会出现假溢现象。为了避免多余的空闲单元浪费（假溢出现），则引入循环队列，仅仅用 front==rear 无法判断队列空间是空还是满，有两种处理方法，一种是另外设置一个标志位来区别队空和队满的区别，另一种是少用一个元素空间，约定以“头指针在队尾指针的下一位置上”作为队列呈“满”状态的标志，这里是第二种
+
+```js
+// 循环队列
+function CQueue(maxLength) {
+  this.maxLength = maxLength;
+  this.data = new Array(maxLength);
+  // 初始化的时候头指针和尾指针都为0，每入队，rear指针加一，指向下一个位置
+  this.front = 0;
+  this.rear = 0;
+  this.length = 0;
+
+  // 获取队列长度
+  this.getLength = function() {
+    return (this.rear - this.front + this.maxLength) % this.maxLength;
+  };
+
+  // 入队
+  this.entryQueue = function(e) {
+    if ((this.rear + 1) % this.maxLength == this.front) {
+      return new Error("队列已满");
+    }
+    this.data[this.rear] = e;
+    this.rear = (this.rear + 1) % this.maxLength;
+    this.length++;
+  };
+
+  // 出队
+  this.exitQueue = function() {
+    if (this.front == this.rear) {
+      return new Error("队列为空");
+    }
+    var p = this.data[this.front];
+    this.front = (this.front + 1) % this.maxLength;
+    return p;
+  };
+
+  // 打印当前队列元素
+  this.printQueue = function() {
+    var str = "";
+    var p = this.front;
+    while (p % this.maxLength < this.rear) {
+      str += this.data[p] + " ";
+      p = (p + 1) % this.maxLength;
+    }
+    console.log(str);
+  };
+}
+```
+
+## 树和二叉树
+
+1.逻辑结构：
+
+- 树：n（n > 0）个节点的有限集
+- 二叉数：每个结点的度最多为二（最多有两个子树）
+
+  2.存储和运算（二叉树）
+
+- 顺序存储：用一组地址连续的存储单元依次自上而下，自左向右存储完全二叉数的结点元素，以‘0’表示不存在此结点。
+- 链式存储
+
+```js
+// 创建二叉树（这里实现二叉排序树）
+// 二叉排序树（Binary Sort Tree）BST：左子树上结点的值小于ta的根结点的值，而右子树上结点的值大于ta的根结点的值，没有键值相等的节点
+function BinaryTree() {
+  // 根节点
+  this.root = null;
+  // 节点
+  this.Node = function(data) {
+    this.data = data;
+    // 左指针
+    this.left = null;
+    // 右指针
+    this.right = null;
+  };
+  // 插入
+  this.insert = function(data) {
+    let newNode = new this.Node(data);
+    if (this.root === null) {
+      this.root = newNode;
+    } else {
+      this.insertNode(this.root, newNode);
+    }
+  };
+  this.insertNode = function(root, newNode) {
+    if (newNode.data < root.data) {
+      if (root.left === null) {
+        root.left = newNode;
+      } else {
+        this.insertNode(root.left, newNode);
+      }
+    } else {
+      if (root.right === null) {
+        root.right = newNode;
+      } else {
+        this.insertNode(root.right, newNode);
+      }
+    }
+  };
+  // 先序遍历
+  this.preOrderTraversal = function(callback) {
+    this.preOrderTraversalNode(this.root, callback);
+  };
+  this.preOrderTraversalNode = function(node, callback) {
+    if (node !== null) {
+      callback(node.data);
+      this.preOrderTraversalNode(node.left, callback);
+      this.preOrderTraversalNode(node.right, callback);
+    }
+  };
+
+  // 中序遍历（中序遍历二叉排序树得到的就是按从小到大的顺序访问所有节点）
+  this.inOrderTraversal = function(callback) {
+    this.inOrderTraversalNode(this.root, callback);
+  };
+  this.inOrderTraversalNode = function(node, callback) {
+    if (node !== null) {
+      this.inOrderTraversalNode(node.left, callback);
+      callback(node.data);
+      this.inOrderTraversalNode(node.right, callback);
+    }
+  };
+
+  // 后序遍历
+  this.postOrderTraversal = function(callback) {
+    this.postOrderTraversalNode(this.root, callback);
+  };
+  this.postOrderTraversalNode = function(node, callback) {
+    if (node !== null) {
+      this.postOrderTraversalNode(node.left, callback);
+      this.postOrderTraversalNode(node.right, callback);
+      callback(node.data);
+    }
+  };
+  this.printNode = function(value) {
+    console.log(value);
+  };
+
+  // 获取BST中的最小值
+  this.minData = function(){
+    let p = this.root;
+    while(p && p.left){
+      p = p.left;
+    }
+    return p.data;
+  }
+  
+  // 获取BST中的最大值
+  this.maxData = function(){
+    let p = this.root;
+    while(p && p.right){
+      p = p.right;
+    }
+    return p.data;
+  }
+}
+```
+
+3.二叉树的性质
+
+- 在二叉数的第 i 层上至多有 2^(i-1)个结点（i>=1）
+- 深度（树中结点 最大的层次）为 k 的二叉树至多有 2^k-1 个结点
+  <br>2^0+2^1+...+2^k-1 = 2^0(1-2^k)/1-2 = 2^k - 1
+- 对任何一颗二叉数 T，如果度为 0 的结点树为 n0，度为 2 的结点数为 n2，则 n2 = n0 + 1
+- 满二叉树：一颗深度为 k 且有 2^k-1 个结点的二叉数称为满二叉树
+- 完全二叉树：深度为 k，有 n 个结点的二叉树，当且仅当其每一个结点都与深度为 k 的满二叉树中编号从 1 至 n 的结点一一对应

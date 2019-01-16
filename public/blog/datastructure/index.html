@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2018年12月26日 &#183; 2421 words
+    2018年12月26日 &#183; 3337 words
     
     <div class="tag-container">
         
@@ -333,22 +333,16 @@
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Stack</span>() {
   <span style="color:#75715e">// 数据
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> [];
-
   <span style="color:#75715e">// 栈顶
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
   <span style="color:#75715e">// 栈底
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">base</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
   <span style="color:#75715e">// 入栈
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">entryStack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">entryStack</span>;
-
   <span style="color:#75715e">// 出栈
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exitStack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">exitStack</span>;
-
   <span style="color:#75715e">// 返回栈顶元素
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getTop</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getTop</span>;
-
   <span style="color:#75715e">// 长度
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getLength</span>;
 }
@@ -386,10 +380,10 @@
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Stack</span>();
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prompt</span>(<span style="color:#e6db74">&#34;请输入你要计算的数：&#34;</span>);
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-<span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">n</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>){
+<span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
   <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">entryStack</span>(<span style="color:#a6e22e">n</span><span style="color:#f92672">--</span>);
 }
-<span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">length</span>()){
+<span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">length</span>()) {
   <span style="color:#a6e22e">result</span> <span style="color:#f92672">*=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">exitStack</span>();
 }
 <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>);
@@ -403,11 +397,175 @@
 
 <h3 id="队列">队列</h3>
 
-<p>1.逻辑结构
-* FIFO（first in first out）
-* 一端进行插入，另一端删除元素
-* 允许插入的一端叫做队尾
-* 允许删除的一端叫做队头</p>
+<p>1.逻辑结构</p>
+
+<ul>
+<li>FIFO（first in first out）</li>
+<li>LILO（last in last out）</li>
+<li>一端进行插入，另一端删除元素</li>
+<li>允许插入的一端叫做队尾（rear）</li>
+<li>允许删除的一端叫做队头 （front）</li>
+</ul>
+
+<p>2.存储和运算</p>
+
+<p>（1） 顺序存储</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 队列
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Queue</span>() {
+  <span style="color:#75715e">// 数据
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> [];
+  <span style="color:#75715e">// 队头
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#75715e">// 队尾
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#75715e">// 获取队头
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getFront</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getFront</span>;
+  <span style="color:#75715e">// 获取队尾元素
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getRear</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getRear</span>;
+  <span style="color:#75715e">// 入队
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">entryQueue</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">entryQueue</span>;
+  <span style="color:#75715e">// 出队
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exitQueue</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">exitQueue</span>;
+  <span style="color:#75715e">// 获取队列长度
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getLength</span>;
+  <span style="color:#75715e">// 队列是否为空
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">isQueueEmpty</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">isQueueEmpty</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFront</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>];
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getRear</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">entryQueue</span>(<span style="color:#a6e22e">e</span>) {
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span><span style="color:#f92672">++</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">exitQueue</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span><span style="color:#f92672">++</span>];
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getLength</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isQueueEmpty</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>;
+}
+</code></pre></div>
+<p>（2） 链式存储</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 单链队列（不引入头结点）
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">linkQueue</span>() {
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+}
+
+<span style="color:#a6e22e">linkQueue</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">qNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+};
+
+<span style="color:#75715e">// 判断队是否为空
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">linkQueue</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">isQueueEmpty</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>;
+};
+
+<span style="color:#75715e">// 入队
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">linkQueue</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">entryQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">qNode</span>(<span style="color:#a6e22e">e</span>);
+  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newNode</span>;
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span>.<span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newNode</span>;
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newNode</span>;
+  }
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span><span style="color:#f92672">++</span>;
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+};
+
+<span style="color:#75715e">// 出队
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">linkQueue</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">exitQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">isQueueEmpty</span>()) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>;
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>.<span style="color:#a6e22e">next</span>;
+    <span style="color:#75715e">// 当队列最后一个元素出队后，队列的尾指针也丢失，则需要从新复制
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">p</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>;
+    }
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span><span style="color:#f92672">--</span>;
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span>;
+  } <span style="color:#66d9ef">else</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;当前队列为空&#34;</span>);
+  }
+};
+
+<span style="color:#75715e">// 打印当前队列
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">linkQueue</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">printQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>;
+  <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">p</span>) {
+    <span style="color:#a6e22e">str</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>;
+    <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">next</span>;
+  }
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;当前队列为：&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">str</span>);
+};
+</code></pre></div>
+<p>（3）循环存储
+设顺序存储队列用一维数组q[m]表示，其中m为队列中元素个数，队列中元素在向量中的下标从0到m-1。
+<br>
+在出队的时候，front头指针向右移动，如果队尾指针指向m-1，队列中仍有空闲单元，所以队列不是真的满了，
+这时候入队操作，就会出现假溢现象。为了避免多余的空闲单元浪费（假溢出现），则引入循环队列，仅仅用front==rear无法判断队列空间是空还是满，有两种处理方法，一种是另外设置一个标志位来区别队空和队满的区别，另一种是少用一个元素空间，约定以“头指针在队尾指针的下一位置上”作为队列呈“满”状态的标志，这里是第二种</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 循环队列
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">cQueue</span>(<span style="color:#a6e22e">maxLength</span>){
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">maxLength</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Array(<span style="color:#a6e22e">maxLength</span>);
+  <span style="color:#75715e">// 初始化的时候头指针和尾指针都为0，每入队，rear指针加一，指向下一个位置
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+  <span style="color:#75715e">// 获取队列长度
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getLength</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+    <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>;
+  }
+
+  <span style="color:#75715e">// 入队
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">entryQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>){
+    <span style="color:#66d9ef">if</span>((<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>){
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;队列已满&#34;</span>);
+    }
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>;
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>;
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">++</span> ;
+  }
+
+  <span style="color:#75715e">// 出队
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">exitQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+    <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span>){
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;队列为空&#34;</span>)
+    }
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>];
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>; 
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span>;
+  }
+
+  <span style="color:#75715e">// 打印当前队列元素
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">printQueue</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">front</span>;
+    <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">p</span> <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rear</span>){
+      <span style="color:#a6e22e">str</span> <span style="color:#f92672">+=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">p</span>]<span style="color:#f92672">+</span><span style="color:#e6db74">&#39; &#39;</span>;
+      <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxLength</span>;
+    }
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">str</span>);
+  }
+}
+</code></pre></div>
+<h2 id="树和二叉树">树和二叉树</h2>
 
 </div>
 
@@ -428,6 +586,11 @@
         
     
     
+        
+            &#183; 
+            <a href="/study">
+                Study
+            </a>
         
             &#183; 
             <a href="/life">

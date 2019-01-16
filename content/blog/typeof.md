@@ -10,36 +10,36 @@ typeof返回一个字符串,表示为经计算的操作数的类型
 返回有五种基本类型:string,number,boolean,undefined,function,object
 还有ES6的Symbol
 ```js
-1.string:
+// 1.string:
 typeof('你好')
 typeof('123')
-typeof('')  空字符串也是String类型
+typeof('')   // 空字符串也是String类型
 typeof(typeof('a'))
 
-2.number:
+// 2.number:
 typeof(123);
 typeof(NaN);
 
-3.boolean:
+// 3.boolean:
 typeof(true);
 typeof(false);
-typeof(NaN===NaN) 强制类型转换
+typeof(NaN===NaN) // 强制类型转换
 
-4.undefined:
-typeof(a) 未经使用的变量的数据类型
+// 4.undefined:
+typeof(a)  // 未经使用的变量的数据类型
 
-5.object:
-typeof(null) js底层所有值的前三位表示数据类型,object是000,而null的32位全是0,因此也是object
+// 5.object:
+typeof(null) // js底层所有值的前三位表示数据类型,object是000,而null的32位全是0,因此也是object
 typeof([])
 typeof({})
 
-6.function:
+// 6.function:
 typeof(function(){})
 typeof(new Function())
 typeof(class A{})
 typeof(Symbol)
 
-7.symbol:
+// 7.symbol:
 typeof(Symbol())
 ```
 ### 暂时性死区

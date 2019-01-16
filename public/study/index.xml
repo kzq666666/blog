@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Life on KZQ</title>
+    <link>/study/</link>
+    <description>Recent content in Life on KZQ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Feb 2018 12:21:57 -0500</lastBuildDate>
+    
+	<atom:link href="/study/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2018年末总结</title>
+      <link>/study/summeryofyear/</link>
+      <pubDate>Mon, 31 Dec 2018 16:29:49 +0800</pubDate>
+      
+      <guid>/study/summeryofyear/</guid>
+      <description>年末总结的开头就不感叹时光荏苒了（不过我还是要说一下时间过的是真的快呀！！！） 2018年的主要事迹如下= 报名计算机双学位 决定以后从事前端这个</description>
+    </item>
+    
+    <item>
+      <title>学习过程记录</title>
+      <link>/study/study/</link>
+      <pubDate>Wed, 21 Nov 2018 08:20:03 +0800</pubDate>
+      
+      <guid>/study/study/</guid>
+      <description>2018年7月之前 暑假之前我就一直陆陆续续的接触后端的python语言，爬虫相关的知识 2018年7月 mysql数据库，scrapy爬虫 201</description>
+    </item>
+    
+  </channel>
+</rss>

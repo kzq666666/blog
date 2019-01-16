@@ -31,6 +31,10 @@ hasCJKLanguage          = true
     text = "Blog"
 
 [[params.mainMenu]]
+    link = "/study"
+    text = "Study"
+
+[[params.mainMenu]]
     link = "/life"
     text = "Life"
 

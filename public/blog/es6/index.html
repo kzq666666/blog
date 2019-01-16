@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="A new Hugo site.">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="/">
+
+<meta name="twitter:image" content="/tn.png">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="KZQ">
+<meta name="twitter:description" property="og:description" itemprop="description" content="A new Hugo site.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="/tn.png">
+
+<link rel="shortcut icon" href="/sam.ico" id="favicon">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128390257-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-128390257-1');
+</script>
+
+    
+
+    
+    
+    
+    <title>
+        
+        ES6
+        
+    </title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="section" id="title">ES6</div>
+
+        
+<div class="section" id="content">
+    2019年1月4日 &#183; 610 words
+    
+    <div class="tag-container">
+        
+        <span class="tag">
+            <a href="/tags/es6">
+                ES6
+            </a>
+        </span>
+        
+    </div>
+    
+    <hr/>
+    
+
+<h2 id="let-和-const">let 和 const</h2>
+
+<p>ES6新加了两种声明变量的方式，一个是let，一个是const。</p>
+
+<ul>
+<li>let和const声明变量有自己的块级作用域（在for循环中用let声明的变量不会泄露到外部）</li>
+<li>let和const声明变量在预编译的过程都不会进行变量提升</li>
+<li>let和const声明的变量不能再次声明，而const声明变量的时候必须同时赋值，并且不能再次赋值</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>); <span style="color:#75715e">// ReferenceError:a is not undefined
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span>;
+}
+{
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">// SyntaxError: Identifier &#39;a&#39; has already been declared
+</span><span style="color:#75715e"></span>}
+{
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a</span>; <span style="color:#75715e">// SyntaxError:Missing initializer in const declaration
+</span><span style="color:#75715e"></span>}
+
+{
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e">// TypeError:Assignment to constant variable
+</span><span style="color:#75715e"></span>}
+</code></pre></div>
+<h2 id="模板字面量">模板字面量</h2>
+
+<ul>
+<li>创建字符串不必再拼接了~</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">str</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;模板字面量&#39;</span>
+}
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;ES6&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">str</span>)
+<span style="color:#75715e">// ES6
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`ES6</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">str</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</code></pre></div>
+<ul>
+<li>换行直接按下键盘的Enter就可以了</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;ES6\n模板字面量&#39;</span>)
+<span style="color:#75715e">// ES6
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`ES6
+</span><span style="color:#e6db74">模板字面量`</span>)
+</code></pre></div>
+<h2 id="箭头函数">箭头函数</h2>
+
+<ul>
+<li>ES6的箭头函数简化了函数的语法</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">plus</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>){
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+}
+<span style="color:#75715e">// ES6箭头函数
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">plus</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+}
+<span style="color:#75715e">// 或者这样
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">plus</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+</code></pre></div>
+<ul>
+<li>箭头函数的this指向是固定的，即在箭头函数声明的时候就定义好了，继承来自外部最近的this指向</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span><span style="color:#ae81ff">77</span>,
+    <span style="color:#a6e22e">print</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span>);
+    }
+}
+<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">print</span>() <span style="color:#75715e">// obj调用的，则this指向obj，77
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span><span style="color:#ae81ff">77</span>,
+    <span style="color:#a6e22e">print</span><span style="color:#f92672">:</span>()=&gt;{
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span>);
+    }
+}
+<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">print</span>() <span style="color:#75715e">// print是箭头函数，在声明的时候this就指向obj内部的this指向window，7 
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>(){
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7777</span>;
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">print</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (){
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>)
+    };
+    <span style="color:#a6e22e">print</span>();
+}
+<span style="color:#a6e22e">test</span>() <span style="color:#75715e">// 全局调用this指向window，7
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>(){
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7777</span>;
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">print</span> <span style="color:#f92672">=</span> () =&gt;{
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>)
+    }
+    <span style="color:#a6e22e">print</span>();
+}
+<span style="color:#a6e22e">test</span>(); <span style="color:#75715e">// 箭头函数print，print在定义的时候this就指向test，7777
+</span><span style="color:#75715e"></span></code></pre></div>
+</div>
+
+
+        
+<div class="section bottom-menu">
+    
+<hr />
+<p>
+
+
+
+    
+        
+            <a href="/blog">
+                Blog
+            </a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/study">
+                Study
+            </a>
+        
+            &#183; 
+            <a href="/life">
+                Life
+            </a>
+        
+            &#183; 
+            <a href="/about">
+                About
+            </a>
+        
+    
+    &#183; 
+    <a href="/">
+        main
+    </a>
+
+</p>
+</div>
+
+
+        <div class="section footer">Call me Sam, a theme for Hugo.</div>
+    </div>
+</body>
+
+</html>

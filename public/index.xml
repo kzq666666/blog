@@ -6,17 +6,26 @@
     <description>Recent content on KZQ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 31 Dec 2018 16:29:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 04 Jan 2019 11:03:38 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>ES6</title>
+      <link>/blog/es6/</link>
+      <pubDate>Fri, 04 Jan 2019 11:03:38 +0800</pubDate>
+      
+      <guid>/blog/es6/</guid>
+      <description>let 和 const ES6新加了两种声明变量的方式，一个是let，一个是const。 let和const声明变量有自己的块级作用域（在for循环中用let声</description>
+    </item>
+    
+    <item>
       <title>2018年末总结</title>
-      <link>/life/summeryofyear/</link>
+      <link>/study/summeryofyear/</link>
       <pubDate>Mon, 31 Dec 2018 16:29:49 +0800</pubDate>
       
-      <guid>/life/summeryofyear/</guid>
+      <guid>/study/summeryofyear/</guid>
       <description>年末总结的开头就不感叹时光荏苒了（不过我还是要说一下时间过的是真的快呀！！！） 2018年的主要事迹如下= 报名计算机双学位 决定以后从事前端这个</description>
     </item>
     
@@ -27,15 +36,6 @@
       
       <guid>/blog/datastructure/</guid>
       <description>感谢邱老师这一个学期的数据结构课的教导，让我了解到什么是数据结构和其重要性，以及相关的算法和实现。 这是一篇关于数据结构的复习。 基本概念 1.程</description>
-    </item>
-    
-    <item>
-      <title>林语堂《苏东坡传》读后感</title>
-      <link>/life/dongpo/</link>
-      <pubDate>Fri, 14 Dec 2018 09:46:57 +0800</pubDate>
-      
-      <guid>/life/dongpo/</guid>
-      <description>和林语堂先生在《苏东坡传》开篇写的那样，我写这篇读后感并没有什么特别的理由，只是以此为乐而已，且此篇读后感和以往写的不同，算是一篇读书笔记吧</description>
     </item>
     
     <item>
@@ -107,6 +107,15 @@
       <pubDate>Wed, 21 Nov 2018 08:20:03 +0800</pubDate>
       
       <guid>/life/study/</guid>
+      <description>2018年7月之前 暑假之前我就一直陆陆续续的接触后端的python语言，爬虫相关的知识 2018年7月 mysql数据库，scrapy爬虫 201</description>
+    </item>
+    
+    <item>
+      <title>学习过程记录</title>
+      <link>/study/study/</link>
+      <pubDate>Wed, 21 Nov 2018 08:20:03 +0800</pubDate>
+      
+      <guid>/study/study/</guid>
       <description>2018年7月之前 暑假之前我就一直陆陆续续的接触后端的python语言，爬虫相关的知识 2018年7月 mysql数据库，scrapy爬虫 201</description>
     </item>
     
