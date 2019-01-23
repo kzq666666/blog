@@ -511,6 +511,7 @@ function CQueue(maxLength) {
 function BinaryTree() {
   // 根节点
   this.root = null;
+
   // 节点
   this.Node = function(data) {
     this.data = data;
@@ -519,6 +520,7 @@ function BinaryTree() {
     // 右指针
     this.right = null;
   };
+
   // 插入
   this.insert = function(data) {
     let newNode = new this.Node(data);
@@ -543,6 +545,7 @@ function BinaryTree() {
       }
     }
   };
+
   // 先序遍历
   this.preOrderTraversal = function(callback) {
     this.preOrderTraversalNode(this.root, callback);
@@ -590,7 +593,7 @@ function BinaryTree() {
     }
     return p.data;
   }
-  
+
   // 获取BST中的最大值
   this.maxData = function(){
     let p = this.root;
@@ -598,6 +601,30 @@ function BinaryTree() {
       p = p.right;
     }
     return p.data;
+  }
+
+  // 查询一个节点
+  this.findNode = function(key,node=this.root){
+    if(node !== null){
+      if(key < node.key){
+        this.findNode(key,node.left);
+      }else if(key > node.key){
+        this.findNode(key, node.right);
+      }else{
+        return node;
+      }
+    }else{
+      return null;
+    }
+  }
+  // 移除一个节点
+  this.removeNode = function(key){
+    let p = root;
+    while(p.data)
+    if(node==null){
+      return null;
+    }
+
   }
 }
 ```

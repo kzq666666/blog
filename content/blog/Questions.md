@@ -106,6 +106,24 @@ LHS和RHS是JS引擎的两种查找方式，赋值操作的左侧和右侧
 <br>RHS：找到源头，得到ta的原值，赋值操作的源头
 <br>不同的查找方式结果不一样，如果查找到最顶层的全局作用域下也没有找到变量的话，RHS查找就会抛出异常，而LHS查找方式在非严格模式会在全局作用域隐式的创建该变量，而严格模式则一样会抛出ReferenceError（ES5推出的严格模式不允许自动或者隐式的创建变量）
 <br>简单的说就是，如果查找的目的是对变量进行赋值，那么就会使用LHS查询，如果目的是获取变量的值，就会使用RHS查询。
+
+## 14.什么是闭包？
+当函数可以记住并访问所在的词法作用域，即使函数是在当前词法作用域之外执行，这时就产生了闭包。函数的执行期上下文没有被销毁
+
+## 15.Object.create(null)和{}创建空对象的方式有什么区别？
+Object.create(null)创建的对象比{}更‘空’，因为前者是没有创建Object.prototype原型的，而{}则会创建这个原型。
+## 16.如何判断this指向？
+1.由new调用？绑定到新创建的对象
+2.由call或者apply或者bind调用？绑定到指定的对象
+3.由上下文对象调用？绑定到那个上下文对象
+4.默认：在严格模式下绑定到undefined，非严格模式绑定到全局对象
+## 17.什么是事件冒泡和捕获？一个事件的执行顺序是怎样的？
+事件冒泡和捕获都是事件的执行顺序，事件捕获是从上到下依次执行，而事件冒泡是从下到上执行。DOM事件流分三个阶段：捕获阶段=> 目标阶段（真正的目标节点正在处理事件的阶段） => 冒泡阶段，就好比猛地将一个瓶子扔到水里，它会下沉一段距离，然后再浮上来。
+## 18.什么是事件委托？有什么用？
+事件委托是利用事件冒泡的原理，避免过多的操作DOM元素，利用其父级元素完成相应的事件操作。优化页面。
+## 19.addEventListener 和 onclick一类 绑定事件有什么区别？
+* addEventListener可以给一个事件绑定不同的监听器，而onclick一类只能一个事件只能绑定一个，同时绑定多个会覆盖。
+* addEventListener更加灵活，可以选择事件执行顺序是冒泡（第三个参数为false）还是捕获（第三个参数为true）
 ### 一些题目
 1 关于this指向
 ```js
@@ -119,7 +137,7 @@ var y = a(6);  // window.x = 6 , return this,  y = window
 console.log(x.x); // x = 6 , x.x => undefined
 console.log(y.x); // y = window , widow.x = 6
 
-
+// -----------------分割线-----------------------
 var name = '222';
 var a = {
   name:'111',
@@ -146,7 +164,7 @@ fun()   // this指向window, this.name = '222'
 b.say = a.say;  
 b.say();   // this.name = '333'
 
-// 分割线
+// -------------------分割线--------------------
 function Point(x, y){
   this.x = x;
   this.y = y;
@@ -161,7 +179,7 @@ var p2 = {x:0,y:0};
 p1.moveTo(1,1); // 1,1
 p1.moveTo.apply(p2,[10,10]); // 10,10
 
-// 分割线
+// -------------------分割线---------------
 var num = 10;
 var obj = {
   num:0,
@@ -177,6 +195,5 @@ obj.inner.print() // 6
 var fn = obj.inner.print;
 fn(); // 88
 (obj.inner.print)(); // 6
-(obj.inner.print = obj.inner.print)();
-// 刚开始做的时候我是认为obj.inner.print赋值给obj.inner.print了，我以为是obj内部调用的，我的答案是0，其实这里执行无人调用，this指向window
+(obj.inner.print = obj.inner.print)(); // 0
 ```
