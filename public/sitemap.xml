@@ -3,12 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/blog/regexp/</loc>
+    <lastmod>2019-01-23T17:51:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/study/planofwv/</loc>
+    <lastmod>2019-01-19T16:56:01+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/blog/es6/</loc>
     <lastmod>2019-01-04T11:03:38+08:00</lastmod>
   </url>
   
   <url>
-    <loc>/study/summeryofyear/</loc>
+    <loc>/study/summaryofyear/</loc>
     <lastmod>2018-12-31T16:29:49+08:00</lastmod>
   </url>
   
@@ -216,7 +226,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-01-04T11:03:38+08:00</lastmod>
+    <lastmod>2019-01-23T17:51:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -337,6 +347,12 @@
   <url>
     <loc>/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2018-12-11T16:06:49+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
+    <lastmod>2019-01-23T17:51:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   

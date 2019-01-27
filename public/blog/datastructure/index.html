@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2018年12月26日 &#183; 4022 words
+    2018年12月26日 &#183; 4074 words
     
     <div class="tag-container">
         
@@ -585,6 +585,7 @@
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">BinaryTree</span>() {
   <span style="color:#75715e">// 根节点
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+
   <span style="color:#75715e">// 节点
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">Node</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>) {
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>;
@@ -593,6 +594,7 @@
     <span style="color:#75715e">// 右指针
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
   };
+
   <span style="color:#75715e">// 插入
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">insert</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>) {
     <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">Node</span>(<span style="color:#a6e22e">data</span>);
@@ -617,6 +619,7 @@
       }
     }
   };
+
   <span style="color:#75715e">// 先序遍历
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">preOrderTraversal</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">callback</span>) {
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">preOrderTraversalNode</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>, <span style="color:#a6e22e">callback</span>);
@@ -664,7 +667,7 @@
     }
     <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">data</span>;
   }
-  
+
   <span style="color:#75715e">// 获取BST中的最大值
 </span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">maxData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
     <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>;
@@ -672,6 +675,30 @@
       <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">right</span>;
     }
     <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">data</span>;
+  }
+
+  <span style="color:#75715e">// 查询一个节点
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">findNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">key</span>,<span style="color:#a6e22e">node</span><span style="color:#f92672">=</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>){
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">node</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>){
+      <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">key</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">key</span>){
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">findNode</span>(<span style="color:#a6e22e">key</span>,<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">left</span>);
+      }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">key</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">key</span>){
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">findNode</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">right</span>);
+      }<span style="color:#66d9ef">else</span>{
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">node</span>;
+      }
+    }<span style="color:#66d9ef">else</span>{
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+    }
+  }
+  <span style="color:#75715e">// 移除一个节点
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">removeNode</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">key</span>){
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">root</span>;
+    <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">data</span>)
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">node</span><span style="color:#f92672">==</span><span style="color:#66d9ef">null</span>){
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+    }
+
   }
 }
 </code></pre></div>

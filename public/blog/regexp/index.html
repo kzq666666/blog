@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+
+<meta name="description" content="A new Hugo site.">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="/">
+
+<meta name="twitter:image" content="/tn.png">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="KZQ">
+<meta name="twitter:description" property="og:description" itemprop="description" content="A new Hugo site.">
+<meta name="og:type" content="website">
+<meta name="og:url" content="/">
+<meta name="og:image" itemprop="image primaryImageOfPage" content="/tn.png">
+
+<link rel="shortcut icon" href="/sam.ico" id="favicon">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128390257-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-128390257-1');
+</script>
+
+    
+
+    
+    
+    
+    <title>
+        
+        RegExp
+        
+    </title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="section" id="title">RegExp</div>
+
+        
+<div class="section" id="content">
+    2019年1月23日 &#183; 499 words
+    
+    <div class="tag-container">
+        
+        <span class="tag">
+            <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">
+                正则表达式
+            </a>
+        </span>
+        
+    </div>
+    
+    <hr/>
+    
+
+<p>Regular Expression</p>
+
+<h2 id="正则表达式-匹配特殊字符或有特殊搭配原则的字符的最佳选择">正则表达式：匹配特殊字符或有特殊搭配原则的字符的最佳选择</h2>
+
+<h2 id="创建方式">创建方式</h2>
+
+<ul>
+<li>直接量</li>
+
+<li><p>new RegExp();</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 直接量
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">/abc/</span> ;
+<span style="color:#75715e">// new RegExp();
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RegExp(<span style="color:#a6e22e">pattern</span>. <span style="color:#a6e22e">attribute</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RegExp(<span style="color:#e6db74">&#34;abc&#34;</span>,<span style="color:#e6db74">&#34;i&#34;</span>)
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RegExp(<span style="color:#e6db74">/abc/i</span>);
+</code></pre></div>
+<h2 id="修饰符">修饰符</h2>
+
+<p>/i  ignoreCase 忽视大小写
+/g  global   全局匹配
+/m  multiline   多行匹配</p>
+
+<h2 id="常用方法">常用方法</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">match</span>(<span style="color:#a6e22e">reg</span>)  <span style="color:#75715e">// 返回匹配成功的结果数组
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">search</span>(<span style="color:#a6e22e">reg</span>) <span style="color:#75715e">// 返回匹配到的位置，匹配不到返回-1
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">split</span>(<span style="color:#a6e22e">reg</span>)
+<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">reg</span>, <span style="color:#a6e22e">newStr</span><span style="color:#960050;background-color:#1e0010">/function(){})</span>
+<span style="color:#a6e22e">reg</span>.<span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">str</span>)   <span style="color:#75715e">// 匹配返回true，不匹配则返回false
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">reg</span>.<span style="color:#a6e22e">exec</span>()      <span style="color:#75715e">// 
+</span><span style="color:#75715e"></span></code></pre></div>
+<h2 id="常用规则">常用规则</h2>
+
+<p>```js
+\w ==&gt; [0-9A-z_]
+\W ==&gt; [^\w]
+\d ==&gt; [0-9]
+\D ==&gt; [^\d]
+\s ==&gt; [\n\f\r\t\v] 空白字符
+\S ==&gt; [^\s]
+\b ==&gt; 单词边界     /\bc/  以c开头的单词
+\B ==&gt; 非单词边界
+.  ==&gt; [^\r\n]</p></li>
+
+<li><p>==&gt; 匹配一次到无数次 {1, infinity}</p></li>
+
+<li><p>==&gt; 匹配0次到无数次  {0, infinity}
+?  ==&gt; 匹配0到1次   {0,1}
+^  ==&gt; 开头
+$  ==&gt; 结尾
+|  ==&gt; 或
+() ==&gt; 子表达式
+\1 ==&gt; 反向引用第一个子表达式一次
+()\1 ==&gt; 反向引用第一个子表达式一次
+()\1\1\1 ==&gt; 反向引用第一个子表达式两次</p>
+
+<pre><code>## 匹配原则：贪婪匹配原则（能匹配最多的）
+如果要打破贪婪匹配就在量词后面加上？，则是非贪婪匹配
+## 正则表达式的属性
+reg.global      ==&gt; 是否全局匹配
+&lt;br&gt;
+reg.ignoreCase  ==&gt; 是否忽略大小写
+&lt;br&gt;
+reg.multiline   ==&gt; 是否有换行匹配
+&lt;br&gt;
+reg.source      ==&gt; 返回正则表达式的文本
+&lt;br&gt;
+reg.lastIndex ==&gt; 返回游标位置
+## 正向预查 正向断言
+?=/!=   ==&gt;断言表达式
+&lt;br&gt;
+```js
+var reg = /a(?=b)/g      // 选择后面是b的a
+</code></pre>
+
+<h2 id="practice">Practice</h2></li>
+
+<li><p>检验一个字符串首尾是否含有数字</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">/^\d | \d$/</span>;
+</code></pre></div></li>
+
+<li><p>将一个字符转换成小驼峰式写法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;the-first-name&#34;</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">/-(\w)/g</span>;
+<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">reg</span>,<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$</span>,<span style="color:#a6e22e">$1</span>){
+<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">$1</span>.<span style="color:#a6e22e">toUpperCase</span>();
+})
+</code></pre></div></li>
+
+<li><p>字符串去重</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;aaaaaaaaaabbbbbbbbbbbbcccccccccc&#34;</span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">/(\w)\1*/g</span>;
+<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">reg</span>,<span style="color:#e6db74">&#34;$1&#34;</span>);
+</code></pre></div></li>
+</ul>
+
+</div>
+
+
+        
+<div class="section bottom-menu">
+    
+<hr />
+<p>
+
+
+
+    
+        
+            <a href="/blog">
+                Blog
+            </a>
+        
+    
+    
+        
+            &#183; 
+            <a href="/study">
+                Study
+            </a>
+        
+            &#183; 
+            <a href="/life">
+                Life
+            </a>
+        
+            &#183; 
+            <a href="/about">
+                About
+            </a>
+        
+    
+    &#183; 
+    <a href="/">
+        main
+    </a>
+
+</p>
+</div>
+
+
+        <div class="section footer">Call me Sam, a theme for Hugo.</div>
+    </div>
+</body>
+
+</html>

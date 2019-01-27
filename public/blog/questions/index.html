@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2018年11月16日 &#183; 2634 words
+    2018年11月16日 &#183; 3488 words
     
     <div class="tag-container">
         
@@ -190,80 +190,112 @@
 <br>不同的查找方式结果不一样，如果查找到最顶层的全局作用域下也没有找到变量的话，RHS查找就会抛出异常，而LHS查找方式在非严格模式会在全局作用域隐式的创建该变量，而严格模式则一样会抛出ReferenceError（ES5推出的严格模式不允许自动或者隐式的创建变量）
 <br>简单的说就是，如果查找的目的是对变量进行赋值，那么就会使用LHS查询，如果目的是获取变量的值，就会使用RHS查询。</p>
 
+<h2 id="14-什么是闭包">14.什么是闭包？</h2>
+
+<p>当函数可以记住并访问所在的词法作用域，即使函数是在当前词法作用域之外执行，这时就产生了闭包。函数的执行期上下文没有被销毁</p>
+
+<h2 id="15-object-create-null-和-创建空对象的方式有什么区别">15.Object.create(null)和{}创建空对象的方式有什么区别？</h2>
+
+<p>Object.create(null)创建的对象比{}更‘空’，因为前者是没有创建Object.prototype原型的，而{}则会创建这个原型。</p>
+
+<h2 id="16-如何判断this指向">16.如何判断this指向？</h2>
+
+<p>1.由new调用？绑定到新创建的对象
+2.由call或者apply或者bind调用？绑定到指定的对象
+3.由上下文对象调用？绑定到那个上下文对象
+4.默认：在严格模式下绑定到undefined，非严格模式绑定到全局对象</p>
+
+<h2 id="17-什么是事件冒泡和捕获-一个事件的执行顺序是怎样的">17.什么是事件冒泡和捕获？一个事件的执行顺序是怎样的？</h2>
+
+<p>事件冒泡和捕获都是事件的执行顺序，事件捕获是从上到下依次执行，而事件冒泡是从下到上执行。DOM事件流分三个阶段：捕获阶段=&gt; 目标阶段（真正的目标节点正在处理事件的阶段） =&gt; 冒泡阶段，就好比猛地将一个瓶子扔到水里，它会下沉一段距离，然后再浮上来。</p>
+
+<h2 id="18-什么是事件委托-有什么用">18.什么是事件委托？有什么用？</h2>
+
+<p>事件委托是利用事件冒泡的原理，避免过多的操作DOM元素，利用其父级元素完成相应的事件操作。优化页面。</p>
+
+<h2 id="19-addeventlistener-和-onclick一类-绑定事件有什么区别">19.addEventListener 和 onclick一类 绑定事件有什么区别？</h2>
+
+<ul>
+<li>addEventListener可以给一个事件绑定不同的监听器，而onclick一类只能一个事件只能绑定一个，同时绑定多个会覆盖。</li>
+
+<li><p>addEventListener更加灵活，可以选择事件执行顺序是冒泡（第三个参数为false）还是捕获（第三个参数为true）</p>
+
 <h3 id="一些题目">一些题目</h3>
 
-<p>1 关于this指向</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// this指向的是调用它的对象，如果没有直接调用对象，会指向undefined或者window，一般都会指向window，在严格模式下才会指向undefined
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">a</span>(<span style="color:#a6e22e">xx</span>){
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">xx</span>;
-  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;
+<p>1 关于this指向
+```js
+// this指向的是调用它的对象，如果没有直接调用对象，会指向undefined或者window，一般都会指向window，在严格模式下才会指向undefined
+function a(xx){
+this.x = xx;
+return this;
 };
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>(<span style="color:#ae81ff">5</span>);  <span style="color:#75715e">// window.x = 5 , return this,  x = window
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>(<span style="color:#ae81ff">6</span>);  <span style="color:#75715e">// window.x = 6 , return this,  y = window
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">x</span>.<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// x = 6 , x.x =&gt; undefined
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">y</span>.<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// y = window , widow.x = 6
-</span><span style="color:#75715e"></span>
+var x = a(5);  // window.x = 5 , return this,  x = window
+var y = a(6);  // window.x = 6 , return this,  y = window
+console.log(x.x); // x = 6 , x.x =&gt; undefined
+console.log(y.x); // y = window , widow.x = 6</p></li>
+</ul>
 
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;222&#39;</span>;
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> {
-  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;111&#39;</span>,
-  <span style="color:#a6e22e">say</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>);  <span style="color:#75715e">//谁调用this就指向谁
-</span><span style="color:#75715e"></span>  }
-}
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fun</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">say</span>;   
-<span style="color:#a6e22e">fun</span>();   <span style="color:#75715e">// this指向window, this.name = &#39;222&#39;
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">say</span>(); <span style="color:#75715e">// this指向a, this.name = &#39;111&#39;
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> {
-  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;333&#39;</span>,
-  <span style="color:#a6e22e">say</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">fun</span>){
-    <span style="color:#a6e22e">fun</span>();
+<p>// &mdash;&mdash;&mdash;&mdash;&mdash;&ndash;分割线&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;
+var name = &lsquo;222&rsquo;;
+var a = {
+  name:&lsquo;111&rsquo;,
+  say:function(){
+    console.log(this.name);  //谁调用this就指向谁
   }
 }
-<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">say</span>(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">say</span>);  
-<span style="color:#75715e">// say:function(fun){
-</span><span style="color:#75715e">//    this;这里的this指向b
-</span><span style="color:#75715e">//    fun();  fun里面的this是在预编译过程中指向window的
-</span><span style="color:#75715e">//}
-</span><span style="color:#75715e">// 所以这里的this.name = &#39;222&#39;
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">fun</span>()   <span style="color:#75715e">// this指向window, this.name = &#39;222&#39;
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">say</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">say</span>;  
-<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">say</span>();   <span style="color:#75715e">// this.name = &#39;333&#39;
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// 分割线
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Point</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>){
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">x</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">y</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">moveTo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>){
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">x</span>;
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">y</span>;
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">y</span>);
+var fun = a.say;<br />
+fun();   // this指向window, this.name = &lsquo;222&rsquo;
+a.say(); // this指向a, this.name = &lsquo;111&rsquo;
+var b = {
+  name:&lsquo;333&rsquo;,
+  say:function(fun){
+    fun();
   }
 }
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Point</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p2</span> <span style="color:#f92672">=</span> {<span style="color:#a6e22e">x</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>,<span style="color:#a6e22e">y</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>};
-<span style="color:#a6e22e">p1</span>.<span style="color:#a6e22e">moveTo</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>); <span style="color:#75715e">// 1,1
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">p1</span>.<span style="color:#a6e22e">moveTo</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">p2</span>,[<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">10</span>]); <span style="color:#75715e">// 10,10
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// 分割线
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> {
-  <span style="color:#a6e22e">num</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>,
-  <span style="color:#a6e22e">inner</span><span style="color:#f92672">:</span>{
-    <span style="color:#a6e22e">num</span><span style="color:#f92672">:</span><span style="color:#ae81ff">6</span>,
-    <span style="color:#a6e22e">print</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
-      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">num</span>);
+b.say(a.say);<br />
+// say:function(fun){
+//    this;这里的this指向b
+//    fun();  fun里面的this是在预编译过程中指向window的
+//}
+// 所以这里的this.name = &lsquo;222&rsquo;
+fun()   // this指向window, this.name = &lsquo;222&rsquo;
+b.say = a.say;<br />
+b.say();   // this.name = &lsquo;333&rsquo;</p>
+
+<p>// &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-分割线&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;
+function Point(x, y){
+  this.x = x;
+  this.y = y;
+  this.moveTo = function(x, y){
+    this.x = x;
+    this.y = y;
+    console.log(this.x + &ldquo;,&rdquo; + this.y);
+  }
+}
+var p1 = new Point(0,0);
+var p2 = {x:0,y:0};
+p1.moveTo(1,1); // 1,1
+p1.moveTo.apply(p2,[10,10]); // 10,10</p>
+
+<p>// &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-分割线&mdash;&mdash;&mdash;&mdash;&mdash;
+var num = 10;
+var obj = {
+  num:0,
+  inner:{
+    num:6,
+    print:function(){
+      console.log(this.num);
     }
   }
 }
-<span style="color:#a6e22e">num</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">88</span>; <span style="color:#75715e">// 全局num变为88
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">print</span>() <span style="color:#75715e">// 6
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">fn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">print</span>;
-<span style="color:#a6e22e">fn</span>(); <span style="color:#75715e">// 88
-</span><span style="color:#75715e"></span>(<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">print</span>)(); <span style="color:#75715e">// 6
-</span><span style="color:#75715e"></span>(<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">print</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">print</span>)();
-<span style="color:#75715e">// 刚开始做的时候我是认为obj.inner.print赋值给obj.inner.print了，我以为是obj内部调用的，我的答案是0，其实这里执行无人调用，this指向window
-</span><span style="color:#75715e"></span></code></pre></div>
+num = 88; // 全局num变为88
+obj.inner.print() // 6
+var fn = obj.inner.print;
+fn(); // 88
+(obj.inner.print)(); // 6
+(obj.inner.print = obj.inner.print)(); // 0
+```</p>
+
 </div>
 
 
