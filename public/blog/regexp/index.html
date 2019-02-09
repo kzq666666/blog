@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2019年1月23日 &#183; 499 words
+    2019年1月23日 &#183; 494 words
     
     <div class="tag-container">
         
@@ -79,8 +79,8 @@
 
 <ul>
 <li>直接量</li>
-
-<li><p>new RegExp();</p>
+<li>new RegExp();</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 直接量
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">/abc/</span> ;
 <span style="color:#75715e">// new RegExp();
@@ -91,7 +91,9 @@
 <h2 id="修饰符">修饰符</h2>
 
 <p>/i  ignoreCase 忽视大小写
+<br>
 /g  global   全局匹配
+<br>
 /m  multiline   多行匹配</p>
 
 <h2 id="常用方法">常用方法</h2>
@@ -103,70 +105,65 @@
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">reg</span>.<span style="color:#a6e22e">exec</span>()      <span style="color:#75715e">// 
 </span><span style="color:#75715e"></span></code></pre></div>
 <h2 id="常用规则">常用规则</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">w</span> <span style="color:#f92672">==&gt;</span> [<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span><span style="color:#a6e22e">A</span><span style="color:#f92672">-</span><span style="color:#a6e22e">z_</span>]
+<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">W</span> <span style="color:#f92672">==&gt;</span> [<span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">w</span>]
+<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">d</span> <span style="color:#f92672">==&gt;</span> [<span style="color:#ae81ff">0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>]
+<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">D</span> <span style="color:#f92672">==&gt;</span> [<span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">d</span>]
+<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">s</span> <span style="color:#f92672">==&gt;</span> [<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">n</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">f</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">r</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">t</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">v</span>] <span style="color:#a6e22e">空白字符</span>
+<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">S</span> <span style="color:#f92672">==&gt;</span> [<span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">s</span>]
+<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">b</span> <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">单词边界</span>     <span style="color:#e6db74">/\bc/</span>  <span style="color:#a6e22e">以c开头的单词</span>
+<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">B</span> <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">非单词边界</span>
+.  <span style="color:#f92672">==&gt;</span> [<span style="color:#f92672">^</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">r</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">n</span>]
+<span style="color:#f92672">+</span>  <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">匹配一次到无数次</span> {<span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">infinity</span>}
+<span style="color:#f92672">*</span>  <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">匹配0次到无数次</span>  {<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">infinity</span>}
+<span style="color:#f92672">?</span>  <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">匹配0到1次</span>   {<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>}
+<span style="color:#f92672">^</span>  <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">开头</span>
+<span style="color:#a6e22e">$</span>  <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">结尾</span>
+<span style="color:#f92672">|</span>  <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">或</span>
+() <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">子表达式</span>
+<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">反向引用第一个子表达式一次</span>
+()<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">反向引用第一个子表达式一次</span>
+()<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">==&gt;</span> <span style="color:#a6e22e">反向引用第一个子表达式两次</span>
+</code></pre></div>
+<h2 id="匹配原则-贪婪匹配原则-能匹配最多的">匹配原则：贪婪匹配原则（能匹配最多的）</h2>
 
-<p>```js
-\w ==&gt; [0-9A-z_]
-\W ==&gt; [^\w]
-\d ==&gt; [0-9]
-\D ==&gt; [^\d]
-\s ==&gt; [\n\f\r\t\v] 空白字符
-\S ==&gt; [^\s]
-\b ==&gt; 单词边界     /\bc/  以c开头的单词
-\B ==&gt; 非单词边界
-.  ==&gt; [^\r\n]</p></li>
+<p>如果要打破贪婪匹配就在量词后面加上？，则是非贪婪匹配</p>
 
-<li><p>==&gt; 匹配一次到无数次 {1, infinity}</p></li>
+<h2 id="正则表达式的属性">正则表达式的属性</h2>
 
-<li><p>==&gt; 匹配0次到无数次  {0, infinity}
-?  ==&gt; 匹配0到1次   {0,1}
-^  ==&gt; 开头
-$  ==&gt; 结尾
-|  ==&gt; 或
-() ==&gt; 子表达式
-\1 ==&gt; 反向引用第一个子表达式一次
-()\1 ==&gt; 反向引用第一个子表达式一次
-()\1\1\1 ==&gt; 反向引用第一个子表达式两次</p>
-
-<pre><code>## 匹配原则：贪婪匹配原则（能匹配最多的）
-如果要打破贪婪匹配就在量词后面加上？，则是非贪婪匹配
-## 正则表达式的属性
-reg.global      ==&gt; 是否全局匹配
-&lt;br&gt;
+<p>reg.global      ==&gt; 是否全局匹配
+<br>
 reg.ignoreCase  ==&gt; 是否忽略大小写
-&lt;br&gt;
+<br>
 reg.multiline   ==&gt; 是否有换行匹配
-&lt;br&gt;
+<br>
 reg.source      ==&gt; 返回正则表达式的文本
-&lt;br&gt;
-reg.lastIndex ==&gt; 返回游标位置
-## 正向预查 正向断言
-?=/!=   ==&gt;断言表达式
-&lt;br&gt;
-```js
-var reg = /a(?=b)/g      // 选择后面是b的a
-</code></pre>
+<br>
+reg.lastIndex ==&gt; 返回游标位置</p>
 
-<h2 id="practice">Practice</h2></li>
+<h2 id="正向预查-正向断言">正向预查 正向断言</h2>
 
-<li><p>检验一个字符串首尾是否含有数字</p>
+<p>?=/!=   ==&gt;断言表达式
+<br></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">/a(?=b)/g</span>      <span style="color:#75715e">// 选择后面是b的a
+</span><span style="color:#75715e"></span></code></pre></div>
+<h2 id="practice">Practice</h2>
+
+<h3 id="1-检验一个字符串首尾是否含有数字">1. 检验一个字符串首尾是否含有数字</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">/^\d | \d$/</span>;
-</code></pre></div></li>
-
-<li><p>将一个字符转换成小驼峰式写法</p>
+</code></pre></div>
+<h3 id="2-将一个字符转换成小驼峰式写法">2. 将一个字符转换成小驼峰式写法</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;the-first-name&#34;</span>;
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">/-(\w)/g</span>;
 <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">reg</span>,<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">$</span>,<span style="color:#a6e22e">$1</span>){
-<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">$1</span>.<span style="color:#a6e22e">toUpperCase</span>();
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">$1</span>.<span style="color:#a6e22e">toUpperCase</span>();
 })
-</code></pre></div></li>
-
-<li><p>字符串去重</p>
+</code></pre></div>
+<h3 id="3-字符串去重">3. 字符串去重</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;aaaaaaaaaabbbbbbbbbbbbcccccccccc&#34;</span>
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">/(\w)\1*/g</span>;
 <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">replace</span>(<span style="color:#a6e22e">reg</span>,<span style="color:#e6db74">&#34;$1&#34;</span>);
-</code></pre></div></li>
-</ul>
-
+</code></pre></div>
 </div>
 
 

@@ -11,6 +11,7 @@ Regular Expression
 ## 创建方式
 * 直接量
 * new RegExp();
+
 ```js
 // 直接量
 var reg = /abc/ ;
@@ -19,9 +20,12 @@ var reg = new RegExp(pattern. attribute);
 var reg = new RegExp("abc","i")
 var reg = new RegExp(/abc/i);
 ```
+
 ## 修饰符
 /i  ignoreCase 忽视大小写
+<br>
 /g  global   全局匹配
+<br>
 /m  multiline   多行匹配  
 ## 常用方法
 ```js
@@ -33,6 +37,7 @@ reg.test(str)   // 匹配返回true，不匹配则返回false
 reg.exec()      // 
 ```
 ## 常用规则
+
 ```js
 \w ==> [0-9A-z_]
 \W ==> [^\w]
@@ -73,11 +78,11 @@ reg.lastIndex ==> 返回游标位置
 var reg = /a(?=b)/g      // 选择后面是b的a
 ```
 ## Practice
-1. 检验一个字符串首尾是否含有数字
+### 1. 检验一个字符串首尾是否含有数字
 ```js
 var reg = /^\d | \d$/;
 ```
-2. 将一个字符转换成小驼峰式写法
+### 2. 将一个字符转换成小驼峰式写法
 ```js
 var str = "the-first-name";
 var reg = /-(\w)/g;
@@ -85,7 +90,7 @@ str.replace(reg,function($,$1){
     return $1.toUpperCase();
 })
 ```
-3. 字符串去重
+### 3. 字符串去重
 ```js
 var str = "aaaaaaaaaabbbbbbbbbbbbcccccccccc"
 var reg = /(\w)\1*/g;

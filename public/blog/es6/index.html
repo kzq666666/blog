@@ -56,7 +56,7 @@
 
         
 <div class="section" id="content">
-    2019年1月4日 &#183; 610 words
+    2019年1月4日 &#183; 759 words
     
     <div class="tag-container">
         
@@ -73,12 +73,12 @@
 
 <h2 id="let-和-const">let 和 const</h2>
 
-<p>ES6新加了两种声明变量的方式，一个是let，一个是const。</p>
+<p>ES6 新加了两种声明变量的方式，一个是 let，一个是 const。</p>
 
 <ul>
-<li>let和const声明变量有自己的块级作用域（在for循环中用let声明的变量不会泄露到外部）</li>
-<li>let和const声明变量在预编译的过程都不会进行变量提升</li>
-<li>let和const声明的变量不能再次声明，而const声明变量的时候必须同时赋值，并且不能再次赋值</li>
+<li>let 和 const 声明变量有自己的块级作用域（在 for 循环中用 let 声明的变量不会泄露到外部）</li>
+<li>let 和 const 声明变量在预编译的过程都不会进行变量提升</li>
+<li>let 和 const 声明的变量不能再次声明，而 const 声明变量的时候必须同时赋值，并且不能再次赋值</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">{
     <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>); <span style="color:#75715e">// ReferenceError:a is not undefined
@@ -103,72 +103,109 @@
 <li>创建字符串不必再拼接了~</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">str</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;模板字面量&#39;</span>
-}
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;ES6&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">str</span>)
+  <span style="color:#a6e22e">str</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;模板字面量&#34;</span>
+};
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ES6&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">str</span>);
 <span style="color:#75715e">// ES6
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`ES6</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">str</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
 </code></pre></div>
 <ul>
-<li>换行直接按下键盘的Enter就可以了</li>
+<li>换行直接按下键盘的 Enter 就可以了</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;ES6\n模板字面量&#39;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ES6\n模板字面量&#34;</span>);
 <span style="color:#75715e">// ES6
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`ES6
-</span><span style="color:#e6db74">模板字面量`</span>)
+</span><span style="color:#e6db74">模板字面量`</span>);
+</code></pre></div>
+<h2 id="默认参数">默认参数</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">defalutPerson</span>(<span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;kzq&#34;</span>) {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`The person is </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">person</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+}
+<span style="color:#a6e22e">defalutPerson</span>();
+<span style="color:#a6e22e">defalutPerson</span>(<span style="color:#e6db74">&#34;HH&#34;</span>);
 </code></pre></div>
 <h2 id="箭头函数">箭头函数</h2>
 
 <ul>
-<li>ES6的箭头函数简化了函数的语法</li>
+<li>ES6 的箭头函数简化了函数的语法</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">plus</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>){
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
-}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">plus</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+};
 <span style="color:#75715e">// ES6箭头函数
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">plus</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; {
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
-}
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
+};
 <span style="color:#75715e">// 或者这样
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">plus</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>;
 </code></pre></div>
 <ul>
-<li>箭头函数的this指向是固定的，即在箭头函数声明的时候就定义好了，继承来自外部最近的this指向</li>
+<li>箭头函数的 this 指向是固定的，即在箭头函数声明的时候就定义好了，继承来自外部最近的 this 指向</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span><span style="color:#ae81ff">77</span>,
-    <span style="color:#a6e22e">print</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span>);
-    }
-}
-<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">print</span>() <span style="color:#75715e">// obj调用的，则this指向obj，77
+  <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">77</span>,
+  <span style="color:#a6e22e">print</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span>);
+  }
+};
+<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">print</span>(); <span style="color:#75715e">// obj调用的，则this指向obj，77
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span><span style="color:#ae81ff">77</span>,
-    <span style="color:#a6e22e">print</span><span style="color:#f92672">:</span>()=&gt;{
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span>);
-    }
-}
-<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">print</span>() <span style="color:#75715e">// print是箭头函数，在声明的时候this就指向obj内部的this指向window，7 
+  <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">77</span>,
+  <span style="color:#a6e22e">print</span><span style="color:#f92672">:</span> () =&gt; {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span>);
+  }
+};
+<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">print</span>(); <span style="color:#75715e">// print是箭头函数，在声明的时候this就指向obj内部的this指向window，7
 </span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>(){
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7777</span>;
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">print</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (){
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>)
-    };
-    <span style="color:#a6e22e">print</span>();
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>() {
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7777</span>;
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">print</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>);
+  };
+  <span style="color:#a6e22e">print</span>();
 }
-<span style="color:#a6e22e">test</span>() <span style="color:#75715e">// 全局调用this指向window，7
+<span style="color:#a6e22e">test</span>(); <span style="color:#75715e">// 全局调用this指向window，7
 </span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>(){
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7777</span>;
-    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">print</span> <span style="color:#f92672">=</span> () =&gt;{
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>)
-    }
-    <span style="color:#a6e22e">print</span>();
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">test</span>() {
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7777</span>;
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">print</span> <span style="color:#f92672">=</span> () =&gt; {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">this</span>);
+  };
+  <span style="color:#a6e22e">print</span>();
 }
 <span style="color:#a6e22e">test</span>(); <span style="color:#75715e">// 箭头函数print，print在定义的时候this就指向test，7777
+</span><span style="color:#75715e"></span></code></pre></div>
+<h2 id="解构赋值">解构赋值</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">info</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;kzq&#34;</span>,
+  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">20</span>,
+  <span style="color:#a6e22e">sex</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;male&#34;</span>
+};
+<span style="color:#66d9ef">var</span> { <span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">info</span>;
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span>);
+
+<span style="color:#66d9ef">var</span> [, , <span style="color:#a6e22e">lastNum</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>];
+</code></pre></div>
+<h2 id="扩展运算符">扩展运算符(&hellip;)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// 合并数组
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">person1</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;kzq&#34;</span>, <span style="color:#e6db74">&#34;lzj&#34;</span>, <span style="color:#e6db74">&#34;hmy&#34;</span>, <span style="color:#e6db74">&#34;dcb&#34;</span>];
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">person2</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;hh&#34;</span>, <span style="color:#e6db74">&#34;hqy&#34;</span>, <span style="color:#e6db74">&#34;xxbb&#34;</span>, <span style="color:#e6db74">&#34;xx&#34;</span>];
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">person</span> <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">person1</span>, ...<span style="color:#a6e22e">person2</span>]; <span style="color:#75715e">// person2.push(...person)
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 复制
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>];
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">oppA</span> <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">a</span>].<span style="color:#a6e22e">reverse</span>();
+
+<span style="color:#75715e">// 解构赋值
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> { <span style="color:#a6e22e">name1</span>, <span style="color:#a6e22e">name2</span>, ...<span style="color:#a6e22e">remainName</span> } <span style="color:#f92672">=</span> { <span style="color:#a6e22e">name1</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;kzq&#34;</span>, <span style="color:#a6e22e">name2</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;hh&#34;</span>, <span style="color:#a6e22e">name3</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;wq&#34;</span>, <span style="color:#a6e22e">name4</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;xx&#34;</span> };
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name1</span>); <span style="color:#75715e">// &#34;kzq&#34;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name2</span>); <span style="color:#75715e">// &#34;hh&#34;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">remainName</span>); <span style="color:#75715e">// {name3:&#34;wq&#34;, name4:&#34;xx&#34;}
+</span><span style="color:#75715e"></span></code></pre></div>
+<h2 id="object-assign-实现浅复制">Object.assign 实现浅复制</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newObj</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">assign</span>(<span style="color:#a6e22e">targetObj</span>, <span style="color:#a6e22e">sourceObj</span>); <span style="color:#75715e">// 把sourceObj复制给targetObj并返回targetObj
 </span><span style="color:#75715e"></span></code></pre></div>
 </div>
 
